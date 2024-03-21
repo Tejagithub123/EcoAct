@@ -1,7 +1,9 @@
 import React from "react";
+import Consult from "./Consult";
 import Content from "./Content";
 import Information from "./Information";
 import Profil from "./Profil";
+import RegistrationForm from "./RegistrationForm";
 
 const MainContent = ({ currentPage }) => {
   return (
@@ -11,7 +13,7 @@ const MainContent = ({ currentPage }) => {
           <Content></Content>
         </div>
       )}
-      {currentPage === "taskList" && (
+      {currentPage === "Profil" && (
         <div>
           <Profil></Profil>
         </div>
@@ -20,6 +22,18 @@ const MainContent = ({ currentPage }) => {
       {currentPage === "Information" && (
         <div>
           <Information></Information>
+        </div>
+      )}
+
+      {currentPage === "RegistrationForm" && (
+        <div>
+          <RegistrationForm></RegistrationForm>
+        </div>
+      )}
+
+      {currentPage === "Consult" && (
+        <div>
+          <Consult />
         </div>
       )}
 

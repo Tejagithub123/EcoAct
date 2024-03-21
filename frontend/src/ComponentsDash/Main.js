@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 
 const Main = () => {
-  const [currentPage, setCurrentPage] = useState(null);
+  const [currentPage, setCurrentPage] = useState("plan");
   return (
     <div className="relative bg-yellow-50 overflow-hidden max-h-screen">
       <Header />
