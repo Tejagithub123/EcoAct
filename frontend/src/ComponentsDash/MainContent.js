@@ -1,4 +1,5 @@
 import React from "react";
+import Consult from "./Consult";
 import Content from "./Content";
 import Information from "./Information";
 import Profil from "./Profil";
@@ -27,6 +28,12 @@ const MainContent = ({ currentPage }) => {
       {currentPage === "RegistrationForm" && (
         <div>
           <RegistrationForm></RegistrationForm>
+        </div>
+      )}
+
+      {currentPage === "Consult" && (
+        <div>
+          <Consult />
         </div>
       )}
 

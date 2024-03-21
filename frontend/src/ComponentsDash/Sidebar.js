@@ -123,7 +123,7 @@ const Sidebar = ({ setCurrentPage }) => {
           <a
             href="javascript:void(0)"
             class="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
-            onClick={() => handleItemClick("RegistrationForm")}
+            onClick={() => handleItemClick("Consult")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
