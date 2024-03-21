@@ -24,6 +24,7 @@ const Login = () => {
       .post("http://localhost:8000/api/login/", {
         email: email,
         password: password,
+        
       })
       .then((response) => {
         console.log(response.data);
