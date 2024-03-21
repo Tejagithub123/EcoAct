@@ -54,7 +54,7 @@ function Contact() {
       {/* Banner */}
       <div className="relative font-[sans-serif] before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
         <img
-          src="https://readymadeui.com/cardImg.webp"
+          src={imgcontact}
           alt="Banner Image"
           className="absolute inset-0 w-full h-full object-cover"
         />

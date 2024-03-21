@@ -22,10 +22,16 @@ import ImageThree from '../../../src/components/homepage/photos/close-up-man-cov
 
 import NewWaste from "../wastevideo/NewWaste";
 
+import imghead from "./photos/location-symbol-with-landscape-background.jpg"
 
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import FeaturesSection from "../Featuredesign/FeaturesSection"
+import NewsletterSubscription from "../Featuredesign/NewsletterSubscription";
+
 const images = [ImageOne, ImageTwo, ImageThree];
+
+
 
 
 const HomePage = () => {
@@ -43,7 +49,7 @@ const HomePage = () => {
    
       <div>
         <Navbar />
-        <div class="bg-gradient-to-br from-green-500 to-teal-400 p-12 font-[sans-serif] h-[90vh]">
+        <div class="bg-green-500 p-12 font-[sans-serif] h-[90vh]">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 justify-center items-center gap-8">
     <div class="text-center md:text-left md:w-full">
       <h2 class="text-6xl lg:text-7xl font-extrabold text-white mb-8 md:!leading-[75px]">ActEco - Our Website for Initiatives</h2>
@@ -55,10 +61,10 @@ const HomePage = () => {
         Contact
       </a>
     </div>
-    {/*
-    <div class="text-center">
-  <img src={ImageThree} alt="Premium Benefits" class="w-full h-auto max-h-[70vh] object-cover mx-auto" />
-</div>/*/} 
+  
+    <div class="text-center hidden md:block">
+  <img src={imghead} alt="Premium Benefits" class="w-full h-full object-cover mx-auto" />
+</div>
   </div>
 </div>
 
@@ -78,10 +84,10 @@ const HomePage = () => {
             <p className="mb-8 leading-relaxed">
             We utilize a machine learning-based approach for waste management, leveraging webcam feeds and image uploads. This process entails capturing real-time images or submitting individual images of waste material, subsequently subjecting them to preprocessing and standardization for training a supervised machine learning model. Upon training, the model discerns and sorts waste materials based on their visual characteristics like color, texture, and shape. As a result, our system offers users valuable feedback, including labeled descriptions of the waste material. This empowers users to engage with ecological initiatives and recommend sustainable practices.            </p>
             <div className="flex justify-center">
-              <button className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
+              <button className="inline-flex text-white text-3xl bg-green-500 border-0 py-2 px-10 focus:outline-none hover:bg-green-600 rounded">
                 <Link to="/video">Web Cam</Link>
               </button>
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+              <button className="ml-4 inline-flex  text-gray-700 bg-gray-100 border-0 text-3xl py-2 px-10 focus:outline-none hover:bg-gray-200 rounded">
                 <Link to="/image">Image Upload</Link>
               </button>
             </div>
@@ -110,8 +116,10 @@ const HomePage = () => {
         </div>
       </section>
      {/*<NewWaste />*/} 
-    
-    
+    <FeaturesSection/>
+    <br></br>
+   <NewsletterSubscription></NewsletterSubscription> 
+  
      <Footer />
     </div>
   );

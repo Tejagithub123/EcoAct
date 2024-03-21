@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerIconShadow from "leaflet/dist/images/marker-shadow.png";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-const customMarkerIcon = L.icon({
-  iconUrl: markerIcon,
-  shadowUrl: markerIconShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
 
 const EcoMap = () => {
   const [selectedActor, setSelectedActor] = useState(null);
@@ -32,14 +22,24 @@ const EcoMap = () => {
     },
   ];
 
+  const toggleActorPanel = (actor) => {
+    setSelectedActor((prevState) => {
+      if (prevState === actor) {
+        return null; // Close the panel if the same marker is clicked again
+      } else {
+        return actor; // Show the panel with actor information
+      }
+    });
+  };
+
   return (
-    <div>
+    <div style={{ position: "relative", zIndex: 1 }}>
       <Navbar />
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-center h-full w-full zIndex: 0">
         <MapContainer
           center={[34.0479, 9.5077]}
           zoom={6}
-          style={{ height: "600px", width: "80%" }}
+          style={{ height: "600px", width: "100vw", zIndex: 0 }} // Add zIndex: 0
           className="rounded-lg shadow-md"
         >
           <TileLayer
@@ -50,33 +50,43 @@ const EcoMap = () => {
             <Marker
               key={index}
               position={actor.coordinates}
-              icon={customMarkerIcon}
-              onClick={() => setSelectedActor(actor)}
+              eventHandlers={{
+                click: () => toggleActorPanel(actor),
+              }}
             >
               <Popup>{actor.name}</Popup>
+              <FaMapMarkerAlt color="red" size={30} />
             </Marker>
           ))}
-          {selectedActor && (
-            <Popup
-              position={selectedActor.coordinates}
-              onClose={() => setSelectedActor(null)}
-            >
-              <div>
-                <h2>{selectedActor.name}</h2>
-                <p>
-                  Coordonnées : {selectedActor.coordinates[0]},{" "}
-                  {selectedActor.coordinates[1]}
-                </p>
-                <p>
-                  Domaines d'activités :{" "}
-                  {selectedActor.activityDomains.join(", ")}
-                </p>
-                <p>Description : {selectedActor.description}</p>
-              </div>
-            </Popup>
-          )}
         </MapContainer>
       </div>
+
+      {selectedActor && (
+        <div className="fixed inset-0 flex justify-center items-center z-50">
+          <div className="absolute bg-white rounded-lg shadow-md p-6 z-50">
+            {" "}
+            {/* Add z-50 */}
+            <h2 className="text-xl font-bold text-green-500 mb-4">
+              {selectedActor.name}
+            </h2>
+            <p className="text-base">{selectedActor.description}</p>
+            <p className="text-sm mt-4">
+              Coordonnées : {selectedActor.coordinates[0]},{" "}
+              {selectedActor.coordinates[1]}
+            </p>
+            <p className="text-sm">
+              Domaines d'activités : {selectedActor.activityDomains.join(", ")}
+            </p>
+            <button
+              className="mt-4 bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600"
+              onClick={() => setSelectedActor(null)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
