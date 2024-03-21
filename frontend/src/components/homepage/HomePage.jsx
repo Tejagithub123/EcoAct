@@ -43,46 +43,26 @@ const HomePage = () => {
    
       <div>
         <Navbar />
-          <div className="relative h-screen w-screen">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 h-full w-full transition-opacity duration-2000 ${index === currentImage ? 'opacity-100' : 'opacity-0'}`}
-          style={{ paddingBottom: '6.5%', paddingRight: '13px' }}
-        >
-          <img 
-            src={image}
-            alt={`Image ${index}`}
-          
-            className="flex w-full h-full object-cover object-center opacity-30"
-          />
-
-        {/* Text centered above the image */}
-<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-  <h2 className="italic text-4xl text-gray-400">At ActEco, we're committed to fostering sustainable practices and promoting eco-initiatives that contribute to a healthier planet.</h2>
-</div>
-
-
-<div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-40">
-  {/* Button for Contact */}
-  <button 
-    onClick={() => console.log('Contact button clicked')}
-    className="bg-transparent px-12 py-5 border border-green-500 hover:border-transparent rounded text-white font-medium text-lg leading-snug uppercase mr-20 hover:text-green-600 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
-  >
-    <Link to="/Contact">Contact</Link>
-  </button>
-  {/* Button for Signup */}
-  <button
-    onClick={() => console.log('Sign Up button clicked')}
-    className="px-12 py-5 bg-green-600 text-white font-medium text-lg leading-snug uppercase rounded-lg hover:text-green-600 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
-  >
-    <Link to="/signup">Signup</Link>
-  </button>
-</div>
-        </div>
-      ))} 
+        <div class="bg-gradient-to-br from-green-500 to-teal-400 p-12 font-[sans-serif] h-[90vh]">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 justify-center items-center gap-8">
+    <div class="text-center md:text-left md:w-full">
+      <h2 class="text-6xl lg:text-7xl font-extrabold text-white mb-8 md:!leading-[75px]">ActEco - Our Website for Initiatives</h2>
+      <p class="text-2xl lg:text-3xl text-white mb-8">Join ActEco's premium plan and accelerate your impact on the environment. Explore exclusive features and unlock new opportunities for ecological initiatives.</p>
+      <a href="/Signup" class="bg-black hover:bg-opacity-80 text-white py-4 px-12 rounded-full text-lg lg:text-xl font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl inline-block">
+        Sign Up
+      </a>
+      <a href="/Contact" class="bg-black hover:bg-opacity-80 text-white py-4 px-12 rounded-full text-lg lg:text-xl font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl inline-block ml-4">
+        Contact
+      </a>
     </div>
-    
+    {/*
+    <div class="text-center">
+  <img src={ImageThree} alt="Premium Benefits" class="w-full h-auto max-h-[70vh] object-cover mx-auto" />
+</div>/*/} 
+  </div>
+</div>
+
+
 {/*ML/*/}
       <section className="text-gray-600 body-font scroll-smooth" id="shawn">
         <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
