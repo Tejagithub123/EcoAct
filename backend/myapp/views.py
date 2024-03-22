@@ -76,6 +76,7 @@ def submit_contact_form(request):
         else:
             return JsonResponse({'error': 'Email is required.'}, status=400)
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
 class PredictionList(generics.ListAPIView):
     queryset = Prediction.objects.all()
     serializer_class = PredictionSerializer

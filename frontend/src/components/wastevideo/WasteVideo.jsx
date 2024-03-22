@@ -4,25 +4,23 @@ import Loader from "react-loader-spinner";
 import useInterval from "@use-it/interval";
 import axios from "axios";
 import WasteType from "./WasteType";
-
 import Chart from "./Chart";
 import { FaUpload } from "react-icons/fa";
-
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./wastevideo.css";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 
 let classifier;
-// image upload wala
-function WasteVideo() {
 
+function WasteVideo() {
   const inputRef = useRef();
   const [imageData, setImageData] = useState('');
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [stopped, setStopped] = useState(false);
+  const [sentToBackend, setSentToBackend] = useState(false); // New state variable
 
   useEffect(() => {
     classifier = ml5.imageClassifier("./model/model.json", () => {
@@ -39,9 +37,9 @@ function WasteVideo() {
         }
         setResult(results);
         console.log(results);
-        // if (stopped) {
-        //   sendResultsToBackend(result);
-        // }
+        if (stopped && !sentToBackend) { // Check if not sent to backend yet
+          sendResultsToBackend(results);
+        }
       });
     }
   }, 500);
@@ -50,24 +48,33 @@ function WasteVideo() {
     setStart(!start);
     setResult([]);
     setStopped(!stopped);
+    setSentToBackend(false); // Reset sentToBackend flag when starting again
   };
 
-  // const sendResultsToBackend = (results) => {
-  //   const data = results.map((result) => {
-  //     const wasteType = results.label;
-  //     const accuracy = results.confidence;
-  //     return { wasteType, accuracy };
-  //   });
-  //   axios
-  //     .post("http://localhost:8000/api/prediction/", { predictions: data })
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
+  const sendResultsToBackend = (results) => {
+    if (results.length > 0) {
+      const firstResult = results[0];
+      const data = {
+        text: firstResult.label,
+        prediction: firstResult.confidence
+      };
 
+      axios.post("http://localhost:8000/api/prediction/", data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        console.log("Data saved successfully:", response.data);
+        setSentToBackend(true); // Set sentToBackend flag to true after sending data
+      })
+      .catch(error => {
+        console.error("Error saving data:", error);
+      });
+    } else {
+      console.warn("No results to send to the backend.");
+    }
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -87,7 +94,7 @@ function WasteVideo() {
 
   return (
     <>
-        <Navbar/>
+      <Navbar/>
       <div className="wastevideo">
         <Loader
           type="Watch"
@@ -114,14 +121,10 @@ function WasteVideo() {
                 onChange={handleImageUpload}
                 className="hidden"
               />
-            </label>
-            }
-            {
-              imageData && <><h2>Image Uploaded</h2><br /><img className="w-80 h-80 rounded-md" src={imageData} alt="Uploaded Pic" /></>
-            }
-
+            </label>}
+            {imageData && <><h2>Image Uploaded</h2><br /><img className="w-80 h-80 rounded-md" src={imageData} alt="Uploaded Pic" /></>}
             {loaded && (
-              <button className="text-xl mt-5" onClick={() => toggle()}>
+              <button className="text-xl mt-5" onClick={toggle}>
                 {start ? "Stop" : "Start"}
               </button>
             )}
@@ -131,6 +134,7 @@ function WasteVideo() {
             {result.length > 0 && (
               <div className="mt-20">
                 <Chart data={result[0]} />
+                {console.log("res"+result[0])}
               </div>
             )}
           </div>
@@ -140,10 +144,9 @@ function WasteVideo() {
             <WasteType data={result} />
           </div>
         )}
-  <Footer />
+        <Footer />
       </div>
     </>
-    
   );
 }
 
