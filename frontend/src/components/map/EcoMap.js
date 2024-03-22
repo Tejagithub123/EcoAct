@@ -3,7 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-
+import EcologyChallenges from "../Featuredesign/EcologyChallenges";
+import WebsiteFAQSection from "../Featuredesign/WebsiteFAQSection";
 const EcoMap = () => {
   const [selectedActor, setSelectedActor] = useState(null);
 
@@ -60,7 +61,6 @@ const EcoMap = () => {
           ))}
         </MapContainer>
       </div>
-
       {selectedActor && (
         <div className="fixed inset-0 flex justify-center items-center z-50">
           <div className="absolute bg-white rounded-lg shadow-md p-6 z-50">
@@ -86,6 +86,8 @@ const EcoMap = () => {
           </div>
         </div>
       )}
+      <EcologyChallenges></EcologyChallenges>
+      <WebsiteFAQSection></WebsiteFAQSection>
 
       <Footer />
     </div>

@@ -8,7 +8,7 @@ const WebsiteFAQSection = () => {
           <h2 className="text-3xl font-extrabold text-green-600">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 mt-4 text-sm">
+          <p className="text-gray-600 mt-4 text-xl">
             Explore our comprehensive FAQ to find answers to common queries.
           </p>
         </div>
@@ -33,9 +33,9 @@ const WebsiteFAQSection = () => {
 
 const FAQItem = ({ question, answer }) => {
   return (
-    <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
-      <h3 className="text-lg font-semibold text-indigo-700 mb-2">{question}</h3>
-      <p className="text-gray-600 text-sm">{answer}</p>
+    <div className="bg-white 50 p-6 rounded-lg border">
+      <h3 className="text-2xl font-semibold text-green-700 mb-2">{question}</h3>
+      <p className="text-gray-600 text-base">{answer}</p>
     </div>
   );
 };
