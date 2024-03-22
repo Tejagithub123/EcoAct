@@ -5,7 +5,14 @@ from .views import prediction_view
 from .views import submit_contact_form
 
 from .views import PredictionList
+from .views import CategoryListCreateAPIView, CategoryRetrieveUpdateDestroyAPIView
+
+
+
 urlpatterns = [ 
+     path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
+    path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-detail'),
+    
     path('submit/', submit_contact_form, name='submit_contact_form'),
 
     path('signup/', user_signup),
