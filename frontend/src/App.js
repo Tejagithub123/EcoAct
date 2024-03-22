@@ -12,12 +12,13 @@ import PredictionList from "./components/predictions/PredictionList";
 import EcoMap from "./components/map/EcoMap";
 import Main from "./ComponentsDash/Main";
 import Contact from "./components/Contact/Contact";
-
+import ActMain from "./ActCompentsDash/ActMain";
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/dashboard/user" element={<ActMain />} />
           <Route path="/dashboard" element={<Main />} />
           <Route path="/" element={<EcoMap />} />
           <Route path="/home" element={<HomePage />} />

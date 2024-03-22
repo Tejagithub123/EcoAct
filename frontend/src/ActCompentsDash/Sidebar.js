@@ -22,7 +22,7 @@ const Sidebar = ({ setCurrentPage }) => {
             <span class="h-3 w-3 rounded-full bg-green-600 border-2 border-white block absolute bottom-0 right-0"></span>
           </div>
           <div class="ml-4">
-            <p class="text-sm text-gray-300">Admin</p>
+            <p class="text-sm text-gray-300">Eco Actor</p>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@ const Sidebar = ({ setCurrentPage }) => {
                 data-original="#000000"
               />
             </svg>
-            <span>Profil</span>
+            <span>About</span>
           </a>
         </li>
 
@@ -116,7 +116,7 @@ const Sidebar = ({ setCurrentPage }) => {
                 data-original="#000000"
               />
             </svg>
-            <span>Add Cateogory</span>
+            <span>Profil</span>
           </a>
         </li>
         <li>
@@ -154,65 +154,7 @@ const Sidebar = ({ setCurrentPage }) => {
                 />
               </g>
             </svg>
-            <span>Eco Cateogories</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            class="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
-            onClick={() => handleItemClick("RegistrationForm")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              class="w-[18px] h-[18px] mr-4"
-              viewBox="0 0 511.414 511.414"
-            >
-              <path
-                d="M497.695 108.838a16.002 16.002 0 0 0-9.92-14.8L261.787 1.2a16.003 16.003 0 0 0-12.16 0L23.639 94.038a16 16 0 0 0-9.92 14.8v293.738a16 16 0 0 0 9.92 14.8l225.988 92.838a15.947 15.947 0 0 0 12.14-.001c.193-.064-8.363 3.445 226.008-92.837a16 16 0 0 0 9.92-14.8zm-241.988 76.886-83.268-34.207L352.39 73.016l88.837 36.495zm-209.988-51.67 71.841 29.513v83.264c0 8.836 7.164 16 16 16s16-7.164 16-16v-70.118l90.147 37.033v257.797L45.719 391.851zM255.707 33.297l55.466 22.786-179.951 78.501-61.035-25.074zm16 180.449 193.988-79.692v257.797l-193.988 79.692z"
-                data-original="#000000"
-              />
-            </svg>
-            <span>Add actor</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            class="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
-            onClick={() => handleItemClick("Consult")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              stroke="currentColor"
-              class="w-[18px] h-[18px] mr-4"
-              viewBox="0 0 682.667 682.667"
-            >
-              <defs>
-                <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                  <path d="M0 512h512V0H0Z" data-original="#000000" />
-                </clipPath>
-              </defs>
-              <g
-                clip-path="url(#a)"
-                transform="matrix(1.33 0 0 -1.33 0 682.667)"
-              >
-                <path
-                  fill="none"
-                  stroke-miterlimit="10"
-                  stroke-width="40"
-                  d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                  data-original="#000000"
-                />
-                <path
-                  d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                  data-original="#000000"
-                />
-              </g>
-            </svg>
-            <span>Eco Actors</span>
+            <span>Interact</span>
           </a>
         </li>
       </ul>
