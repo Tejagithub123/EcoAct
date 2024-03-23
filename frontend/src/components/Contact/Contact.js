@@ -424,7 +424,8 @@ function Contact() {
               {/* Submit button */}
               <div className="flex justify-center mb-30 mt-[-40px]">
                 <button
-                  type="submit"
+                  type="submit" 
+                  /* there's something odd here !!  */
                   className="margin-top: -29% bg-green-500 transform hover:translate-z-1 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   Send Message
