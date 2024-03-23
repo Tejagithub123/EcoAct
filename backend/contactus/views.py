@@ -1,20 +1,13 @@
-from django.shortcuts import render,redirect,HttpResponse
-from .forms import ContactUsForm
+
 # Create your views here.
 
 from rest_framework.decorators import api_view
 
 from django.core.mail import send_mail
 from django.http import JsonResponse
+import logging
 
-
-def contact(request):
-    if request.method == 'POST':
-        form = ContactUsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse(content="Message Sent",status=201)
-    return HttpResponse(content="<p>Error sending message</p>")
+logger = logging.getLogger(__name__)
 
 
 @api_view(['POST'])
@@ -27,12 +20,15 @@ def submit_contact_form(request):
 
         if email:
             try:
+                # Construct the message body including sender's email
+                message_body = f'Name: {name}\nMessage: {message}\n\nFrom: {email}'
+
                 # Ensure that your EMAIL_HOST settings are correctly configured
                 send_mail(
-                    'New Contact Form Submission',
-                    f'Name: {name}\nEmail: {email}\nsubject: {subject}\nMessage: {message}',
-                    email,
-                    ['benhajalayateja@gmail.com'],
+                    subject,
+                    message_body,
+                    'aicademyelearning@gmail.com',  # Sender's email address
+                    ['aicademyelearning@gmail.com'],  # Receiver's email address
                     fail_silently=False
                 )
                 return JsonResponse({'message': 'Form submitted successfully.'})
