@@ -21,7 +21,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await axios
-      .post("http://localhost:8000/api/login/", {
+      .post("http://localhost:8000/users/login/", {
         email: email,
         password: password,
         

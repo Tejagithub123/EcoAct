@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+
 from .models import Prediction
 
 
@@ -12,10 +12,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['email', 'name', 'password']
+
 
 # class ResultSerializer(serializers.ModelSerializer):
 #     class Meta:
