@@ -2,9 +2,14 @@ from rest_framework import serializers
 from .models import User
 from .models import Prediction
 
-
-
 from .models import Category
+
+from .models import EcoActor
+
+class EcoActorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EcoActor
+        fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +31,4 @@ class PredictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prediction
         fields = ['id','text', 'prediction', 'created_at']
+

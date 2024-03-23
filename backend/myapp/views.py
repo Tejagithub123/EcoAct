@@ -17,6 +17,20 @@ from django.http import JsonResponse
 
 from .models import Category
 from .serializers import CategorySerializer
+from .models import EcoActor
+from .serializers import EcoActorSerializer
+
+class EcoActorListCreate(generics.ListCreateAPIView):
+    queryset = EcoActor.objects.all()
+    serializer_class = EcoActorSerializer
+
+class EcoActorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = EcoActor.objects.all()
+    serializer_class = EcoActorSerializer
+
+    def perform_update(self, serializer):
+        serializer.save(partial=True)  # Allow partial updates
+
 
 class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
