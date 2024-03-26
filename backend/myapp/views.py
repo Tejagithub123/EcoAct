@@ -41,7 +41,6 @@ class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
     serializer_class = CategorySerializer
 
 
-
 class UserView(APIView):
     authentication_classes = [authentication.SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -104,6 +103,22 @@ def submit_contact_form(request):
         else:
             return JsonResponse({'error': 'Email is required.'}, status=400)
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+@api_view(['GET'])
+def filter_actors_by_location(request):
+    ville = request.query_params.get('ville')
+    actors = EcoActor.objects.filter(ville=ville)
+    serializer = EcoActorSerializer(actors, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def filter_actors_by_category(request):
+    category_name = request.query_params.get('category')
+    actors = EcoActor.objects.filter(categories__name=category_name)
+    serializer = EcoActorSerializer(actors, many=True)
+    return Response(serializer.data)
+
 
 class PredictionList(generics.ListAPIView):
     queryset = Prediction.objects.all()
