@@ -9,24 +9,22 @@ import WebsiteFAQSection from "../Featuredesign/WebsiteFAQSection";
 const EcoMap = () => {
   const [selectedActor, setSelectedActor] = useState(null);
   const [ecoActor, setEcoActor] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [filteredActorsByLocation, setFilteredActorsByLocation] = useState([]);
-  const [filteredActorsByCategory, setFilteredActorsByCategory] = useState([]);
+  const [searchCity, setSearchCity] = useState("");
 
-  const ecoActors = [
-    {
-      name: "Acteur 1",
-      coordinates: [36.8065, 10.1815], // Tunis
-      activityDomains: ["Recyclage", "Conservation de la nature"],
-      description: "Description de l'acteur 1.",
-    },
-    {
-      name: "Acteur 2",
-      coordinates: [35.6892, 10.1479], // Sousse
-      activityDomains: ["Gestion des déchets", "Énergie renouvelable"],
-      description: "Description de l'acteur 2.",
-    },
-  ];
+  useEffect(() => {
+    // Fetch EcoActors
+    if (searchCity.trim() === "") {
+      axios
+        .get("http://localhost:8000/api/ecoactors/")
+        .then((response) => {
+          console.log(response.data);
+          setEcoActor(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching ecoactors:", error);
+        });
+    }
+  }, [searchCity]);
 
   useEffect(() => {
     // Fetch EcoActors
@@ -41,20 +39,6 @@ const EcoMap = () => {
       });
   }, []);
 
-  useEffect(() => {
-    // Filter actors by location
-    axios
-      .get(
-        "http://localhost:8000/api/filter-actors-by-location/?ville=exampleVille"
-      )
-      .then((response) => {
-        setFilteredActorsByLocation(response.data);
-      })
-      .catch((error) => {
-        console.error("Error filtering actors by location:", error);
-      });
-  });
-
   const toggleActorPanel = (actor) => {
     setSelectedActor((prevState) => {
       if (prevState === actor) {
@@ -65,33 +49,119 @@ const EcoMap = () => {
     });
   };
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Call the API to filter actors by location based on the searchCity value
+    axios
+      .get(
+        `http://localhost:8000/api/ecoactors/filter-by-location/?ville=${searchCity}`
+      )
+      .then((response) => {
+        setEcoActor(response.data);
+      })
+      .catch((error) => {
+        console.error("Error filtering actors by location:", error);
+      });
+  };
+
   return (
     <div style={{ position: "relative", zIndex: 1 }}>
       <Navbar />
-      <div className="flex justify-center items-center h-full w-full zIndex: 0">
-        <MapContainer
-          center={[34.0479, 9.5077]}
-          zoom={6}
-          style={{ height: "600px", width: "100vw", zIndex: 0 }} // Add zIndex: 0
-          className="rounded-lg shadow-md"
+      <div style={{ position: "relative" }}>
+        <form
+          className="block uppercase tracking-wide text-ms font-bold mb-2 absolute top-20 start-10 z-20 bg-white p-3 rounded-lg-1/3 shadow-lg"
+          onSubmit={(e) => {
+            if (!searchCity) {
+              e.preventDefault();
+            } else {
+              handleSearchSubmit(e);
+            }
+          }}
         >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {ecoActor.map((actor, index) => (
-            <Marker
-              key={actor.id}
-              position={[actor.latitude, actor.longitude]}
-              eventHandlers={{
-                click: () => toggleActorPanel(actor),
-              }}
+          <div className="flex items-center">
+            <label>Search by city: </label>
+            <input
+              type="search"
+              id="search-dropdown"
+              className="block w-100 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:border-gray-400 dark:placeholder-gray-200 dark:text-black"
+              placeholder="Search Per city..."
+              value={searchCity}
+              onChange={(e) => setSearchCity(e.target.value)}
+            />
+            {searchCity && (
+              <button
+                type="button"
+                onClick={() => setSearchCity("")} // Reset the search value
+                className="ml-2.5 p-2.5 text-sm text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              >
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m6 18-6-6m0 0 6-6m-6 6h13"
+                  />
+                </svg>
+                <span className="sr-only">Reset</span>
+              </button>
+            )}
+            <button
+              type="submit"
+              className="ml-2.5 p-2.5 text-sm text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >
-              <Popup>{actor.username}</Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+              <svg
+                className="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+              <span className="sr-only">Search</span>
+            </button>
+          </div>
+        </form>
+
+        <div className="flex justify-center items-center h-full w-full zIndex: 0">
+          <MapContainer
+            center={[34.0479, 9.5077]}
+            zoom={6}
+            style={{ height: "600px", width: "100vw", zIndex: 0 }} // Add zIndex: 0
+            className="rounded-lg shadow-md"
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {ecoActor.map((actor, index) => (
+              <Marker
+                key={actor.id}
+                position={[actor.latitude, actor.longitude]}
+                eventHandlers={{
+                  click: () => toggleActorPanel(actor),
+                }}
+              >
+                <Popup>{actor.username}</Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </div>
       </div>
+
       {selectedActor && (
         <div className="fixed inset-0 flex justify-center items-center z-50">
           <div className="absolute bg-white rounded-lg shadow-md p-6 z-50">
