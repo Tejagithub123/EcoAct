@@ -122,7 +122,7 @@ def submit_contact_form(request):
                     'New Contact Form Submission',
                     f'Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}',
                     email,
-                    ['benhajalayateja@gmail.com'],
+                    ['maherturki25@gmail.com'],
                     fail_silently=False
                 )
                 return JsonResponse({'message': 'Form submitted successfully.'})
