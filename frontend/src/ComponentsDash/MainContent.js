@@ -3,6 +3,7 @@ import Consult from "./Consult";
 import Content from "./Content";
 import Information from "./Information";
 import Profil from "./Profil";
+import Categoryform from "./Categoryform";
 import RegistrationForm from "./RegistrationForm";
 
 const MainContent = ({ currentPage }) => {
@@ -34,6 +35,12 @@ const MainContent = ({ currentPage }) => {
       {currentPage === "Consult" && (
         <div>
           <Consult />
+        </div>
+      )}
+
+      {currentPage === "Category" && (
+        <div>
+          <Categoryform />
         </div>
       )}
 
