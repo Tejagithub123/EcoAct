@@ -10,10 +10,10 @@ const EcoMap = () => {
   const [selectedActor, setSelectedActor] = useState(null);
   const [ecoActor, setEcoActor] = useState([]);
   const [searchCity, setSearchCity] = useState("");
-
+  const [selectedCategory, setSelectedCategory] = useState("");
   useEffect(() => {
     // Fetch EcoActors
-    if (searchCity.trim() === "") {
+    if (searchCity.trim() === "" || selectedCategory.trim() === "") {
       axios
         .get("http://localhost:8000/api/ecoactors/")
         .then((response) => {
@@ -24,7 +24,7 @@ const EcoMap = () => {
           console.error("Error fetching ecoactors:", error);
         });
     }
-  }, [searchCity]);
+  }, [searchCity, selectedCategory]);
 
   useEffect(() => {
     // Fetch EcoActors
@@ -61,6 +61,22 @@ const EcoMap = () => {
       })
       .catch((error) => {
         console.error("Error filtering actors by location:", error);
+      });
+  };
+
+  const handleCategorySubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `http://localhost:8000/api/ecoactors/filter-by-category/?category=${selectedCategory}`
+      )
+      .then((response) => {
+        console.log("category ", selectedCategory);
+        setEcoActor(response.data);
+      })
+      .catch((error) => {
+        console.error("Error filtering actors by category:", error);
       });
   };
 
@@ -112,6 +128,74 @@ const EcoMap = () => {
                 <span className="sr-only">Reset</span>
               </button>
             )}
+            <button
+              type="submit"
+              className="ml-2.5 p-2.5 text-sm text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            >
+              <svg
+                className="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+              <span className="sr-only">Search</span>
+            </button>
+          </div>
+        </form>
+
+        <form
+          className="block uppercase tracking-wide text-ms font-bold mb-2 absolute top-40 start-10 z-20 bg-white p-3 rounded-lg-1/3 shadow-lg"
+          onSubmit={(e) => {
+            handleCategorySubmit(e);
+          }}
+        >
+          <div className="flex items-center">
+            <label>Search by category: </label>
+            <select
+              id="category-dropdown"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              <option value="">Select a category...</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Industrie">Industrie</option>
+              <option value="Verre">Verre</option>
+              {/* Add more options for other categories if needed */}
+            </select>
+            {selectedCategory && (
+              <button
+                type="button"
+                onClick={() => setSelectedCategory("")} // Reset the selected category
+                className="ml-2.5 p-2.5 text-sm text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              >
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m6 18-6-6m0 0 6-6m-6 6h13"
+                  />
+                </svg>
+                <span className="sr-only">Reset</span>
+              </button>
+            )}
+
             <button
               type="submit"
               className="ml-2.5 p-2.5 text-sm text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
