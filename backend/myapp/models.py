@@ -3,6 +3,7 @@ from django.db import models
 class User(models.Model):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
+    role = models.CharField(max_length=100)
     password = models.CharField(max_length=255)
 
     def __str__(self):
@@ -25,9 +26,9 @@ class Category(models.Model):
 class EcoActor(models.Model):
     username = models.CharField(max_length=100)
     email = models.EmailField()
-    motdepasse = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
-    role = models.CharField(max_length=100)
+    role = models.CharField(max_length=100,default="actor")
     adresse = models.CharField(max_length=255)
     ville = models.CharField(max_length=100)
     longitude = models.FloatField()

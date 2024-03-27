@@ -20,6 +20,10 @@ from .serializers import CategorySerializer
 from .models import EcoActor
 from .serializers import EcoActorSerializer
 
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 class EcoActorListCreate(generics.ListCreateAPIView):
     queryset = EcoActor.objects.all()
     serializer_class = EcoActorSerializer
@@ -64,12 +68,36 @@ def user_signup(request):
 def user_login(request):
     email = request.data.get('email')
     password = request.data.get('password')
+    user = None
+
+    # Check if the user exists in the User model
     try:
         user = User.objects.get(email=email, password=password)
     except User.DoesNotExist:
-        return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
-    serializer = UserSerializer(user)
-    return Response(serializer.data)
+        pass
+
+    # If user is not found in the User model, check in the EcoActor model
+    if user is None:
+        try:
+            user = EcoActor.objects.get(email=email, password=password)
+        except EcoActor.DoesNotExist:
+            return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    user_role = user.role
+    user_id = user.id
+
+    # Generate JWT token with user role
+    refresh = RefreshToken.for_user(user)
+    access_token = str(refresh.access_token)
+    data = {
+        'refresh': str(refresh),
+        'access': access_token,
+        'role': user_role,
+        'id':user_id
+        
+    }
+    
+    return Response(data)
 
 
 @api_view(['POST'])

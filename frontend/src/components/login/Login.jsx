@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import { jwtDecode } from 'jwt-decode' 
+
 import imgsignin from "../../../src/img/engineer-plan-ecology-with-copy-space.jpg"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,11 +27,24 @@ const Login = () => {
       .post("http://localhost:8000/api/login/", {
         email: email,
         password: password,
-        
-      })
+      }) 
       .then((response) => {
-        console.log(response.data);
-        navigate("/dashboard");
+        console.log(response.data); 
+        const { role } = response.data;
+        localStorage.setItem('token', response.data.access);
+        
+        console.log("User role:", role);  
+
+        if (role === 'admin') {
+          navigate('/dashboard');} //dash admin
+          
+          if (role === 'member') {
+            navigate('/image');}   //predictions 
+        
+
+          if (role === 'actor') {
+            navigate('/dashboard/user');}  //id also to pass
+
       })
       .catch((error) => {
         console.log(error);
