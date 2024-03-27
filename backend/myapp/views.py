@@ -113,14 +113,14 @@ def submit_contact_form(request):
     if request.method == 'POST':
         name = request.data.get('name', '')
         email = request.data.get('email', '')  
-        phone = request.data.get('phone', '')
+        subject = request.data.get('subject', '')
         message = request.data.get('message', '')
 
         if email:
             try:
                 send_mail(
                     'New Contact Form Submission',
-                    f'Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}',
+                    f'Name: {name}\nEmail: {email}\nSubject: {subject}\nMessage: {message}',
                     email,
                     ['maherturki25@gmail.com'],
                     fail_silently=False

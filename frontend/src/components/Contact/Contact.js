@@ -26,7 +26,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    subject: "",
     message: "",
   });
 
@@ -380,21 +380,21 @@ function Contact() {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   />
                 </div>
-                {/* Phone */}
+                {/* subject */}
                 <div className="w-full px-3 mb-6">
                   <label
-                    htmlFor="phone"
+                    htmlFor="subject"
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   >
-                    Phone
+                    subject
                   </label>
                   <input
                     type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Your Phone Number"
+                    placeholder="Your subject Number"
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   />
                 </div>
