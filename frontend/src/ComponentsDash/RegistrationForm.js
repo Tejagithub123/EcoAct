@@ -58,7 +58,7 @@ const RegistrationForm = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        // Handle success response as needed (e.g., show success message, redirect)
+        alert("Registration successful!");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -84,7 +84,7 @@ const RegistrationForm = () => {
                   <input
                     type="text"
                     placeholder="Enter username"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:border-gray-400 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-green-500"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
