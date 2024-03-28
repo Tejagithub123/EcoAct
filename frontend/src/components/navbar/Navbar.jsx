@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/home" className="flex items-center">
           <img src={Leaf} alt="Leaf" className="h-12 mr-4" />
-          <span className="text-white text-2xl font-semibold">ActEco</span>
+          <span className="text-white text-2xl font-semibold">EcoAct</span>
         </Link>
         <div className="flex md:hidden">
           <button onClick={() => setMenuOpen(!menuOpen)} className="text-white focus:outline-none">

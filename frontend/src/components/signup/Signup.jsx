@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../navbar/Navbar"; 
 import Footer from "../footer/Footer";
 import imgsignin from "../../../src/img/engineer-plan-ecology.jpg"
+
 const Signup = () => {
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
@@ -100,6 +101,15 @@ const Signup = () => {
                   className="text-xl font-medium text-green-300 hover:underline"
                 >
                   Sign in
+                </Link>
+              </p>
+              <p className="mt-8 text-xl font-light text-center text-black">
+                You're Eco Actor?{" "}
+                <Link
+                  to="/ecosignup"
+                  className="text-xl font-medium text-green-300 hover:underline"
+                >
+                  Sign in as an EcoActor
                 </Link>
               </p>
             </div>

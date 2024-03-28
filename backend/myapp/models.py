@@ -27,15 +27,17 @@ class EcoActor(models.Model):
     username = models.CharField(max_length=100)
     email = models.EmailField()
     password = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=20)
-    role = models.CharField(max_length=100,default="actor")
-    adresse = models.CharField(max_length=255)
-    ville = models.CharField(max_length=100)
-    longitude = models.FloatField()
-    latitude = models.FloatField()
-    activitis = models.CharField(max_length=255)
-    categories = models.ManyToManyField(Category)  # Many-to-many relationship with Category model
-
+    telephone = models.CharField(max_length=20, default="Default telephone")
+    role = models.CharField(max_length=100, default="Acteur ecologique")
+    address = models.CharField(max_length=255, default="Default address")
+    city= models.CharField(max_length=100, default="Default city")
+    longitude = models.FloatField(default=5)
+    latitude = models.FloatField(default=5)
+    activities = models.CharField(max_length=255, default="Default activities")
+    category = models.CharField(max_length=100, default="Argiculture")
+    
+    def __str__(self):
+        return self.username
 
 
 

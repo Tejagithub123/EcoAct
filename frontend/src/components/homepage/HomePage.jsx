@@ -52,8 +52,8 @@ const HomePage = () => {
         <div class="bg-green-500 p-12 font-[sans-serif] h-[90vh]">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 justify-center items-center gap-8">
     <div class="text-center md:text-left md:w-full">
-      <h2 class="text-6xl lg:text-7xl font-extrabold text-white mb-8 md:!leading-[75px]">ActEco - Our Website for Initiatives</h2>
-      <p class="text-2xl lg:text-3xl text-white mb-8">Join ActEco's premium plan and accelerate your impact on the environment. Explore exclusive features and unlock new opportunities for ecological initiatives.</p>
+      <h2 class="text-6xl lg:text-7xl font-extrabold text-white mb-8 md:!leading-[75px]">EcoAct - Our Website for Initiatives</h2>
+      <p class="text-2xl lg:text-3xl text-white mb-8">Join EcoAct's premium plan and accelerate your impact on the environment. Explore exclusive features and unlock new opportunities for ecological initiatives.</p>
       <a href="/Signup" class="bg-black hover:bg-opacity-80 text-white py-4 px-12 rounded-full text-lg lg:text-xl font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl inline-block">
         Sign Up
       </a>
@@ -106,7 +106,7 @@ const HomePage = () => {
           />
           <div className="text-center lg:w-2/3 w-full">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Why ActEco?
+              Why EcoAct?
             </h1>
             <p className="mb-8 leading-relaxed">
             Our app serves as a platform to introduce various actors in the field of environmental sustainability, including startups, municipalities, ecological farms, and others. Through our platform, these entities can effectively manage and contribute to environmental conservation efforts. By providing users with intuitive tools to identify recyclable items and educate them on proper disposal methods, our app empowers these actors to make a positive impact on the environment.

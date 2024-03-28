@@ -4,6 +4,10 @@ import Navbar from "./components/navbar/Navbar";
 import HomePage from "./components/homepage/HomePage";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
+
+
+import EcoSignup from "./components/signup/EcoSignup";
+
 import WasteVideo2 from "./components/wastevideo/WasteVideo2";
 import WasteVideo from "./components/wastevideo/WasteVideo";
 import Landing from "./components/Landing";
@@ -23,6 +27,9 @@ function App() {
           <Route path="/" element={<EcoMap />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/signup" element={<Signup />} />
+
+          <Route path="/ecosignup" element={<EcoSignup />} />
+
           <Route path="/login" element={<Login />} />
 
           <Route path="/video" element={<WasteVideo2 />} />
