@@ -1,10 +1,14 @@
-import { FaTrash, FaEdit, FaTimesCircle } from "react-icons/fa";
+import { FaTrash, FaEdit, FaTimesCircle, FaCheck } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 
 function Consult() {
   const [ecoActors, setEcoActors] = useState([]);
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editableActor, setEditableActor] = useState(null);
+  const [editedData, setEditedData] = useState({});
 
   useEffect(() => {
     fetchEcoActors();
@@ -69,6 +73,52 @@ function Consult() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      console.log("call delete", id);
+      await fetch(`http://localhost:8000/api/ecoactors/${id}/`, {
+        method: "DELETE",
+      });
+      setEcoActors(ecoActors.filter((actor) => actor.id !== id));
+    } catch (error) {
+      console.error("Error deleting eco actor:", error);
+    }
+  };
+
+  const handleEdit = (actor) => {
+    setEditableActor(actor);
+    setIsEditing(true);
+    setEditedData({ ...actor });
+  };
+
+  const handleUpdate = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/ecoactors/${id}/`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedData),
+        }
+      );
+      const updatedActor = await response.json();
+      setEcoActors(
+        ecoActors.map((actor) => (actor.id === id ? updatedActor : actor))
+      );
+      setIsEditing(false);
+      setEditableActor(null);
+      setEditedData({});
+    } catch (error) {
+      console.error("Error updating eco actor:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData({ ...editedData, [name]: value });
+  };
   return (
     <main className="ml-60 pt-16 max-h-screen overflow-auto">
       <div className="px-6 py-8">
@@ -80,7 +130,7 @@ function Consult() {
                 name="name"
                 type="text"
                 className="flex-1 w-full bg-transparent text-sm px-4 py-3 outline-none"
-                placeholder="Search by category name..."
+                placeholder="Search by actor name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -139,44 +189,137 @@ function Consult() {
                       className="hover:bg-gray-50 transition-colors"
                     >
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.username}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="username"
+                            value={editedData.username}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.username
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.email}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="email"
+                            value={editedData.email}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.email
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.telephone}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="telephone"
+                            value={editedData.telephone}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.telephone
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.adresse}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="adresse"
+                            value={editedData.adresse}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.adresse
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.ville}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="ville"
+                            value={editedData.ville}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.ville
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.activitis}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="activitis"
+                            value={editedData.activitis}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.activitis
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {actor.categories.map((categoryId, index) => (
-                          <span key={index}>
-                            {getCategoryNameById(categoryId)}
-                            {index !== actor.categories.length - 1 && ", "}
-                          </span>
-                        ))}
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <input
+                            type="text"
+                            name="categories"
+                            value={editedData.categories}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          actor.categories.map((categoryId, index) => (
+                            <span key={index}>
+                              {getCategoryNameById(categoryId)}
+                              {index !== actor.categories.length - 1 && ", "}
+                            </span>
+                          ))
+                        )}
                       </td>
                       <td className="px-6 py-4">
-                        <button
-                          className="mr-2 text-blue-500 hover:text-blue-700"
-                          title="Edit"
-                        >
-                          <FaEdit />
-                        </button>
-                        <button
-                          className="text-red-500 hover:text-red-700"
-                          title="Delete"
-                        >
-                          <FaTrash />
-                        </button>
+                        {isEditing &&
+                        editableActor &&
+                        editableActor.id === actor.id ? (
+                          <button
+                            className="mr-2 text-green-500 hover:text-green-700"
+                            title="Update"
+                            onClick={() => handleUpdate(actor.id)}
+                          >
+                            <FaCheck />
+                          </button>
+                        ) : (
+                          <>
+                            <button
+                              className="mr-2 text-blue-500 hover:text-blue-700"
+                              title="Edit"
+                              onClick={() => handleEdit(actor)}
+                            >
+                              <FaEdit />
+                            </button>
+                            <button
+                              className="text-red-500 hover:text-red-700"
+                              title="Delete"
+                              onClick={() => handleDelete(actor.id)}
+                            >
+                              <FaTrash />
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
                   ))}
