@@ -8,7 +8,7 @@ import imgsignin from "../../../src/img/engineer-plan-ecology-with-copy-space.jp
 const EcoSignup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ 
   const [telephone, setTelephone] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -24,9 +24,7 @@ const EcoSignup = () => {
       .post("http://localhost:8000/api/ecosignup/", {
         username: username,
         email: email,
-        password: password,
         telephone: telephone,
-        //role: role,
         address: address,
         city: city,
         longitude: longitude,
@@ -89,22 +87,7 @@ const EcoSignup = () => {
                           required
                         />
                       </div>
-                      <div className="mb-2">
-                        <label
-                          htmlFor="password"
-                          className="block text-xl font-semibold text-black"
-                        >
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          id="password"
-                          value={password}
-                          onChange={(event) => setPassword(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                          required
-                        />
-                      </div>
+                     
                       <div className="mb-2">
                         <label
                           htmlFor="telephone"
