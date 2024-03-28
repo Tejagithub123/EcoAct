@@ -140,14 +140,40 @@ const RegistrationForm = () => {
                 <label className="text-[13px] bg-yellow-50 text-black absolute px-2 top-[-10px] left-[18px] font-semibold">
                   City
                 </label>
-                <input
-                  type="text"
-                  placeholder="Enter city"
-                  className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                <select
+                  id="ville"
                   value={ville}
-                  onChange={(e) => setVille(e.target.value)}
-                />
+                  onChange={(event) => setVille(event.target.value)}
+                  className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  required
+                >
+                  <option value="">Select a city</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="Sfax">Sfax</option>
+                  <option value="Sousse">Sousse</option>
+                  <option value="Kairouan">Kairouan</option>
+                  <option value="Bizerte">Bizerte</option>
+                  <option value="Gabès">Gabès</option>
+                  <option value="Ariana">Ariana</option>
+                  <option value="Gafsa">Gafsa</option>
+                  <option value="La Marsa">La Marsa</option>
+                  <option value="Kasserine">Kasserine</option>
+                  <option value="Mahdia">Mahdia</option>
+                  <option value="Monastir">Monastir</option>
+                  <option value="Béja">Béja</option>
+                  <option value="Menzel Bourguiba">Menzel Bourguiba</option>
+                  <option value="Djerba">Djerba</option>
+                  <option value="Douz">Douz</option>
+                  <option value="Hammamet">Hammamet</option>
+                  <option value="Tozeur">Tozeur</option>
+                  <option value="Kelibia">Kelibia</option>
+                  <option value="Médenine">Médenine</option>
+                  <option value="Nabeul">Nabeul</option>
+                  <option value="Zaghouan">Zaghouan</option>
+                  <option value="Jendouba">Jendouba</option>
+                </select>
               </div>
+
               {/* Longitude */}
               <div className="relative flex items-center">
                 <label className="text-[13px] bg-yellow-50 text-black absolute px-2 top-[-10px] left-[18px] font-semibold">
