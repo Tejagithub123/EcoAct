@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'debuggers',
+        'NAME': 'ecoact',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': 'localhost',
