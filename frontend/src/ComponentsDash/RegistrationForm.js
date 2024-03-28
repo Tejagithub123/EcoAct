@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const RegistrationForm = () => {
   // State variables to store form data
@@ -11,7 +11,20 @@ const RegistrationForm = () => {
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
   const [activitis, setActivitis] = useState("");
-  const [categories, setCategories] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = () => {
+    fetch("http://localhost:8000/api/categories/")
+      .then((response) => response.json())
+      .then((data) => setCategories(data))
+      .catch((error) => console.error("Error fetching categories:", error));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Construct the data object to be sent to the backend
@@ -25,7 +38,7 @@ const RegistrationForm = () => {
       longitude,
       latitude,
       activitis,
-      categories,
+      categories: selectedCategories,
     };
     // Perform POST request to backend API with formData
     fetch("http://localhost:8000/api/ecoactors/", {
@@ -33,6 +46,7 @@ const RegistrationForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify(formData),
     })
       .then((response) => response.json())
@@ -173,18 +187,31 @@ const RegistrationForm = () => {
                   onChange={(e) => setActivitis(e.target.value)}
                 />
               </div>
+              {console.log(categories)}
               {/* Categories */}
               <div className="relative flex items-center">
                 <label className="text-[13px] bg-yellow-50 text-black absolute px-2 top-[-10px] left-[18px] font-semibold">
                   Categories
                 </label>
-                <input
-                  type="text"
-                  placeholder="Enter categories"
-                  className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
-                  value={categories}
-                  onChange={(e) => setCategories(e.target.value)}
-                />
+                {/* Category selection */}
+                <select
+                  multiple
+                  value={selectedCategories}
+                  onChange={(e) =>
+                    setSelectedCategories(
+                      Array.from(
+                        e.target.selectedOptions,
+                        (option) => option.value
+                      )
+                    )
+                  }
+                >
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
               </div>
               {/* Submit Button */}
               <div className="mt-6">
