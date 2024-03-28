@@ -163,3 +163,37 @@ class PredictionList(generics.ListAPIView):
 
 
 
+def admin_dashboard(request):
+    # Logic to display pending Eco Actor registrations
+    # Logic to approve or reject registrations
+    if request.method == 'POST':
+        # Process approval or rejection
+        # For simplicity, let's assume you have a form to handle this
+        actor_id = request.POST.get('actor_id')
+        action = request.POST.get('action')
+        if action == 'approve':
+            # Generate random password
+            import random
+            import string
+            password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+            # Create Django user account
+            user = User.objects.create_user(username=EcoActor.username, email=EcoActor.email, password=password)
+            user.save()
+            # Send email to Eco Actor
+            send_mail(
+                'Your Eco Actor Account is Approved',
+                f'Your Eco Actor account has been approved.\nUsername: {EcoActor.username}\nEmail: {EcoActor.email}\nPassword: {password}',
+                'from@example.com',
+                [EcoActor.email],
+                fail_silently=False,
+            )
+            messages.success(request, 'Eco Actor account has been approved.')
+        elif action == 'reject':
+            # Delete the Eco Actor request
+            EcoActor.objects.filter(id=actor_id).delete()
+            messages.success(request, 'Eco Actor account request has been rejected.')
+        return redirect('admin_dashboard')  # Redirect to admin dashboard
+    else:
+        # Render admin dashboard template
+        eco_actors = EcoActor.objects.all()  # Fetch all Eco Actors for display
+        return render(request, 'admin_dashboard.html', {'eco_actors': eco_actors})
