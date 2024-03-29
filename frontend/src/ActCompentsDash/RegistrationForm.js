@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
-
-const RegistrationForm = () => {
+import CoordinateModal from "./CoordinateModal";
+const RegistrationForm = ({ setCurrentPage }) => {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [categoryNames, setCategoryNames] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [isCoordinateModalOpen, setIsCoordinateModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -16,12 +18,14 @@ const RegistrationForm = () => {
         const userResponse = await axios.get(
           `http://localhost:8000/api/ecoactors/${id}/`
         );
+        console.log(userResponse.data);
         setUserData(userResponse.data);
 
         const categoryResponse = await axios.get(
           `http://localhost:8000/api/categories/`
         );
         setCategoryNames(categoryResponse.data);
+        setSelectedCategories(userResponse.data.categories || []);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -40,8 +44,12 @@ const RegistrationForm = () => {
 
   const handleSave = async () => {
     try {
-      await axios.put(`http://localhost:8000/api/ecoactors/${id}/`, userData);
+      await axios.put(`http://localhost:8000/api/ecoactors/${id}/`, {
+        ...userData,
+        categories: selectedCategories,
+      });
       setIsEdit(false);
+      setCurrentPage("Profil");
       console.log("User data updated successfully!");
     } catch (error) {
       console.error("Error updating user data:", error);
@@ -51,6 +59,40 @@ const RegistrationForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
+  };
+
+  const handleCategoryChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, (option) =>
+      parseInt(option.value)
+    );
+    setSelectedCategories(selectedOptions);
+  };
+
+  const handleMapModal = () => {
+    setIsCoordinateModalOpen(true); // Open the coordinate modal
+  };
+
+  const handleCoordinateModalClose = () => {
+    setIsCoordinateModalOpen(false); // Close the coordinate modal
+  };
+
+  const handleSaveCoordinates = async (newCoordinates) => {
+    try {
+      // Make API call to save the new coordinates
+      await axios.patch(`http://localhost:8000/api/ecoactors/${id}/`, {
+        ...userData,
+        longitude: newCoordinates.lng,
+        latitude: newCoordinates.lat,
+      });
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        longitude: newCoordinates.lng,
+        latitude: newCoordinates.lat,
+      }));
+      console.log("Coordinates updated successfully!");
+    } catch (error) {
+      console.error("Error updating coordinates:", error);
+    }
   };
 
   return (
@@ -67,7 +109,7 @@ const RegistrationForm = () => {
           <div className="-mt-28 mb-6 px-4">
             <div className="mx-auto max-w-6xl shadow-lg py-8 px-6 relative bg-white rounded">
               <h2 className="text-xl text-[#333] font-bold">
-                {userData?.username}'s Profile
+                Edit {userData?.username}'s Profile
               </h2>
               <form className="mt-8 grid sm:grid-cols-2 gap-6">
                 <div>
@@ -112,8 +154,8 @@ const RegistrationForm = () => {
                     type="text"
                     placeholder="Address"
                     className="w-full rounded py-2.5 px-4 border-2 mt-2 text-sm outline-[#007bff]"
-                    value={userData?.address || ""}
-                    name="address"
+                    value={userData?.adresse || ""}
+                    name="adresse"
                     readOnly={!isEdit}
                     onChange={handleChange}
                   />
@@ -124,8 +166,8 @@ const RegistrationForm = () => {
                     type="text"
                     placeholder="City"
                     className="w-full rounded py-2.5 px-4 border-2 mt-2 text-sm outline-[#007bff]"
-                    value={userData?.city || ""}
-                    name="city"
+                    value={userData?.ville || ""}
+                    name="ville"
                     readOnly={!isEdit}
                     onChange={handleChange}
                   />
@@ -146,11 +188,11 @@ const RegistrationForm = () => {
                   <label className="font-semibold text-sm">Categories</label>
                   <select
                     className="w-full rounded py-2.5 px-4 border-2 mt-2 text-sm outline-[#007bff]"
-                    value={userData?.categories || []}
+                    value={selectedCategories}
                     name="categories"
                     multiple
                     readOnly={!isEdit}
-                    onChange={handleChange}
+                    onChange={handleCategoryChange}
                   >
                     {categoryNames.map((category) => (
                       <option key={category.id} value={category.id}>
@@ -159,26 +201,48 @@ const RegistrationForm = () => {
                     ))}
                   </select>
                 </div>
-                {/* Add more fields as needed */}
+                <div>
+                  <label className="font-semibold text-sm">Password</label>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter Password"
+                    className="w-full rounded py-2.5 px-4 border-2 mt-2 text-sm outline-[#007bff]"
+                    value={userData?.password || ""}
+                    name="password"
+                    readOnly={!isEdit}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleMapModal}
+                    className="mt-4 w-1/4 px-6 py-2 bg-gray-400 hover:bg-gray-600 text-white rounded-full"
+                  >
+                    Modify Coordinates
+                  </button>
+                </div>
+                {/* Additional fields can be added here */}
               </form>
               {!isEdit ? (
-                <button
-                  onClick={handleEdit}
-                  className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full"
-                >
-                  Edit
-                </button>
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleEdit}
+                    className="mt-4 w-1/4 px-6 py-2 bg-blue-500 hover:bg-blue-800 text-white rounded-full"
+                  >
+                    Edit Settings
+                  </button>
+                </div>
               ) : (
-                <div className="flex">
+                <div className="flex justify-center">
                   <button
                     onClick={handleSave}
-                    className="mt-4 mr-2 px-6 py-2 bg-blue-600 text-white rounded-full"
+                    className="mt-4 w-1/6 px-6 py-2 mr-10 bg-green-600 hoover:bg-green-800 text-white rounded-full"
                   >
                     Save
                   </button>
                   <button
                     onClick={() => setIsEdit(false)}
-                    className="mt-4 px-6 py-2 bg-gray-300 text-gray-700 rounded-full"
+                    className="mt-4 w-1/6 px-6 py-2  bg-red-600 hoover:bg-red-800 text-white-700 rounded-full"
                   >
                     Cancel
                   </button>
@@ -188,6 +252,16 @@ const RegistrationForm = () => {
           </div>
         </div>
       </div>
+      {isCoordinateModalOpen && (
+        <CoordinateModal
+          onClose={handleCoordinateModalClose}
+          onSave={handleSaveCoordinates}
+          initialCoordinates={{
+            lat: userData?.latitude || 0,
+            lng: userData?.longitude || 0,
+          }}
+        />
+      )}
     </main>
   );
 };

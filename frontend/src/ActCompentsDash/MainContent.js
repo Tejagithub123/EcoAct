@@ -5,7 +5,7 @@ import Information from "./Information";
 import Profil from "./Profil";
 import RegistrationForm from "./RegistrationForm";
 import Interaction from "./Interaction";
-const MainContent = ({ currentPage }) => {
+const MainContent = ({ currentPage, setCurrentPage }) => {
   return (
     <div>
       {currentPage === "plan" && (
@@ -15,7 +15,7 @@ const MainContent = ({ currentPage }) => {
       )}
       {currentPage === "Profil" && (
         <div>
-          <Profil></Profil>
+          <Profil setCurrentPage={setCurrentPage} />
         </div>
       )}
 
@@ -27,7 +27,7 @@ const MainContent = ({ currentPage }) => {
 
       {currentPage === "RegistrationForm" && (
         <div>
-          <RegistrationForm></RegistrationForm>
+          <RegistrationForm setCurrentPage={setCurrentPage} />
         </div>
       )}
 
