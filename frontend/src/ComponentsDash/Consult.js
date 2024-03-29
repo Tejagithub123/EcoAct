@@ -19,7 +19,8 @@ function Consult() {
     try {
       const response = await fetch("http://localhost:8000/api/ecoactors/");
       const data = await response.json();
-      setEcoActors(data);
+      const reversedData = data.reverse();
+      setEcoActors(reversedData);
     } catch (error) {
       console.error("Error fetching eco actors:", error);
     }
@@ -125,7 +126,7 @@ function Consult() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-3xl p-8 mb-5">
             {/* Search input */}
-            <div className="mt-8 flex items-center bg-white border border-blue-300 rounded overflow-hidden">
+            <div className="mt-8 flex items-center bg-white border border-gray-300 rounded overflow-hidden">
               <input
                 name="name"
                 type="text"

@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
-import { RiPhoneLine } from "react-icons/ri";
-import { MdLocationOn, MdBusiness } from "react-icons/md";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { TiLocation } from "react-icons/ti";
-import { RiBuilding4Line } from "react-icons/ri";
-import { FiActivity } from "react-icons/fi";
-const RegistrationForm = () => {
+import axios from "axios";
+
+const RegistrationForm = ({ setCurrentPage }) => {
   // State variables to store form data
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -47,18 +42,15 @@ const RegistrationForm = () => {
       categories: selectedCategories,
     };
     // Perform POST request to backend API with formData
-    fetch("http://localhost:8000/api/ecoactors/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        alert("Registration successful!");
+    axios
+      .post("http://localhost:8000/api/ecoactors/", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("Success:", response.data);
+        setCurrentPage("Consult");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -152,7 +144,6 @@ const RegistrationForm = () => {
                     value={ville}
                     onChange={(event) => setVille(event.target.value)}
                     className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    required
                   >
                     <option value="">Select a city</option>
                     <option value="Tunis">Tunis</option>
@@ -208,7 +199,7 @@ const RegistrationForm = () => {
                     onClick={() => setShowDropdown(!showDropdown)}
                     className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
                   >
-                    {showDropdown ? "Select a Category" : "Show Categories"}
+                    {showDropdown ? "Select a Category" : "Categories"}
                   </button>
                   {showDropdown && (
                     <select
@@ -236,7 +227,7 @@ const RegistrationForm = () => {
                 <div className="mt-6 sm:col-span-2">
                   <button
                     type="submit"
-                    className="w-1/2 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-300"
+                    className="w-full py-3 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-300"
                   >
                     Register
                   </button>

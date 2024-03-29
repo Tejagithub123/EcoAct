@@ -6,7 +6,7 @@ import Profil from "./Profil";
 import Categoryform from "./Categoryform";
 import RegistrationForm from "./RegistrationForm";
 
-const MainContent = ({ currentPage }) => {
+const MainContent = ({ currentPage, setCurrentPage }) => {
   return (
     <div>
       {currentPage === "plan" && (
@@ -28,7 +28,7 @@ const MainContent = ({ currentPage }) => {
 
       {currentPage === "RegistrationForm" && (
         <div>
-          <RegistrationForm></RegistrationForm>
+          <RegistrationForm setCurrentPage={setCurrentPage} />
         </div>
       )}
 

@@ -5,11 +5,12 @@ import MainContent from "./MainContent";
 
 const Main = () => {
   const [currentPage, setCurrentPage] = useState("plan");
+
   return (
     <div className="relative">
       <Header />
       <Sidebar setCurrentPage={setCurrentPage} />
-      <MainContent currentPage={currentPage} />
+      <MainContent currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 };

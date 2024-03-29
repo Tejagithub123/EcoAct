@@ -106,7 +106,7 @@ const Categoryform = () => {
           >
             {/* form*/}
             <div className="relative flex items-center">
-              <label className="text-[13px] bg-yellow-50 text-black absolute px-2 top-[-10px] left-[18px] font-semibold">
+              <label className="text-[13px] text-black absolute px-2 top-[-10px] left-[18px] font-semibold">
                 Name
               </label>
               <input
