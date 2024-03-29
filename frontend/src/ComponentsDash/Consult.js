@@ -89,7 +89,19 @@ function Consult() {
   const handleEdit = (actor) => {
     setEditableActor(actor);
     setIsEditing(true);
-    setEditedData({ ...actor });
+    // Initialize editedData with actor's existing data
+    setEditedData({ ...actor, categories: actor.categories });
+  };
+
+  // Inside handleInputChange function
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // If name is categories, convert selected options to an array
+    const newValue =
+      name === "categories"
+        ? Array.from(e.target.selectedOptions, (option) => option.value)
+        : value;
+    setEditedData({ ...editedData, [name]: newValue });
   };
 
   const handleUpdate = async (id) => {
@@ -116,12 +128,8 @@ function Consult() {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedData({ ...editedData, [name]: value });
-  };
   return (
-    <main className="ml-60 pt-16 max-h-screen overflow-auto">
+    <main className="">
       <div className="px-6 py-8">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-3xl p-8 mb-5">
@@ -153,7 +161,7 @@ function Consult() {
             </div>
             <br />
             {/* Table */}
-            <div className="overflow-x-auto">
+            <div className="">
               <table className="min-w-full bg-white font-sans">
                 <thead className="bg-green-300 whitespace-nowrap">
                   <tr>
@@ -189,7 +197,7 @@ function Consult() {
                       key={actor.id}
                       className="hover:bg-gray-50 transition-colors"
                     >
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4  min-w-[100px] text-sm text-gray-900">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
@@ -203,7 +211,7 @@ function Consult() {
                           actor.username
                         )}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4 min-w-[100px] text-sm text-gray-900">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
@@ -217,7 +225,7 @@ function Consult() {
                           actor.email
                         )}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4 min-w-[100px] text-sm text-gray-900">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
@@ -245,7 +253,7 @@ function Consult() {
                           actor.adresse
                         )}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
@@ -259,7 +267,7 @@ function Consult() {
                           actor.ville
                         )}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
@@ -273,16 +281,22 @@ function Consult() {
                           actor.activitis
                         )}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
-                          <input
-                            type="text"
+                          <select
                             name="categories"
                             value={editedData.categories}
                             onChange={handleInputChange}
-                          />
+                            multiple
+                          >
+                            {categories.map((category) => (
+                              <option key={category.id} value={category.id}>
+                                {category.name}
+                              </option>
+                            ))}
+                          </select>
                         ) : (
                           actor.categories.map((categoryId, index) => (
                             <span key={index}>
@@ -292,7 +306,7 @@ function Consult() {
                           ))
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 min-w-[100px]">
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
