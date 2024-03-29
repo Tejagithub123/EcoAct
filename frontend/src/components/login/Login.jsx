@@ -30,7 +30,7 @@ const Login = () => {
       }) 
       .then((response) => {
         console.log(response.data); 
-        const { role } = response.data;
+        const { role, id } = response.data; 
         localStorage.setItem('token', response.data.access);
         
         console.log("User role:", role);  
@@ -42,9 +42,9 @@ const Login = () => {
             navigate('/image');}   //predictions 
         
 
-          if (role === 'actor') {
-            navigate('/dashboard/user');}  //id also to pass
-
+            if (role === 'actor') {
+              navigate(`/dashboard/user/${id}`);
+            }
       })
       .catch((error) => {
         console.log(error);

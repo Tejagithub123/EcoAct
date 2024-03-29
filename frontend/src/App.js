@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/dashboard/user" element={<ActMain />} />
+          <Route path="/dashboard/user/:id" element={<ActMain />} />
           <Route path="/dashboard" element={<Main />} />
           <Route path="/" element={<EcoMap />} />
           <Route path="/home" element={<HomePage />} />
