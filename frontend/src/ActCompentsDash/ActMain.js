@@ -9,7 +9,7 @@ const ActMain = () => {
     <div className="relative">
       <Header />
       <Sidebar setCurrentPage={setCurrentPage} />
-      <MainContent currentPage={currentPage} />
+      <MainContent currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 };

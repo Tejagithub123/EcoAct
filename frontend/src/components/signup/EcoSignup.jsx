@@ -11,10 +11,10 @@ const EcoSignup = () => {
  
   const [telephone, setTelephone] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+  const [ville, setville] = useState("");
   const [longitude, setLongitude] = useState("");
   const [latitude, setLatitude] = useState("");
-  const [activities, setActivities] = useState("");
+  const [activitis, setactivitis] = useState("");
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
 
@@ -26,10 +26,10 @@ const EcoSignup = () => {
         email: email,
         telephone: telephone,
         address: address,
-        city: city,
+        ville: ville,
         longitude: longitude,
         latitude: latitude,
-        activities: activities,
+        activitis: activitis,
         category: category,
       })
       .then((response) => {
@@ -67,7 +67,7 @@ const EcoSignup = () => {
                           id="username"
                           value={username}
                           onChange={(event) => setUsername(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
@@ -83,7 +83,7 @@ const EcoSignup = () => {
                           id="email"
                           value={email}
                           onChange={(event) => setEmail(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
@@ -100,7 +100,7 @@ const EcoSignup = () => {
                           id="telephone"
                           value={telephone}
                           onChange={(event) => setTelephone(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
@@ -117,25 +117,25 @@ const EcoSignup = () => {
                           id="address"
                           value={address}
                           onChange={(event) => setAddress(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
                       <div className="mb-2">
   <label
-    htmlFor="city"
+    htmlFor="ville"
     className="block text-xl font-semibold text-black"
   >
-    City
+    ville
   </label>
   <select
-    id="city"
-    value={city}
-    onChange={(event) => setCity(event.target.value)}
-    className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+    id="ville"
+    value={ville}
+    onChange={(event) => setville(event.target.value)}
+    className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
     required
   >
-    <option value="">Select a city</option>
+    <option value="">Select a ville</option>
     <option value="Tunis">Tunis</option>
     <option value="Sfax">Sfax</option>
     <option value="Sousse">Sousse</option>
@@ -175,7 +175,7 @@ const EcoSignup = () => {
                           id="longitude"
                           value={longitude}
                           onChange={(event) => setLongitude(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
@@ -191,23 +191,23 @@ const EcoSignup = () => {
                           id="latitude"
                           value={latitude}
                           onChange={(event) => setLatitude(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
                       <div className="mb-2">
                         <label
-                          htmlFor="activities"
+                          htmlFor="activitis"
                           className="block text-xl font-semibold text-black"
                         >
-                          Activities
+                          activitis
                         </label>
                         <input
                           type="text"
-                          id="activities"
-                          value={activities}
-                          onChange={(event) => setActivities(event.target.value)}
-                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          id="activitis"
+                          value={activitis}
+                          onChange={(event) => setactivitis(event.target.value)}
+                          className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
@@ -219,7 +219,7 @@ const EcoSignup = () => {
         id="categories"
         value={category}
         onChange={(event) => setCategory(event.target.value)}
-        className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+        className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
         required
     >
         <option value="">Select a category</option>

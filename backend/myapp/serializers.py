@@ -17,15 +17,10 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EcoActorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = EcoActor
-        fields = '__all__'
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'password']        
+        fields = ['email', 'name', 'password']
 
 # class ResultSerializer(serializers.ModelSerializer):
 #     class Meta:
