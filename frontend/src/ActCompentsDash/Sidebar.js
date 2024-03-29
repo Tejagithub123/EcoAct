@@ -49,22 +49,23 @@ const Sidebar = ({ setCurrentPage }) => {
           <a
             href="javascript:void(0)"
             className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
-            onClick={() => handleItemClick("Information")}
+            onClick={() => handleItemClick("Profil")}
           >
-            <FaCalendarAlt className="w-[18px] h-[18px] mr-4" />
-            <span>Events</span>
+            <FaUser className="w-[18px] h-[18px] mr-4" />
+            <span>Profil</span>
           </a>
         </li>
         <li>
           <a
             href="javascript:void(0)"
             className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
-            onClick={() => handleItemClick("Profil")}
+            onClick={() => handleItemClick("Information")}
           >
-            <FaUser className="w-[18px] h-[18px] mr-4" />
-            <span>About</span>
+            <FaCalendarAlt className="w-[18px] h-[18px] mr-4" />
+            <span>Events</span>
           </a>
         </li>
+
         <li>
           <a
             href="javascript:void(0)"
@@ -72,7 +73,7 @@ const Sidebar = ({ setCurrentPage }) => {
             onClick={() => handleItemClick("RegistrationForm")}
           >
             <FaInfoCircle className="w-[18px] h-[18px] mr-4" />
-            <span>Profil</span>
+            <span>Form</span>
           </a>
         </li>
         <li>
