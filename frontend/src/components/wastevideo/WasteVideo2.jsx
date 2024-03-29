@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import ml5 from "ml5";
-import Loader from 'react-loader-spinner';
-import useInterval from '@use-it/interval';
+import Loader from "react-loader-spinner";
+import useInterval from "@use-it/interval";
+import axios from "axios";
 
-import WasteType from './WasteType';
-import Chart from './Chart';
+import WasteType from "./WasteType";
+import Chart from "./Chart";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./wastevideo.css";
@@ -12,7 +13,7 @@ import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 
 let classifier;
-// video upload wala
+
 function WasteVideo2() {
   const videoRef = useRef();
   const [start, setStart] = useState(false);
@@ -39,7 +40,10 @@ function WasteVideo2() {
           return;
         }
         setResult(results);
-        console.log(results)
+        console.log(results);
+        sendResultsToBackend(results); // Send results to backend when available
+      //stop video to not get duplications 
+      
       });
     }
   }, 500);
@@ -47,18 +51,43 @@ function WasteVideo2() {
   const toggle = () => {
     setStart(!start);
     setResult([]);
-  }
+  };
+
+  const sendResultsToBackend = (results) => {
+    if (results.length > 0) {
+      const firstResult = results[0];
+      const data = {
+        text: firstResult.label,
+        prediction: firstResult.confidence,
+      };
+
+      axios
+        .post("http://localhost:8000/api/prediction/", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log("Data saved successfully:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error saving data:", error);
+        });
+    } else {
+      console.warn("No results to send to the backend.");
+    }
+  };
 
   return (
     <div className="wastevideo">
-      <Navbar/>
+      <Navbar />
       <Loader
         type="Watch"
         color="#00BFFF"
         height={200}
         width={200}
         visible={!loaded}
-        style={{display:'flex', justifyContent:'center', marginTop:'30px' }}
+        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
       />
       <div className="upper">
         <div className="capture">
@@ -85,7 +114,7 @@ function WasteVideo2() {
           <WasteType data={result} />
         </div>
       )}
-        <Footer />
+      <Footer />
     </div>
   );
 }
