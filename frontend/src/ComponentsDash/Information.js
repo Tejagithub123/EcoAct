@@ -1,86 +1,90 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const Information = () => {
+const EventCrud = () => {
+  const [events, setEvents] = useState([]);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/event/");
+      setEvents(response.data);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+    }
+  };
+
+  const handleCreateEvent = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post("http://localhost:8000/api/event/create/", {
+        name,
+        description,
+      });
+      setName("");
+      setDescription("");
+      fetchEvents();
+    } catch (error) {
+      console.error("Error creating event:", error);
+    }
+  };
+
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/event/${eventId}/delete/`);
+      fetchEvents();
+    } catch (error) {
+      console.error("Error deleting event:", error);
+    }
+  };
+
+  const handleSelectEvent = async (eventId) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/event/${eventId}/`);
+      setSelectedEvent(response.data);
+    } catch (error) {
+      console.error("Error fetching event details:", error);
+    }
+  };
+
   return (
-    <main class="ml-60 pt-16 max-h-screen overflow-auto">
-      <div class="px-6 py-8">
-        <div class="bg-gray-50 font-[sans-serif] p-6">
-          <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-12 items-center md:max-w-7xl max-w-lg mx-auto">
-            <div>
-              <h2 class="text-4xl font-bold text-gray-300 uppercase mb-6">
-                Events
-              </h2>
-              <h2 class="text-3xl font-extrabold text-[#333] uppercase leading-10">
-                Discover Our Letest Blog Posts
-              </h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-2">
-              <div class="cursor-pointer rounded overflow-hidden group">
-                <img
-                  src="https://readymadeui.com/Imagination.webp"
-                  alt="Blog Post 1"
-                  class="w-full h-52 object-cover"
-                />
-                <div class="py-6">
-                  <span class="text-sm block text-gray-400 mb-2">
-                    10 FEB 2023 | BY JOHN DOE
-                  </span>
-                  <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
-                    A Guide to Igniting Your Imagination
-                  </h3>
-                </div>
-              </div>
-              <div class="cursor-pointer rounded overflow-hidden group">
-                <img
-                  src="https://readymadeui.com/hacks-watch.webp"
-                  alt="Blog Post 2"
-                  class="w-full h-52 object-cover"
-                />
-                <div class="py-6">
-                  <span class="text-sm block text-gray-400 mb-2">
-                    7 JUN 2023 | BY MARK ADAIR
-                  </span>
-                  <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
-                    Hacks to Supercharge Your Day
-                  </h3>
-                </div>
-              </div>
-              <div class="cursor-pointer rounded overflow-hidden group">
-                <img
-                  src="https://readymadeui.com/prediction.webp"
-                  alt="Blog Post 3"
-                  class="w-full h-52 object-cover"
-                />
-                <div class="py-6">
-                  <span class="text-sm block text-gray-400 mb-2">
-                    5 OCT 2023 | BY SIMON KONECKI
-                  </span>
-                  <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
-                    Trends and Predictions
-                  </h3>
-                </div>
-              </div>
-              <div class="cursor-pointer rounded overflow-hidden group">
-                <img
-                  src="https://readymadeui.com/team-image.webp"
-                  alt="Blog Post 3"
-                  class="w-full h-52 object-cover"
-                />
-                <div class="py-6">
-                  <span class="text-sm block text-gray-400 mb-2">
-                    10 DEC 2023 | BY SIMON KONECKI
-                  </span>
-                  <h3 class="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
-                    Innovators Changing the Game
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div>
+      <h2>Events</h2>
+      <ul>
+        {events.map((event) => (
+          <li key={event.id}>
+            {event.name}
+            <button onClick={() => handleSelectEvent(event.id)}>View Details</button>
+            <button onClick={() => handleDeleteEvent(event.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+      <h2>Create Event</h2>
+      <form onSubmit={handleCreateEvent}>
+        <div>
+          <label>Name:</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-      </div>
-    </main>
+        <div>
+          <label>Description:</label>
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
+        <button type="submit">Create</button>
+      </form>
+      {selectedEvent && (
+        <div>
+          <h2>{selectedEvent.name}</h2>
+          <p>{selectedEvent.description}</p>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default Information;
+export default EventCrud;

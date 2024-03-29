@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import user_signup, user_login
 from .views import prediction_view
-
+from .views import EventCreateView,EventDetailView,EventListView,EventUpdateView,EventDeleteView
 from .views import submit_contact_form
 
 from .views import PredictionList
@@ -10,6 +10,8 @@ from .views import CategoryListCreateAPIView, CategoryRetrieveUpdateDestroyAPIVi
 from .views import EcoActorListCreate, EcoActorRetrieveUpdateDestroy
 
 from .views import filter_actors_by_location,filter_actors_by_category
+
+
 urlpatterns = [ 
      path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
      path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-detail'),
@@ -20,10 +22,16 @@ urlpatterns = [
     path('ecoactors/<int:pk>/', EcoActorRetrieveUpdateDestroy.as_view(), name='ecoactor-retrieve-update-destroy'),
 
     path('submit/', submit_contact_form, name='submit_contact_form'),
-
     path('signup/', user_signup),
     path('login/', user_login),
     path('prediction/', prediction_view),
     path('predictions/', PredictionList.as_view(), name='prediction-list'),
+    
+    #event
+     path('event/', EventListView.as_view(), name='event_list'),  # URL for listing events
+    path('event/<int:pk>/', EventDetailView.as_view(), name='event_detail'),  # URL for viewing details of a specific event
+    path('event/create/', EventCreateView.as_view(), name='event_create'),  # URL for creating a new event
+    path('event/<int:pk>/update/', EventUpdateView.as_view(), name='event_update'),  # URL for updating an existing event
+    path('event/<int:pk>/delete/', EventDeleteView.as_view(), name='event_delete'),  # URL for deleting an event
 
 ]

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import User
 from .models import Prediction
+from .models import Event
 
 from .models import Category
 
@@ -31,4 +32,10 @@ class PredictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prediction
         fields = ['id','text', 'prediction', 'created_at']
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'image', 'name', 'description', 'date']  
 

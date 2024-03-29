@@ -14,6 +14,9 @@ from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.http import JsonResponse
 
+from .models import Event
+from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
+from django.urls import reverse_lazy
 
 from .models import Category
 from .serializers import CategorySerializer
@@ -153,4 +156,27 @@ class PredictionList(generics.ListAPIView):
     serializer_class = PredictionSerializer
 
 
+class EventListView(ListView):
+    model = Event
+    template_name = 'event_list.html'  # Template for listing events
+    context_object_name = 'events'
 
+class EventDetailView(DetailView):
+    model = Event
+    template_name = 'event_detail.html'  # Template for viewing details of a specific event
+    context_object_name = 'event'
+
+class EventCreateView(CreateView):
+    model = Event
+    template_name = 'event_form.html'  # Template for creating a new event
+    fields = ['image', 'name', 'description', 'date']
+
+class EventUpdateView(UpdateView):
+    model = Event
+    template_name = 'event_form.html'  # Template for updating an existing event
+    fields = ['image', 'name', 'description', 'date']
+
+class EventDeleteView(DeleteView):
+    model = Event
+    template_name = 'event_confirm_delete.html'  # Template for confirming deletion of an event
+    success_url = reverse_lazy('event_list')  # Redirect URL after successful deletion

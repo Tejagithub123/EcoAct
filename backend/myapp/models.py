@@ -34,9 +34,16 @@ class EcoActor(models.Model):
     longitude = models.FloatField()
     latitude = models.FloatField()
     activitis = models.CharField(max_length=255)
-    categories = models.ManyToManyField(Category)  # Many-to-many relationship with Category model
+    #categories = models.ManyToManyField(Category)  # Many-to-many relationship with Category model
 
+class Event(models.Model):
+    image = models.ImageField(upload_to='event_images')  # For storing event images
+    name = models.CharField(max_length=255)  # Name of the event
+    description = models.TextField()  # Description of the event
+    date = models.DateField()  # Date of the event
 
+    def __str__(self):
+        return self.name
 
 
 

@@ -8,6 +8,9 @@ import Login from "./components/login/Login";
 
 import EcoSignup from "./components/signup/EcoSignup";
 
+import eventCrud from "./ComponentsDash/Information.js";
+
+
 import WasteVideo2 from "./components/wastevideo/WasteVideo2";
 import WasteVideo from "./components/wastevideo/WasteVideo";
 import Landing from "./components/Landing";
@@ -29,6 +32,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
 
           <Route path="/ecosignup" element={<EcoSignup />} />
+
+          <Route path="/event" element={<Event />} />
 
           <Route path="/login" element={<Login />} />
 

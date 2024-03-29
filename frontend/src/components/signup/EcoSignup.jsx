@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
@@ -8,39 +8,38 @@ import imgsignin from "../../../src/img/engineer-plan-ecology-with-copy-space.jp
 const EcoSignup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
- 
   const [telephone, setTelephone] = useState("");
-  const [address, setAddress] = useState("");
-  const [ville, setville] = useState("");
+  const [adresse, setAdresse] = useState("");
+  const [ville, setVille] = useState("");
   const [longitude, setLongitude] = useState("");
   const [latitude, setLatitude] = useState("");
-  const [activitis, setactivitis] = useState("");
-  const [category, setCategory] = useState("");
+  const [activitis, setActivitis] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios
-      .post("http://localhost:8000/api/ecosignup/", {
-        username: username,
-        email: email,
-        telephone: telephone,
-        address: address,
-        ville: ville,
-        longitude: longitude,
-        latitude: latitude,
-        activitis: activitis,
-        category: category,
-      })
-      .then((response) => {
-        console.log(response.data);
-        navigate("/dashboard"); // Rediriger vers le tableau de bord après inscription réussie
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const response = await axios.post("http://localhost:8000/api/ecoactors/", {
+        username,
+        email,
+        telephone,
+        adresse,
+        ville,
+        longitude,
+        latitude,
+        activitis,
       });
+      console.log(response.data);
+      if (response.data.success) {
+        navigate("/dashboard");
+      } else {
+        console.error("Signup failed:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
   };
-
+  
   return (
     <section className="h-full bg-white gray:bg-neutral-700">
       <Navbar />
@@ -107,16 +106,16 @@ const EcoSignup = () => {
                      
                       <div className="mb-2">
                         <label
-                          htmlFor="address"
+                          htmlFor="adresse"
                           className="block text-xl font-semibold text-black"
                         >
-                          Address
+                          Adresse
                         </label>
                         <input
                           type="text"
-                          id="address"
-                          value={address}
-                          onChange={(event) => setAddress(event.target.value)}
+                          id="adresse"
+                          value={adresse}
+                          onChange={(event) => setAdresse(event.target.value)}
                           className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
@@ -126,12 +125,12 @@ const EcoSignup = () => {
     htmlFor="ville"
     className="block text-xl font-semibold text-black"
   >
-    ville
+    City
   </label>
   <select
     id="ville"
     value={ville}
-    onChange={(event) => setville(event.target.value)}
+    onChange={(event) => setVille(event.target.value)}
     className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
     required
   >
@@ -206,29 +205,12 @@ const EcoSignup = () => {
                           type="text"
                           id="activitis"
                           value={activitis}
-                          onChange={(event) => setactivitis(event.target.value)}
+                          onChange={(event) => setActivitis(event.target.value)}
                           className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
                           required
                         />
                       </div>
-                      <div className="mb-2">
-    <label htmlFor="categories" className="block text-xl font-semibold text-black">
-        Categories
-    </label>
-    <select
-        id="categories"
-        value={category}
-        onChange={(event) => setCategory(event.target.value)}
-        className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opaville-40"
-        required
-    >
-        <option value="">Select a category</option>
-        <option value="Agriculture">Agriculture</option>
-        <option value="Plastic">Plastic</option>
-        <option value="Glass">Glass</option>
-    </select>
-</div>
-
+                      {/* Removed category selection */}
                       <div className="mt-6">
                         <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-400 text-xl">
                           Sign up
@@ -266,9 +248,7 @@ const EcoSignup = () => {
       
       <Footer />
     </section>
-      
-    );
-  };
-  
-  export default EcoSignup;
-  
+  );
+};
+
+export default EcoSignup;
