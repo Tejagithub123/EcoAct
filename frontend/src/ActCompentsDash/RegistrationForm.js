@@ -10,7 +10,8 @@ const RegistrationForm = ({ setCurrentPage }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
-
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -36,23 +37,15 @@ const RegistrationForm = ({ setCurrentPage }) => {
   const handleEdit = () => {
     setIsEdit(true);
   };
-
   const handleSave = async () => {
     try {
-      // Make the API call and wait for it to complete
       await axios.patch(`http://localhost:8000/api/ecoactors/${id}/`, {
         ...userData,
         categories: selectedCategories,
-        Longitude: userData?.Longitude,
-        Latitude: userData?.Latitude,
+        Longitude: longitude,
+        Latitude: latitude,
       });
-
-      const updatedLongitude = userData?.Longitude;
-      const updatedLatitude = userData?.Latitude;
-
-      console.log("Updated Longitude:", updatedLongitude);
-      console.log("Updated Latitude:", updatedLatitude);
-
+      console.log("User", userData);
       setIsEdit(false);
       setCurrentPage("Profil");
 
@@ -75,11 +68,14 @@ const RegistrationForm = ({ setCurrentPage }) => {
   };
 
   const handleMarkerDrag = (newCoordinates) => {
+    setLatitude(newCoordinates.lat);
+    setLongitude(newCoordinates.lng);
     setUserData((prevUserData) => ({
       ...prevUserData,
-      Latitude: newCoordinates.lat,
-      Longitude: newCoordinates.lng,
+      latitude: newCoordinates.lat,
+      longitude: newCoordinates.lng,
     }));
+    console.log("newCoordinates", newCoordinates);
   };
 
   return (
@@ -204,8 +200,8 @@ const RegistrationForm = ({ setCurrentPage }) => {
                   {/* Map */}
                   <MapWithMarker
                     initialCoordinates={{
-                      lat: userData?.Latitude || 0,
-                      lng: userData?.Longitude || 0,
+                      lat: latitude || (userData && userData.latitude) || 0,
+                      lng: longitude || (userData && userData.longitude) || 0,
                     }}
                     onMarkerDrag={handleMarkerDrag}
                   />

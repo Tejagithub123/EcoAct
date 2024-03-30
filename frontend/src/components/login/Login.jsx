@@ -58,7 +58,7 @@ const Login = () => {
     <div className="container h-full p-10">
       <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
         <div className="w-full">
-          <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-100">
+          <div className="block rounded-lg bg-white shadow-lg">
             <div className="g-0 lg:flex lg:flex-wrap">
               {/* Left column container */}
               <div className="px-4 md:px-0 lg:w-6/12">
@@ -95,7 +95,7 @@ const Login = () => {
                         id="password"
                         value={password}
                         onChange={handlePasswordChange}
-                        className="block w-full px-4 py-2 mt-2 text-gray-200  border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        className="block w-full px-4 py-2 mt-2 text-black  border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         required
                       />
                     </div>
