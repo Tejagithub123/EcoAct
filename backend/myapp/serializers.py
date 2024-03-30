@@ -5,6 +5,7 @@ from .models import Prediction
 from .models import Category
 
 from .models import EcoActor
+from .models import Event
 
 class EcoActorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,3 +33,7 @@ class PredictionSerializer(serializers.ModelSerializer):
         model = Prediction
         fields = ['id','text', 'prediction', 'created_at']
 
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'image', 'name', 'description', 'date']  

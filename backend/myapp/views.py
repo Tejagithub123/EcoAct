@@ -12,18 +12,33 @@ from django.core.mail import send_mail
 from django.http import JsonResponse
 
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import JsonResponse 
+from .models import Event
 
-
+from django.urls import reverse_lazy
 from .models import Category
 from .serializers import CategorySerializer
 from .models import EcoActor
 from .serializers import EcoActorSerializer
-
+from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .models import Event
+from .serializers import EventSerializer
 
+class EventListCreate(generics.ListCreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+class EventRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+    def perform_update(self, serializer):
+        serializer.save(partial=True)  # Allow partial updates
+
+        
 class EcoActorListCreate(generics.ListCreateAPIView):
     queryset = EcoActor.objects.all()
     serializer_class = EcoActorSerializer
