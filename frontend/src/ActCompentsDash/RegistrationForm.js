@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
-import CoordinateModal from "./CoordinateModal";
+import MapWithMarker from "./MapWithMarker";
+import imgs from "../img/elevated-view-businesspeople-hands-holding-paper-with-energy-saving-icons.jpg";
 const RegistrationForm = ({ setCurrentPage }) => {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
@@ -10,7 +10,6 @@ const RegistrationForm = ({ setCurrentPage }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [isCoordinateModalOpen, setIsCoordinateModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -34,22 +33,29 @@ const RegistrationForm = ({ setCurrentPage }) => {
     fetchUserData();
   }, [id]);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   const handleEdit = () => {
     setIsEdit(true);
   };
 
   const handleSave = async () => {
     try {
-      await axios.put(`http://localhost:8000/api/ecoactors/${id}/`, {
+      // Make the API call and wait for it to complete
+      await axios.patch(`http://localhost:8000/api/ecoactors/${id}/`, {
         ...userData,
         categories: selectedCategories,
+        Longitude: userData?.Longitude,
+        Latitude: userData?.Latitude,
       });
+
+      const updatedLongitude = userData?.Longitude;
+      const updatedLatitude = userData?.Latitude;
+
+      console.log("Updated Longitude:", updatedLongitude);
+      console.log("Updated Latitude:", updatedLatitude);
+
       setIsEdit(false);
       setCurrentPage("Profil");
+
       console.log("User data updated successfully!");
     } catch (error) {
       console.error("Error updating user data:", error);
@@ -68,40 +74,21 @@ const RegistrationForm = ({ setCurrentPage }) => {
     setSelectedCategories(selectedOptions);
   };
 
-  const handleMapModal = () => {
-    setIsCoordinateModalOpen(true); // Open the coordinate modal
-  };
-
-  const handleCoordinateModalClose = () => {
-    setIsCoordinateModalOpen(false); // Close the coordinate modal
-  };
-
-  const handleSaveCoordinates = async (newCoordinates) => {
-    try {
-      // Make API call to save the new coordinates
-      await axios.patch(`http://localhost:8000/api/ecoactors/${id}/`, {
-        ...userData,
-        longitude: newCoordinates.lng,
-        latitude: newCoordinates.lat,
-      });
-      setUserData((prevUserData) => ({
-        ...prevUserData,
-        longitude: newCoordinates.lng,
-        latitude: newCoordinates.lat,
-      }));
-      console.log("Coordinates updated successfully!");
-    } catch (error) {
-      console.error("Error updating coordinates:", error);
-    }
+  const handleMarkerDrag = (newCoordinates) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      Latitude: newCoordinates.lat,
+      Longitude: newCoordinates.lng,
+    }));
   };
 
   return (
     <main className="ml-60 pt-20 max-h-screen overflow-auto bg-gradient-to-b from-green-400 to-green-60">
       <div className="px-3 py-3">
         <div className="font-[sans-serif]">
-          <div className="bg-gradient-to-r from-blue-700 to-blue-300 w-full h-60">
+          <div className="w-full h-60">
             <img
-              src="https://readymadeui.com/cardImg.webp"
+              src={imgs}
               alt="Banner Image"
               className="w-full h-full object-cover"
             />
@@ -213,13 +200,15 @@ const RegistrationForm = ({ setCurrentPage }) => {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleMapModal}
-                    className="mt-4 w-1/4 px-6 py-2 bg-gray-400 hover:bg-gray-600 text-white rounded-full"
-                  >
-                    Modify Coordinates
-                  </button>
+                <div className="w-1/3">
+                  {/* Map */}
+                  <MapWithMarker
+                    initialCoordinates={{
+                      lat: userData?.Latitude || 0,
+                      lng: userData?.Longitude || 0,
+                    }}
+                    onMarkerDrag={handleMarkerDrag}
+                  />
                 </div>
                 {/* Additional fields can be added here */}
               </form>
@@ -227,7 +216,7 @@ const RegistrationForm = ({ setCurrentPage }) => {
                 <div className="flex justify-center">
                   <button
                     onClick={handleEdit}
-                    className="mt-4 w-1/4 px-6 py-2 bg-blue-500 hover:bg-blue-800 text-white rounded-full"
+                    className="mt-4 w-1/6 px-6 py-2 bg-green-500 hover:bg-green-800 text-white rounded-full"
                   >
                     Edit Settings
                   </button>
@@ -236,13 +225,13 @@ const RegistrationForm = ({ setCurrentPage }) => {
                 <div className="flex justify-center">
                   <button
                     onClick={handleSave}
-                    className="mt-4 w-1/6 px-6 py-2 mr-10 bg-green-600 hoover:bg-green-800 text-white rounded-full"
+                    className="mt-4 w-1/9 px-6 py-2 mr-5 bg-green-500 hoover:bg-green-700 text-white rounded-full"
                   >
                     Save
                   </button>
                   <button
                     onClick={() => setIsEdit(false)}
-                    className="mt-4 w-1/6 px-6 py-2  bg-red-600 hoover:bg-red-800 text-white-700 rounded-full"
+                    className="mt-4 w-1/9 px-6 py-2  bg-red-600 hoover:bg-red-800 text-white-700 rounded-full"
                   >
                     Cancel
                   </button>
@@ -252,16 +241,6 @@ const RegistrationForm = ({ setCurrentPage }) => {
           </div>
         </div>
       </div>
-      {isCoordinateModalOpen && (
-        <CoordinateModal
-          onClose={handleCoordinateModalClose}
-          onSave={handleSaveCoordinates}
-          initialCoordinates={{
-            lat: userData?.latitude || 0,
-            lng: userData?.longitude || 0,
-          }}
-        />
-      )}
     </main>
   );
 };
