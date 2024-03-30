@@ -1,9 +1,9 @@
 from django.urls import path
 from .views import user_signup, user_login
 from .views import prediction_view
-
+from django.conf import settings
 from .views import submit_contact_form
-
+from django.conf.urls.static import static
 from .views import PredictionList
 from .views import CategoryListCreateAPIView, CategoryRetrieveUpdateDestroyAPIView
 
@@ -35,4 +35,4 @@ urlpatterns = [
     path('prediction/', prediction_view),
     path('predictions/', PredictionList.as_view(), name='prediction-list'),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
