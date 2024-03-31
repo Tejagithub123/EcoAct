@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../navbar/Navbar"; 
 import Footer from "../footer/Footer";
-import imgsignin from "../../../src/img/engineer-plan-ecology.jpg"
+import imgsignin from "../../../src/img/top-view-frame-with-study-items.jpg"
 const Signup = () => {
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
@@ -28,9 +28,11 @@ const Signup = () => {
    };
  
    return (
-    <section className="h-full bg-white gray:bg-neutral-700">
+
+    <section className="h-full  bg-white gray:bg-neutral-700">
       <Navbar />
-      <div className="container h-full p-10">
+      <div className="flex flex-center">
+      <div className="w-full h-full p-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left column container */}
           <div className="bg-white shadow-lg rounded-lg lg:col-span-1">
@@ -112,6 +114,7 @@ const Signup = () => {
             }}
           ></div>
         </div>
+      </div>
       </div>
       <Footer />
     </section>

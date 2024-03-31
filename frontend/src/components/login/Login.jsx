@@ -6,7 +6,7 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import { jwtDecode } from 'jwt-decode' 
 
-import imgsignin from "../../../src/img/engineer-plan-ecology-with-copy-space.jpg"
+import imgsignin from "../../../src/img/flat-lay-plants-world-globe-frame.jpg"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +55,7 @@ const Login = () => {
     
     <section className="h-full bg-white gray:bg-neutral-700">
     <Navbar />
-    <div className="container h-full p-10">
+    <div className="w-full h-full p-10">
       <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
         <div className="w-full">
           <div className="block rounded-lg bg-white shadow-lg">
