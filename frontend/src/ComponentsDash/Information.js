@@ -10,8 +10,11 @@ const Information = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [editMode, setEditMode] = useState(false);
-  const [editEventId, setEditEventId] = useState(null);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [eventToUpdate, setEventToUpdate] = useState(null);
+  const [updatedName, setUpdatedName] = useState("");
+  const [updatedDescription, setUpdatedDescription] = useState("");
+  const [updatedDate, setUpdatedDate] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -81,14 +84,49 @@ const Information = () => {
       console.error("Error deleting event:", error);
     }
   };
+  const openUpdateModal = (event) => {
+    setEventToUpdate(event);
+    setUpdatedName(event.name);
+    setUpdatedDescription(event.description);
+    setUpdatedDate(event.date);
+    setShowUpdateModal(true);
+  };
 
+  const closeUpdateModal = () => {
+    setShowUpdateModal(false);
+    setEventToUpdate(null);
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("image", imageName);
+      formData.append("name", updatedName);
+      formData.append("description", updatedDescription);
+      formData.append("date", updatedDate);
+
+      await axios.patch(
+        `http://localhost:8000/api/events/${eventToUpdate.id}/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      fetchEvents();
+      closeUpdateModal();
+    } catch (error) {
+      console.error("Error updating event:", error);
+    }
+  };
   return (
     <div>
       <main className="ml-60 pt-16 max-h-screen overflow-auto">
         <div className="px-6 py-8">
           <div className="flex justify-end">
             <button
-              className="text-[#333] w-1/4 bg-green-300 hover:bg-green-500 px-4 py-2 rounded-lg"
+              className="text-[#333] w-1/5 bg-green-500 hover:bg-green-700 px-4 py-2 rounded-lg"
               onClick={openModal}
             >
               + Add a new Event
@@ -191,6 +229,102 @@ const Information = () => {
                         {event.name}
                       </h3>
                       <p className="text-gray-600">{event.description}</p>
+                      {/* Update event modal */}
+                      {showUpdateModal && eventToUpdate && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-filter backdrop-blur-sm">
+                          <div className="bg-white w-full max-w-lg p-8 rounded-lg">
+                            <button
+                              onClick={closeUpdateModal}
+                              className="absolute top-2 right-2 text-gray-500 hover:text-red-600"
+                            >
+                              <FaTimesCircle size={24} />
+                            </button>
+                            <h2 className="text-xl font-semibold mb-4">
+                              Update Event
+                            </h2>
+                            <form>
+                              <div className="mb-4">
+                                <label
+                                  htmlFor="name"
+                                  className="block text-sm font-medium text-gray-700"
+                                >
+                                  Name
+                                </label>
+                                <input
+                                  type="text"
+                                  id="name"
+                                  value={updatedName}
+                                  onChange={(e) =>
+                                    setUpdatedName(e.target.value)
+                                  }
+                                  className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                                />
+                              </div>
+                              <div className="mb-4">
+                                <label
+                                  htmlFor="description"
+                                  className="block text-sm font-medium text-gray-700"
+                                >
+                                  Description
+                                </label>
+                                <textarea
+                                  id="description"
+                                  value={updatedDescription}
+                                  onChange={(e) =>
+                                    setUpdatedDescription(e.target.value)
+                                  }
+                                  className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                                />
+                              </div>
+                              <div className="mb-4">
+                                <label
+                                  htmlFor="date"
+                                  className="block text-sm font-medium text-gray-700"
+                                >
+                                  Date
+                                </label>
+                                <input
+                                  type="date"
+                                  id="date"
+                                  value={updatedDate}
+                                  onChange={(e) =>
+                                    setUpdatedDate(e.target.value)
+                                  }
+                                  className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                                />
+                              </div>
+                              <div className="mb-4">
+                                <label
+                                  htmlFor="image"
+                                  className="block text-sm font-medium text-gray-700"
+                                >
+                                  Image
+                                </label>
+                                <input
+                                  type="file"
+                                  id="image"
+                                  onChange={(e) =>
+                                    setImageName(e.target.files[0])
+                                  }
+                                  className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                                />
+                              </div>
+                              <button
+                                type="button"
+                                onClick={handleUpdate}
+                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                              >
+                                Save Changes
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      )}
+                      <FaEdit
+                        className="text-blue-500 cursor-pointer mt-2 mr-2"
+                        onClick={() => openUpdateModal(event)}
+                        size={24}
+                      />
                       {/* Delete icon */}
                       <FaTrash
                         className="text-red-500 cursor-pointer mt-2"
