@@ -63,7 +63,7 @@ const Profil = ({ setCurrentPage }) => {
     setShowDeleteModal(false); // Hide modal after deletion
   };
   return (
-    <main className="ml-60 pt-20 max-h-screen overflow-auto bg-gradient-to-b from-green-500 to-green-300">
+    <main className="ml-60 pt-20 max-h-screen overflow-auto ">
       <div className="px-3 py-3">
         {" "}
         {/*justify-center*/}
@@ -88,7 +88,7 @@ const Profil = ({ setCurrentPage }) => {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+            <div className="border-t   border-gray-200 px-4 py-5 sm:p-0">
               <dl className="sm:divide-y sm:divide-gray-200">
                 {userData && (
                   <>

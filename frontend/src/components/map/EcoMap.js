@@ -85,7 +85,7 @@ const EcoMap = () => {
       <Navbar />
       <div style={{ position: "relative" }}>
         <form
-          className="block uppercase tracking-wide text-ms font-bold mb-2 absolute top-20 start-10 z-20 bg-white p-3 rounded-lg-1/3 shadow-lg"
+          className="w-2/8 block uppercase tracking-wide text-ms font-bold mb-2 absolute top-20 start-10 z-20 bg-white p-3 rounded-lg-1/3 shadow-lg"
           onSubmit={(e) => {
             if (!searchCity) {
               e.preventDefault();
@@ -95,15 +95,39 @@ const EcoMap = () => {
           }}
         >
           <div className="flex items-center">
-            <label>Search by city: </label>
-            <input
-              type="search"
+            <label className="font font-semibold">Search by city: </label>
+            <select
               id="search-dropdown"
               className="block w-100 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:border-gray-400 dark:placeholder-gray-200 dark:text-black"
-              placeholder="Search Per city..."
               value={searchCity}
               onChange={(e) => setSearchCity(e.target.value)}
-            />
+            >
+              <option value="">Select a city</option>
+              <option value="Ariana">Ariana</option>
+              <option value="Beja">Beja</option>
+              <option value="Ben Arous">Ben Arous</option>
+              <option value="Bizerte">Bizerte</option>
+              <option value="Gabes">Gabes</option>
+              <option value="Gafsa">Gafsa</option>
+              <option value="Jendouba">Jendouba</option>
+              <option value="Kairouan">Kairouan</option>
+              <option value="Kasserine">Kasserine</option>
+              <option value="Kebili">Kebili</option>
+              <option value="Kef">Kef</option>
+              <option value="Mahdia">Mahdia</option>
+              <option value="Manouba">Manouba</option>
+              <option value="Medenine">Medenine</option>
+              <option value="Monastir">Monastir</option>
+              <option value="Nabeul">Nabeul</option>
+              <option value="Sfax">Sfax</option>
+              <option value="Sidi Bouzid">Sidi Bouzid</option>
+              <option value="Siliana">Siliana</option>
+              <option value="Sousse">Sousse</option>
+              <option value="Tataouine">Tataouine</option>
+              <option value="Tozeur">Tozeur</option>
+              <option value="Tunis">Tunis</option>
+              <option value="Zaghouan">Zaghouan</option>
+            </select>
             {searchCity && (
               <button
                 type="button"
@@ -159,16 +183,24 @@ const EcoMap = () => {
           }}
         >
           <div className="flex items-center">
-            <label>Search by category: </label>
+            <label className="font-semibold">Search by category: </label>
             <select
               id="category-dropdown"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
-              <option value="">Select a category...</option>
-              <option value="Agriculture">Agriculture</option>
-              <option value="Industrie">Industrie</option>
-              <option value="Verre">Verre</option>
+              <option className="font-semibold" value="">
+                Select a category...
+              </option>
+              <option className="font-semibold" value="Agriculture">
+                Agriculture
+              </option>
+              <option className="font-semibold" value="Industrie">
+                Industrie
+              </option>
+              <option className="font-semibold" value="Verre">
+                Verre
+              </option>
               {/* Add more options for other categories if needed */}
             </select>
             {selectedCategory && (
@@ -220,7 +252,7 @@ const EcoMap = () => {
           </div>
         </form>
 
-        <div className="flex justify-center items-center h-full w-full zIndex: 0">
+        <div className="items-center h-1/2 w-full zIndex: 0">
           <MapContainer
             center={[34.0479, 9.5077]}
             zoom={6}

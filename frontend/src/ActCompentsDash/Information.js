@@ -27,7 +27,7 @@ const Information = () => {
                 Events
               </h2>
               <h2 className="text-3xl font-extrabold text-[#333] uppercase leading-10">
-                Discover Our Latest Blog Posts
+                Discover Latest Events
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-2">
@@ -43,7 +43,7 @@ const Information = () => {
                   />
                   <div className="py-6">
                     <span className="text-sm block text-gray-400 mb-2">
-                      {event.date} | BY {event.author}
+                      {event.date}
                     </span>
                     <h3 className="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
                       {event.name}

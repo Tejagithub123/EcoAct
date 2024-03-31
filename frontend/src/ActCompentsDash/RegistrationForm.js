@@ -79,7 +79,7 @@ const RegistrationForm = ({ setCurrentPage }) => {
   };
 
   return (
-    <main className="ml-60 pt-20 max-h-screen overflow-auto bg-gradient-to-b from-green-400 to-green-60">
+    <main className="ml-60 pt-20 max-h-screen overflow-auto">
       <div className="px-3 py-3">
         <div className="font-[sans-serif]">
           <div className="w-full h-60">
