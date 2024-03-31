@@ -44,13 +44,13 @@ const Information = () => {
                   className="cursor-pointer rounded overflow-hidden group"
                 >
                   <img
-                    src={`${BASE_URL}${event.image}`}
+                    src={`${event.image}`}
                     alt={event.name}
                     className="w-52 h-52"
                   />
                   <div className="py-6">
                     <span className="text-sm block text-gray-400 mb-2">
-                      {event.date} | BY {event.author}
+                      {event.date}
                     </span>
                     <h3 className="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
                       {event.name}

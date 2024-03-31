@@ -35,4 +35,4 @@ urlpatterns = [
     path('prediction/', prediction_view),
     path('predictions/', PredictionList.as_view(), name='prediction-list'),
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
