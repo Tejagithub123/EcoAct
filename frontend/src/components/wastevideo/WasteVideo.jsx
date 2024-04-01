@@ -44,15 +44,16 @@ function WasteVideo() {
     }
   }, 500);
 
+  
   const toggle = () => {
     setStart(!start);
     setResult([]);
     setStopped(!stopped);
-    setSentToBackend(false); // Reset sentToBackend flag when starting again
+    setSentToBackend(false);
   };
 
   const sendResultsToBackend = (results) => {
-    if (results.length > 0) {
+    if (results.length >= 0) {
       const firstResult = results[0];
       const data = {
         text: firstResult.label,
@@ -66,7 +67,8 @@ function WasteVideo() {
       })
       .then(response => {
         console.log("Data saved successfully:", response.data);
-        setSentToBackend(true); // Set sentToBackend flag to true after sending data
+        setSentToBackend(true); 
+        setStart(false)
       })
       .catch(error => {
         console.error("Error saving data:", error);

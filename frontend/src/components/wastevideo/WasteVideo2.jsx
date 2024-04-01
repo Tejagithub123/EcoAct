@@ -19,7 +19,8 @@ function WasteVideo2() {
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
-
+  const [stopped, setStopped] = useState(false);
+  const [sentToBackend, setSentToBackend] = useState(false);
   useEffect(() => {
     classifier = ml5.imageClassifier("./model/model.json", () => {
       navigator.mediaDevices
@@ -41,8 +42,9 @@ function WasteVideo2() {
         }
         setResult(results);
         console.log(results);
-        sendResultsToBackend(results); // Send results to backend when available
-      //stop video to not get duplications 
+        if (stopped && !sentToBackend) { // Check if not sent to backend yet
+          sendResultsToBackend(results);
+        }
       
       });
     }
@@ -50,6 +52,8 @@ function WasteVideo2() {
 
   const toggle = () => {
     setStart(!start);
+    setStopped(!stopped);
+    setSentToBackend(false);
     setResult([]);
   };
 
@@ -69,6 +73,8 @@ function WasteVideo2() {
         })
         .then((response) => {
           console.log("Data saved successfully:", response.data);
+          setSentToBackend(true); // Mark the prediction as sent to the backend
+          setStart(false)
         })
         .catch((error) => {
           console.error("Error saving data:", error);
