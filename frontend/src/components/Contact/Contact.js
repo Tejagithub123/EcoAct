@@ -438,11 +438,12 @@ function Contact() {
             <br></br>
             {showToast && (
               <div
-                class="bg-green-100 text-green-800 px-4 py-4 rounded"
+                class="bg-green-100 mt-10 text-green-800 px-4 py-4 rounded"
                 role="alert"
               >
+                <strong class="font-bold text-base mr-4">Success!</strong>
                 <span class="block text-sm sm:inline max-sm:mt-1">
-                  Success! Message sent succesfuly
+                  Message sent succesful.
                 </span>
               </div>
             )}
