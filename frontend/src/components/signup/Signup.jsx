@@ -9,6 +9,11 @@ const Signup = () => {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const navigate = useNavigate();
+   const [showToast, setShowToast] = useState(false);
+
+   setTimeout(() => {
+     setShowToast(false);
+   }, 3000);
  
    const handleSubmit = async (event) => {
      event.preventDefault();
@@ -20,7 +25,7 @@ const Signup = () => {
        })
        .then((response) => {
          console.log(response.data);
-         navigate("/home");
+         setShowToast(true);
        })
        .catch((error) => {
          console.log(error);
@@ -95,6 +100,13 @@ const Signup = () => {
                   </button>
                 </div>
               </form>
+              {showToast  && (
+              
+              <div class="bg-green-100 mt-10 text-green-800 px-4 py-4 rounded" role="alert">
+              <strong class="font-bold text-base mr-4">Success!</strong>
+              <span class="block text-sm sm:inline max-sm:mt-1">Sign up succesfuly.</span>
+            </div>
+            )}
               <p className="mt-8 text-xl font-light text-center text-black">
                 Already have an account?{" "}
                 <Link

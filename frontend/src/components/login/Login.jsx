@@ -12,6 +12,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem('token'));
+  
+  const [showToast, setShowToast] = useState(false);
+
+  setTimeout(() => {
+    setShowToast(false);
+  }, 3000);
+
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -30,6 +37,7 @@ const Login = () => {
       }) 
       .then((response) => {
         console.log(response.data); 
+      
         const { role, id } = response.data; 
         localStorage.setItem('token', response.data.access);
         
@@ -47,6 +55,7 @@ const Login = () => {
             }
       })
       .catch((error) => {
+        setShowToast(true);
         console.log(error);
       });
   };
@@ -105,6 +114,15 @@ const Login = () => {
                       </button>
                     </div>
                   </form>
+                 
+                 {showToast  && (
+              
+              <div class="bg-yellow-100 mt-10 text-yellow-800 px-4 py-4 rounded" role="alert">
+              <strong class="font-bold text-base mr-4">Fail!</strong>
+              <span class="block text-sm sm:inline max-sm:mt-1">please verify your email and password.</span>
+            </div>
+            )}
+            
                   <p className="mt-8 text-xl font-light text-center text-black">
                     Don't have an account?{" "}
                     <Link
