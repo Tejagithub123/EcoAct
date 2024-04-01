@@ -73,7 +73,7 @@ function WasteVideo2() {
         })
         .then((response) => {
           console.log("Data saved successfully:", response.data);
-          setSentToBackend(true); // Mark the prediction as sent to the backend
+          setSentToBackend(true);
           setStart(false)
         })
         .catch((error) => {
