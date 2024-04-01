@@ -20,8 +20,8 @@ function App() {
         <Routes>
           <Route path="/dashboard/user/:id" element={<ActMain />} />
           <Route path="/dashboard" element={<Main />} />
-          <Route path="/" element={<EcoMap />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/map" element={<EcoMap />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
 

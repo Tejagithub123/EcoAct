@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="bg-green-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/home" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={Leaf} alt="Leaf" className="h-12 mr-4" />
           <span className="text-white text-2xl font-semibold">ActEco</span>
         </Link>
@@ -31,7 +31,8 @@ const Navbar = () => {
         </div>
         <div className={`md:flex md:items-center ${menuOpen ? 'block' : 'hidden'}`}>
           <div className="flex flex-col md:flex-row md:space-x-4">
-            <Link to="/home" className="text-white  text-2xl hover:text-gray-200">Home</Link>
+          <Link to="/" className="text-white  text-2xl hover:text-gray-200">Home</Link>
+            <Link to="/map" className="text-white  text-2xl hover:text-gray-200">Map</Link>
             <Link to="/video" className="text-white  text-2xl hover:text-gray-200">WebCam</Link>
             <Link to="/image" className="text-white  text-2xl hover:text-gray-200">ImageUpload</Link>
             <Link to="/predictionlist" className="text-white  text-2xl hover:text-gray-200">Prediction List</Link>

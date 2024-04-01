@@ -17,7 +17,7 @@ const EcologyChallenges = () => {
               Ecological Challenges
             </h2>
           </div>
-          <div className="grid xl:grid-cols-3 sm:grid-cols-2 gap-6 mt-12">
+          <div className="grid xl:grid-cols-3 sm:grid-cols-2 gap-6 mt-12 py-9">
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -252,29 +252,31 @@ const EcoMap = () => {
           </div>
         </form>
 
-        <div className="items-center h-1/2 w-full zIndex: 0">
-          <MapContainer
-            center={[34.0479, 9.5077]}
-            zoom={6}
-            style={{ height: "600px", width: "100vw", zIndex: 0 }} // Add zIndex: 0
-            className="rounded-lg shadow-md"
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            {ecoActor.map((actor, index) => (
-              <Marker
-                key={actor.id}
-                position={[actor.latitude, actor.longitude]}
-                eventHandlers={{
-                  click: () => toggleActorPanel(actor),
-                }}
-              >
-                <Popup>{actor.username}</Popup>
-              </Marker>
-            ))}
-          </MapContainer>
+        <div className="items-center w-full zIndex: 0">
+          <div classname="map-container">
+            <MapContainer
+              center={[34.0479, 9.5077]}
+              zoom={6}
+              style={{ height: "700px", width: "100vw", zIndex: 0 }} // Add zIndex: 0
+              className="rounded-lg shadow-md h-full"
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              {ecoActor.map((actor, index) => (
+                <Marker
+                  key={actor.id}
+                  position={[actor.latitude, actor.longitude]}
+                  eventHandlers={{
+                    click: () => toggleActorPanel(actor),
+                  }}
+                >
+                  <Popup>{actor.username}</Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </div>
         </div>
       </div>
 
