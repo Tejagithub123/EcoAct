@@ -109,6 +109,7 @@ function WasteVideo2() {
             </button>
           )}
         </div>
+         {/* hell */}
         {result.length > 0 && (
           <div>
             <Chart data={result[0]} />
