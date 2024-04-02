@@ -11,6 +11,18 @@ const EcoMap = () => {
   const [ecoActor, setEcoActor] = useState([]);
   const [searchCity, setSearchCity] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    // Fetch categories from API
+    axios
+      .get("http://localhost:8000/api/categories/")
+      .then((response) => {
+        setCategories(response.data); // Assuming response.data is an array of category objects with 'id' and 'name'
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
   useEffect(() => {
     // Fetch EcoActors
     if (searchCity.trim() === "" || selectedCategory.trim() === "") {
@@ -192,16 +204,15 @@ const EcoMap = () => {
               <option className="font-semibold" value="">
                 Select a category...
               </option>
-              <option className="font-semibold" value="Agriculture">
-                Agriculture
-              </option>
-              <option className="font-semibold" value="Industrie">
-                Industrie
-              </option>
-              <option className="font-semibold" value="Verre">
-                Verre
-              </option>
-              {/* Add more options for other categories if needed */}
+              {categories.map((category) => (
+                <option
+                  className="font-semibold"
+                  key={category.id}
+                  value={category.name}
+                >
+                  {category.name}
+                </option>
+              ))}
             </select>
             {selectedCategory && (
               <button
