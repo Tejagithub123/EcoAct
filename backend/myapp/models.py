@@ -3,7 +3,7 @@ from django.db import models
 class User(models.Model):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
-    role = models.CharField(max_length=100)
+    role = models.CharField(max_length=100,default="member")
     password = models.CharField(max_length=255)
 
     def __str__(self):
