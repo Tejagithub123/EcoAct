@@ -26,7 +26,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Event
 from .serializers import EventSerializer
-from django.core.exceptions import ObjectDoesNotExists
+
 class EventListCreate(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
