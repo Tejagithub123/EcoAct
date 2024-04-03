@@ -162,6 +162,25 @@ def filter_actors_by_category(request):
     serializer = EcoActorSerializer(actors, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def recommend_eco_actors(request):
+    
+    last_prediction = Prediction.objects.last()
+    if last_prediction:
+        
+        prediction_text = last_prediction.text
+        print(prediction_text)
+        
+        recommended_actors = EcoActor.objects.filter(trash=prediction_text)
+        
+        print(recommended_actors)
+        serializer = EcoActorSerializer(recommended_actors, many=True)
+        
+        
+        return Response(serializer.data)
+    else:
+        return Response({'message': 'No predictions found'}, status=404)
+
 
 class PredictionList(generics.ListAPIView):
     queryset = Prediction.objects.all()

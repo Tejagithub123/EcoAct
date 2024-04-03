@@ -11,6 +11,9 @@ class EcoActorSerializer(serializers.ModelSerializer):
     class Meta:
         model = EcoActor
         fields = '__all__'
+        extra_kwargs = {
+            'trash': {'required': False},  # Rendre facultatif
+        }
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
