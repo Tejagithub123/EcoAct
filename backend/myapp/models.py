@@ -20,6 +20,7 @@ class Prediction(models.Model):
 
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
