@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
+
 
 class User(models.Model):
     email = models.EmailField(unique=True)
@@ -8,6 +10,11 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+    def save(self, *args, **kwargs):
+        # Check if the password is already hashed
+        if not self.password.startswith('pbkdf2_sha256$'):
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
 
 
 class Prediction(models.Model):

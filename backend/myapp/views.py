@@ -10,7 +10,7 @@ from rest_framework import authentication, permissions
 from rest_framework import generics 
 from django.core.mail import send_mail
 from django.http import JsonResponse
-
+from django.contrib.auth.hashers import check_password
 from django.core.mail import send_mail
 from django.http import JsonResponse 
 from .models import Event
@@ -83,33 +83,39 @@ def user_signup(request):
 def user_login(request):
     email = request.data.get('email')
     password = request.data.get('password')
-    user = None
-
-    # Check if the user exists in the User model
+    
     try:
-        user = User.objects.get(email=email, password=password)
+        # Try to find the user in the User model
+        user = User.objects.get(email=email)
+        is_user_model = True
     except User.DoesNotExist:
-        pass
-
-    # If user is not found in the User model, check in the EcoActor model
-    if user is None:
         try:
-            user = EcoActor.objects.get(email=email, password=password)
+            # If user is not found in User model, try finding in EcoActor model
+            user = EcoActor.objects.get(email=email)
+            is_user_model = False
         except EcoActor.DoesNotExist:
+            # If user is not found in any model, return error response
             return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    user_role = user.role
-    user_id = user.id
+    # Verify the password based on the model type
+    if is_user_model:
+        if not check_password(password, user.password):
+            return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        # For EcoActor model, compare plain text password
+        if password != user.password:
+            return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
     # Generate JWT token with user role
+    user_role = user.role
+    user_id = user.id
     refresh = RefreshToken.for_user(user)
     access_token = str(refresh.access_token)
     data = {
         'refresh': str(refresh),
         'access': access_token,
         'role': user_role,
-        'id':user_id
-        
+        'id': user_id
     }
     
     return Response(data)
