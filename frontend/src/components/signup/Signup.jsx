@@ -10,6 +10,7 @@ const Signup = () => {
    const [password, setPassword] = useState("");
    const navigate = useNavigate();
    const [showToast, setShowToast] = useState(false);
+   const [showToast2, setShowToast2] = useState(false);
 
    setTimeout(() => {
      setShowToast(false);
@@ -29,6 +30,7 @@ const Signup = () => {
        })
        .catch((error) => {
          console.log(error);
+         setShowToast2(true);
        });
    };
  
@@ -107,6 +109,14 @@ const Signup = () => {
               <span class="block text-sm sm:inline max-sm:mt-1">Sign up succesfuly.</span>
             </div>
             )}
+
+{showToast2  && (
+              
+              <div class="bg-red-300 mt-10 text-red-800 px-4 py-4 rounded" role="alert">
+              <strong class="font-bold text-base mr-4">Fail!</strong>
+              <span class="block text-sm sm:inline max-sm:mt-1">User Already exists with this email</span>
+            </div>
+            )}
               <p className="mt-8 text-xl font-light text-center text-black">
                 Already have an account?{" "}
                 <Link
@@ -120,7 +130,7 @@ const Signup = () => {
           </div>
           {/* Right column container with background image */}
           <div
-            className="bg-cover bg-center rounded-lg lg:col-span-1 lg:rounded-l-lg lg:rounded-br-none"
+            className="hidden md:block bg-cover bg-center rounded-lg lg:col-span-1 lg:rounded-l-lg lg:rounded-br-none"
             style={{
               backgroundImage: `url(${imgsignin})`,
             }}

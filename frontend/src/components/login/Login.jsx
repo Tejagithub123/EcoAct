@@ -136,7 +136,7 @@ const Login = () => {
               </div>
               {/* Right column container with background image */}
               <div
-                className="flex items-center rounded lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
+                className="items-center hidden md:block rounded lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
                 style={{
                   backgroundImage: `url(${imgsignin})`,
                   backgroundSize: 'cover',

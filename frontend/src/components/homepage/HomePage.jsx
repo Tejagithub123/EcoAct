@@ -93,25 +93,23 @@ const HomePage = () => {
       </section>
 
       {/* next section */}
-
       <section className="text-gray-600 body-font">
-        <div className="container mx-auto flex px-3 py-30 items-center justify-center flex-col-2">
-          <img
-            className="lg:w-3/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
-            alt="hero"
-            src={imagetru}
-          />
-          <div className="text-center lg:w-2/3 w-full">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Why ActEco?
-            </h1>
-            <p className="mb-8 ml-7 leading-relaxed">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center px-3 py-10 lg:py-30">
+        <img
+          className="lg:w-3/6 md:w-3/6 w-full mb-5 lg:mb-0 object-cover object-center rounded"
+          alt="hero"
+          src={imagetru}
+        />
+        <div className="text-center lg:text-left lg:w-2/3 w-full lg:pl-10">
+          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            Why ActEco?
+          </h1>
+          <p className="mb-8 leading-relaxed text-lg lg:text-xl">
             Our app serves as a platform to introduce various actors in the field of environmental sustainability, including startups, municipalities, ecological farms, and others. Through our platform, these entities can effectively manage and contribute to environmental conservation efforts. By providing users with intuitive tools to identify recyclable items and educate them on proper disposal methods, our app empowers these actors to make a positive impact on the environment.
-            </p>
-          
-          </div>
+          </p>
         </div>
-      </section>
+      </div>
+    </section>
      {/*<NewWaste />*/} 
     <FeaturesSection/>
     <br></br>
