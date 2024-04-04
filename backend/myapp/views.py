@@ -84,27 +84,21 @@ def user_login(request):
     email = request.data.get('email')
     password = request.data.get('password')
     
+    # Try to find the user in the User model
     try:
-        # Try to find the user in the User model
         user = User.objects.get(email=email)
-        is_user_model = True
     except User.DoesNotExist:
+        # If user is not found in User model, try finding in EcoActor model
         try:
-            # If user is not found in User model, try finding in EcoActor model
             user = EcoActor.objects.get(email=email)
-            is_user_model = False
         except EcoActor.DoesNotExist:
-            # If user is not found in any model, return error response
+            # If user is not found in EcoActor model, return error response
             return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    # Verify the password based on the model type
-    if is_user_model:
-        if not check_password(password, user.password):
-            return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
-    else:
-        # For EcoActor model, compare plain text password
-        if password != user.password:
-            return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
+    # Verify the password
+    if not check_password(password, user.password):
+        # If password does not match, return error response
+        return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
     # Generate JWT token with user role
     user_role = user.role

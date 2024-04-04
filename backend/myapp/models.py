@@ -47,16 +47,23 @@ class EcoActor(models.Model):
     ]
     username = models.CharField(max_length=100)
     email = models.EmailField()
-    password = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)  # Store the hashed password
     telephone = models.CharField(max_length=20)
-    role = models.CharField(max_length=100,default="actor")
+    role = models.CharField(max_length=100, default="actor")
     adresse = models.CharField(max_length=255)
     ville = models.CharField(max_length=100)
     longitude = models.FloatField()
     latitude = models.FloatField()
     activitis = models.CharField(max_length=255)
     categories = models.ManyToManyField(Category)  # Many-to-many relationship with Category model
-    trash = models.CharField(max_length=100, choices=TRASH_CHOICES, blank=True, null=True) 
+    trash = models.CharField(max_length=100, choices=TRASH_CHOICES, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        # Hash the password before saving
+        if self.password and not self.password.startswith('pbkdf2_sha256$'):
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+        
 class Event(models.Model):
     image = models.ImageField(upload_to='event_images')  # For storing event images
     name = models.CharField(max_length=255)  # Name of the event
