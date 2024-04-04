@@ -86,7 +86,7 @@ function WasteVideo2() {
 
   return (
     <div className="wastevideo">
-      <Navbar />
+    
       <Loader
         type="Watch"
         color="#00BFFF"
@@ -95,7 +95,7 @@ function WasteVideo2() {
         visible={!loaded}
         style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
       />
-      <div className="upper">
+           <div className="upper bg-white">
         <div className="capture">
           <video
             ref={videoRef}
@@ -121,7 +121,7 @@ function WasteVideo2() {
           <WasteType data={result} />
         </div>
       )}
-      <Footer />
+     
     </div>
   );
 }

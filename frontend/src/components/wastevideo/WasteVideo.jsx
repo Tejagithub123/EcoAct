@@ -96,7 +96,7 @@ function WasteVideo() {
 
   return (
     <>
-      <Navbar/>
+      
       <div className="wastevideo">
         <Loader
           type="Watch"
@@ -106,7 +106,7 @@ function WasteVideo() {
           visible={!loaded}
           style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
         />
-        <div className="upper">
+        <div className="upper bg-white">
           <div className="capture m-20">
             {!imageData && <label
               htmlFor="file-upload"
@@ -146,7 +146,7 @@ function WasteVideo() {
             <WasteType data={result} />
           </div>
         )}
-        <Footer />
+        
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import imgcontact from "../../../src/img/about803486.jpg";
-import imgcontacts from "../../../src/img/portrait-boy-holding-globe-hand.jpg";
+import imgcontacts from "../../../src/img/sustainable-development-goals-still-life1.jpg";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import img1 from "./ODD/E_SDG_Icons-01.jpg";
@@ -22,7 +22,8 @@ import img14 from "./ODD/E_SDG_Icons-14.jpg";
 import img15 from "./ODD/E_SDG_Icons-15.jpg";
 import img16 from "./ODD/E_SDG_Icons-16.jpg";
 import img17 from "./ODD/E_SDG_Icons-17.jpg";
-
+import imgc1 from "../../img/front-view-man-with-wooden-blocks.jpg";
+import imgc2 from "../../img/sustainable-development-goals-still-lifes.jpg";
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -81,6 +82,51 @@ function Contact() {
         </div>
       </div>
       {/* Banner */}
+      {/* section */}
+      <div id="about" class="relative bg-white overflow-hidden mt-16">
+        <div class="max-w-7xl mx-auto">
+          <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+            <svg
+              class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
+              fill="currentColor"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <polygon points="50,0 100,0 50,100 0,100"></polygon>
+            </svg>
+
+            <div class="pt-1"></div>
+
+            <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+              <div class="sm:text-center lg:text-left">
+                <h2 class="my-6 title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+                  About Us
+                </h2>
+
+                <p className="leading-relaxed text-1xl ">
+                  We are ecologists, innovators, and problem-solvers. Our team
+                  is dedicated to designing and developing sustainable solutions
+                  that address environmental challenges. With a focus on ecology
+                  and eco-friendly initiatives, we offer strategic insights and
+                  creative solutions to promote a healthier planet.we are
+                  committed to making a positive impact on the planet. With our
+                  expertise in ecology and our passion for innovation, we are
+                  ready to tackle the environmental challenges of today and
+                  create a more sustainable future for tomorrow.
+                </p>
+              </div>
+            </main>
+          </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+          <img
+            class="h-56 w-full object-cover object-top sm:h-72 md:h-96 lg:w-full lg:h-full"
+            src={imgc1}
+            alt=""
+          />
+        </div>
+      </div>
 
       <div className="text-center w-full">
         <br></br>
@@ -335,8 +381,7 @@ function Contact() {
           </div>
         </section>
       </div>
-      <br></br>
-
+      <br />
       {/* Contact Form Section */}
       <div id="f1" className="flex flex-col-reverse lg:flex-row px-4">
         {/* Form Section */}
@@ -345,7 +390,7 @@ function Contact() {
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               Contact Us
             </h1>
-            <p className="mb-8 leading-relaxed">
+            <p className="mb-8 leading-relaxed text-black">
               Provide a contact form where users can reach out for inquiries,
               collaborations, or suggestions.
             </p>
@@ -452,11 +497,12 @@ function Contact() {
         </section>
         {/* Image Section */}
         <img
-          className="lg:w-3/6 md:w-3/6 w-full mb-5 object-cover object-center rounded ml-auto"
+          className="lg:w-3/6 md:w-2/6 mb-5 object-cover object-center rounded ml-auto"
           alt="hero"
           src={imgcontacts}
         />
       </div>
+
       <Footer />
     </>
   );

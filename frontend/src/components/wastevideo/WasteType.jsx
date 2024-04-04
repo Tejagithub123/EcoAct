@@ -48,7 +48,7 @@ const WasteType = (props) => {
         ))}
       </ul>
       {mostMatched.label === 'plastic' &&
-        <div className="mt-4 text-2xl m-10 border-2 border-gray-300 p-5">
+        <div className="mt-4 text-2xl m-10 border-2 p-5">
           <h1 className="text-4xl text-center font-semibold">Plastic, Non-biodegradable</h1>
           <p className="list-disc list-inside">
             <li>Reduce single-use plastics: Single-use plastics, such as straws, water bottles, and plastic bags, contribute to a significant amount of plastic waste. Reducing or eliminating their use is an effective way to reduce plastic waste.</li>
@@ -156,7 +156,7 @@ const WasteType = (props) => {
       }
       {
         mostMatched.label === 'light bulbs' &&
-        <div className="mt-4 text-2xl m-10 border-2 border-gray-300 p-5">
+        <div className="mt-4 text-2xl m-10 border-2 p-5">
           <h1 className="text-4xl text-center font-semibold">Light Bulbs, Non Biodegradable</h1>
           <p>Recycling light bulbs is an important aspect of waste reduction and environmental sustainability. Here are some key points to consider:</p>
           <ul>
