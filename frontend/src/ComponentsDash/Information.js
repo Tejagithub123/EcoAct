@@ -320,17 +320,19 @@ const Information = () => {
                           </div>
                         </div>
                       )}
-                      <FaEdit
-                        className="text-blue-500 cursor-pointer mt-2 mr-2"
-                        onClick={() => openUpdateModal(event)}
-                        size={24}
-                      />
-                      {/* Delete icon */}
-                      <FaTrash
-                        className="text-red-500 cursor-pointer mt-2"
-                        onClick={() => handleDelete(event.id)}
-                        size={24}
-                      />
+                      <div className="flex flex-center">
+                        <FaEdit
+                          className="text-blue-500 cursor-pointer mt-2 mr-2"
+                          onClick={() => openUpdateModal(event)}
+                          size={27}
+                        />
+                        {/* Delete icon */}
+                        <FaTrash
+                          className="text-red-500 cursor-pointer mt-2"
+                          onClick={() => handleDelete(event.id)}
+                          size={24}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}

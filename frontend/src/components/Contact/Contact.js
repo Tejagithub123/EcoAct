@@ -5,6 +5,8 @@ import imgcontact from "../../../src/img/about803486.jpg";
 import imgcontacts from "../../../src/img/sustainable-development-goals-still-life1.jpg";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import { FaRecycle, FaLeaf, FaSun, FaGlobe, FaFlag } from "react-icons/fa";
+import "./Contact.css";
 import img1 from "./ODD/E_SDG_Icons-01.jpg";
 import img2 from "./ODD/E_SDG_Icons-02.jpg";
 import img3 from "./ODD/E_SDG_Icons-03.jpg";
@@ -83,307 +85,396 @@ function Contact() {
       </div>
       {/* Banner */}
       {/* section */}
-      <div id="about" class="relative bg-white overflow-hidden mt-16">
-        <div class="max-w-7xl mx-auto">
-          <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <svg
-              class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
-              fill="currentColor"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              aria-hidden="true"
+      <section class="">
+        <div class="py-12 bg-white">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+              <h2 class="font-heading mb-4 bg-green-100 text-color-800 px-4 py-2 rounded-lg md:w-64 md:mx-auto text-xs font-semibold tracking-widest text-black uppercase title-font">
+                Why choose us?
+              </h2>
+              <p class="font-heading mt-2 text-3xl leading-8 font-semibold tracking-tight text-gray-900 sm:text-4xl">
+                Helping Preserve Our Planet
+              </p>
+              <p class="mt-4 max-w-2xl text-lg text-gray-500 lg:mx-auto">
+                We are dedicated to environmental conservation and
+                sustainability. Here's why you should choose us:
+              </p>
+            </div>
+
+            <div class="mt-10">
+              <dl class="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                <div class="relative flex">
+                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                    <FaRecycle size={24} />
+                  </div>
+                  <div>
+                    <p class="font-heading ml-4 text-lg leading-6 font-bold text-gray-700">
+                      Sustainable Practices
+                    </p>
+                    <p class="ml-4 mt-2 text-base text-gray-500">
+                      We implement eco-friendly practices to minimize our carbon
+                      footprint and contribute to a healthier planet.
+                    </p>
+                  </div>
+                </div>
+                <div class="relative flex mt-8 md:mt-0">
+                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                    <FaLeaf size={24} />
+                  </div>
+                  <div>
+                    <p class="font-heading ml-4 text-lg leading-6 font-bold text-gray-700">
+                      Nature Conservation
+                    </p>
+                    <p class="ml-4 mt-2 text-base text-gray-500">
+                      We actively support initiatives aimed at protecting
+                      biodiversity and preserving natural habitats.
+                    </p>
+                  </div>
+                </div>
+                <div class="relative flex mt-8">
+                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                    <FaSun size={24} />
+                  </div>
+                  <div>
+                    <p class="font-heading ml-4 text-lg leading-6 font-bold text-gray-700">
+                      Renewable Energy
+                    </p>
+                    <p class="ml-4 mt-2 text-base text-gray-500">
+                      We are committed to using renewable energy sources to
+                      power our operations and reduce reliance on fossil fuels.
+                    </p>
+                  </div>
+                </div>
+                <div class="relative flex mt-8">
+                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                    <FaGlobe size={24} />
+                  </div>
+                  <div>
+                    <p class="font-heading ml-4 text-lg leading-6 font-bold text-gray-700">
+                      Global Impact
+                    </p>
+                    <p class="ml-4 mt-2 text-base text-gray-500">
+                      Our efforts extend beyond local boundaries, aiming to make
+                      a positive impact on a global scale.
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="flex mt-8 mr-10 justify-start ">
+        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+          <FaFlag size={24} />
+        </div>
+        <div>
+          <p class="font-heading ml-8  text-lg leading-6 font-bold text-gray-700">
+            Sustainable Development Goals
+          </p>
+          <p class="text-base text-gray-500">
+            We align our actions with the UN's Sustainable Development Goals
+            (SDGs) to address global challenges and promote sustainability.
+          </p>
+        </div>
+      </div>
+      <div className="flex mb-10 overflow-hidden">
+        <div className="flex-container">
+          {/* Goal 1: No Poverty */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-1"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img1})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 2: Zero Hunger */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-2"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img2})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 3: Good Health and Well-being */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-3"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img3})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 4: Quality Education */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-4"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img4})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 5: Gender Equality */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-5"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img5})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 6: Clean Water and Sanitation */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-6"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img6})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          <div className="flex mb-10">
+            {/* Goal 7: Affordable and Clean Energy */}
+            <section
+              className="text-gray-600 body-font scroll-smooth"
+              id="goal-7"
             >
-              <polygon points="50,0 100,0 50,100 0,100"></polygon>
-            </svg>
-
-            <div class="pt-1"></div>
-
-            <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div class="sm:text-center lg:text-left">
-                <h2 class="my-6 title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                  About Us
-                </h2>
-
-                <p className="leading-relaxed text-1xl ">
-                  We are ecologists, innovators, and problem-solvers. Our team
-                  is dedicated to designing and developing sustainable solutions
-                  that address environmental challenges. With a focus on ecology
-                  and eco-friendly initiatives, we offer strategic insights and
-                  creative solutions to promote a healthier planet.we are
-                  committed to making a positive impact on the planet. With our
-                  expertise in ecology and our passion for innovation, we are
-                  ready to tackle the environmental challenges of today and
-                  create a more sustainable future for tomorrow.
-                </p>
+              <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+                <div
+                  className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${img7})`,
+                    width: "200px",
+                    height: "200px",
+                  }} // Set background image for the card container
+                ></div>
               </div>
-            </main>
+            </section>
+
+            {/* Goal 8: Decent Work and Economic Growth */}
+            <section
+              className="text-gray-600 body-font scroll-smooth"
+              id="goal-8"
+            >
+              <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+                <div
+                  className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${img8})`,
+                    width: "200px",
+                    height: "200px",
+                  }} // Set background image for the card container
+                ></div>
+              </div>
+            </section>
+
+            {/* Goal 9: Industry, Innovation, and Infrastructure */}
+            <section
+              className="text-gray-600 body-font scroll-smooth"
+              id="goal-9"
+            >
+              <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+                <div
+                  className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${img9})`,
+                    width: "200px",
+                    height: "200px",
+                  }} // Set background image for the card container
+                ></div>
+              </div>
+            </section>
+
+            {/* Goal 10: Reduced Inequalities */}
+            <section
+              className="text-gray-600 body-font scroll-smooth"
+              id="goal-10"
+            >
+              <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+                <div
+                  className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${img10})`,
+                    width: "200px",
+                    height: "200px",
+                  }} // Set background image for the card container
+                ></div>
+              </div>
+            </section>
+
+            {/* Goal 11: Sustainable Cities and Communities */}
+            <section
+              className="text-gray-600 body-font scroll-smooth"
+              id="goal-11"
+            >
+              <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+                <div
+                  className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${img11})`,
+                    width: "200px",
+                    height: "200px",
+                  }} // Set background image for the card container
+                ></div>
+              </div>
+            </section>
+
+            {/* Goal 12: Responsible Consumption and Production */}
+            <section
+              className="text-gray-600 body-font scroll-smooth"
+              id="goal-12"
+            >
+              <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+                <div
+                  className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${img12})`,
+                    width: "200px",
+                    height: "200px",
+                  }} // Set background image for the card container
+                ></div>
+              </div>
+            </section>
           </div>
+          {/* Goal 13: Climate Action */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-13"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img13})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 14: Life Below Water */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-14"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img14})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 15: Life on Land */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-15"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img15})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 16: Peace, Justice, and Strong Institutions */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-16"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img16})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
+
+          {/* Goal 17: Partnerships for the Goals */}
+          <section
+            className="text-gray-600 body-font scroll-smooth"
+            id="goal-17"
+          >
+            <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
+              <div
+                className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${img17})`,
+                  width: "200px",
+                  height: "200px",
+                }} // Set background image for the card container
+              ></div>
+            </div>
+          </section>
         </div>
-        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            class="h-56 w-full object-cover object-top sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src={imgc1}
-            alt=""
-          />
-        </div>
-      </div>
-
-      <div className="text-center w-full">
-        <br></br>
-        <br></br>
-        <h1 className="title-font text-3xl sm:text-4xl mb-4 font-medium text-gray-900">
-          Sustainable Development Goals (SDGs)
-        </h1>
-        <p className="mb-8 leading-relaxed text-2xl">
-          Our goal is to achieve the Sustainable Development Goals (SDGs),
-          focusing on waste management and environmental conservation through
-          innovative solutions. Utilizing a machine learning-based approach, we
-          aim to streamline garbage segregation processes, contributing to a
-          cleaner and healthier environment for all.
-        </p>
-      </div>
-
-      <div className="flex flex-auto overflow-y-auto">
-        {/* Goal 1: No Poverty */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-1">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img1})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 2: Zero Hunger */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-2">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img2})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 3: Good Health and Well-being */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-3">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img3})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 4: Quality Education */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-4">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img4})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 5: Gender Equality */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-5">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img5})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 6: Clean Water and Sanitation */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-6">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img6})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 7: Affordable and Clean Energy */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-7">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img7})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 8: Decent Work and Economic Growth */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-8">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img8})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 9: Industry, Innovation, and Infrastructure */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-9">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img9})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 10: Reduced Inequalities */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-10">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img10})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 11: Sustainable Cities and Communities */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-11">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img11})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 12: Responsible Consumption and Production */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-12">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img12})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-        {/* Goal 13: Climate Action */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-13">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img13})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 14: Life Below Water */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-14">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img14})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 15: Life on Land */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-15">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img15})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 16: Peace, Justice, and Strong Institutions */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-16">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img16})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
-
-        {/* Goal 17: Partnerships for the Goals */}
-        <section className="text-gray-600 body-font scroll-smooth" id="goal-17">
-          <div className="container mx-auto flex px-5 py-8 md:py-24 items-center justify-center flex-col">
-            <div
-              className="bg-cover bg-center bg-no-repeat shadow-lg rounded-lg overflow-hidden w-full md:w-80 lg:w-80 xl:w-80 mx-auto transform transition duration-500 hover:scale-105"
-              style={{
-                backgroundImage: `url(${img17})`,
-                width: "200px",
-                height: "200px",
-              }} // Set background image for the card container
-            ></div>
-          </div>
-        </section>
       </div>
       <br />
+
       {/* Contact Form Section */}
-      <div id="f1" className="flex flex-col-reverse lg:flex-row px-4">
+      <div id="f1" className="flex flex-col lg:flex-row px-4">
         {/* Form Section */}
         <section className="text-gray-600 body-font" id="contact-form">
           <div className="container mx-auto flex items-center justify-center flex-col">
@@ -497,7 +588,7 @@ function Contact() {
         </section>
         {/* Image Section */}
         <img
-          className="lg:w-3/6 md:w-2/6 mb-5 object-cover object-center rounded ml-auto"
+          className="lg:w-3/6 md:w-2/6 mb-5 object-cover object-center rounded"
           alt="hero"
           src={imgcontacts}
         />

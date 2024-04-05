@@ -1,0 +1,13 @@
+.flex-container {
+    display: flex;
+    animation: scroll 30s linear infinite; /* Adjust duration and timing function as needed */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%); /* Adjust distance to scroll */
+    }
+}
