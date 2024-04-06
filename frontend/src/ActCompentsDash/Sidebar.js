@@ -13,6 +13,7 @@ const Sidebar = ({ setCurrentPage }) => {
 
   const handleLogoutClick = () => {
     navigate("/");
+    localStorage.removeItem("token");
   };
 
   const handleItemClick = (page) => {
