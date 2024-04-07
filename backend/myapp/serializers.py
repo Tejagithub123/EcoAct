@@ -34,7 +34,10 @@ class UserSerializer(serializers.ModelSerializer):
 class PredictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prediction
-        fields = ['id','text', 'prediction', 'created_at']
+        fields = ['id', 'text', 'prediction', 'created_at', 'user']
+        extra_kwargs = {
+            'user': {'required': False},
+        }
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:

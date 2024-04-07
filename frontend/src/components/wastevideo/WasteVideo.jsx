@@ -10,7 +10,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./wastevideo.css";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
-
+import { jwtDecode } from 'jwt-decode' 
 let classifier;
 
 function WasteVideo() {
@@ -21,7 +21,7 @@ function WasteVideo() {
   const [loaded, setLoaded] = useState(false);
   const [stopped, setStopped] = useState(false);
   const [sentToBackend, setSentToBackend] = useState(false); // New state variable
-
+  const [recommendedActors, setRecommendedActors] = useState([]);
   useEffect(() => {
     classifier = ml5.imageClassifier("./model/model.json", () => {
       setLoaded(true);
@@ -44,7 +44,13 @@ function WasteVideo() {
     }
   }, 500);
 
-  
+  useEffect(() => {
+    if (!start) {
+      setImageData('');
+      inputRef.current = null;
+    }
+  }, [start]); 
+
   const toggle = () => {
     setStart(!start);
     setResult([]);
@@ -52,32 +58,47 @@ function WasteVideo() {
     setSentToBackend(false);
   };
 
-  const sendResultsToBackend = (results) => {
-    if (results.length >= 0) {
+    const sendResultsToBackend = (results) => {
+    const token = localStorage.getItem("token");
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.user_id;
+    console.log("userId",userId)
+    if (results.length > 0) {
       const firstResult = results[0];
       const data = {
         text: firstResult.label,
-        prediction: firstResult.confidence
+        prediction: firstResult.confidence,
+        user_id: userId
       };
+      console.log("data to back",data)
+        axios.post("http://localhost:8000/api/prediction/", data, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          console.log("Data saved successfully:", response.data);
+          setSentToBackend(true);
+          fetchRecommendedActors(); 
+          setStart(false);
+        })
+        .catch(error => {
+          console.error("Error saving data:", error);
+        });
+      }} 
 
-      axios.post("http://localhost:8000/api/prediction/", data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => {
-        console.log("Data saved successfully:", response.data);
-        setSentToBackend(true); 
-        setStart(false)
-      })
-      .catch(error => {
-        console.error("Error saving data:", error);
-      });
-    } else {
-      console.warn("No results to send to the backend.");
-    }
-  };
-
+      const fetchRecommendedActors = () => {
+        axios.get("http://localhost:8000/api/recommandactors/")
+          .then(response => {
+            console.log("Recommended actors:", response.data);
+            setRecommendedActors(response.data);
+            // Open popup/modal to show recommended actors
+          })
+          .catch(error => {
+            console.error("Error fetching recommended actors:", error);
+          });
+      };
+  
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -118,7 +139,7 @@ function WasteVideo() {
                 <h2>{inputRef.current ? "File uploaded" : ""}</h2>
               </div>
               <input
-                id="file-upload"
+        sendResultsToBackend         id="file-upload"
                 type="file"
                 onChange={handleImageUpload}
                 className="hidden"
@@ -146,7 +167,17 @@ function WasteVideo() {
             <WasteType data={result} />
           </div>
         )}
-        
+        {/* Display recommended actors in a popup/modal */}
+        {recommendedActors.length > 0 && (
+          <div className="recommended-actors">
+            <h2>Recommended Actors:</h2>
+            <ul>
+              {recommendedActors.map(actor => (
+                <li key={actor.id}>{actor.username}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </>
   );

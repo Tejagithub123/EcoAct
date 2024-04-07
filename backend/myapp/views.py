@@ -117,7 +117,14 @@ def user_login(request):
 
 @api_view(['POST'])
 def prediction_view(request):
-    serializer = PredictionSerializer(data=request.data)
+    # Extract user ID from the request data
+    user_id = request.data.get('user_id')
+    print("user_id",user_id)
+    # Combine request data with user ID
+    data = request.data.copy()
+    data['user'] = user_id
+
+    serializer = PredictionSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

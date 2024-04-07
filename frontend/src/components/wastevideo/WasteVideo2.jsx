@@ -6,7 +6,7 @@ import axios from "axios";
 
 import WasteType from "./WasteType";
 import Chart from "./Chart";
-
+import { jwtDecode } from 'jwt-decode' 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./wastevideo.css";
 import Footer from "../footer/Footer";
@@ -58,31 +58,32 @@ function WasteVideo2() {
   };
 
   const sendResultsToBackend = (results) => {
+    const token = localStorage.getItem("token");
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.user_id;
+    console.log("userId",userId)
     if (results.length > 0) {
       const firstResult = results[0];
       const data = {
         text: firstResult.label,
         prediction: firstResult.confidence,
+        user_id: userId
       };
-
-      axios
-        .post("http://localhost:8000/api/prediction/", data, {
+      console.log("data to back",data)
+        axios.post("http://localhost:8000/api/prediction/", data, {
           headers: {
-            "Content-Type": "application/json",
-          },
+            'Content-Type': 'application/json'
+          }
         })
-        .then((response) => {
+        .then(response => {
           console.log("Data saved successfully:", response.data);
-          setSentToBackend(true);
-          setStart(false)
+          setSentToBackend(true); 
+          setStart(false);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error saving data:", error);
         });
-    } else {
-      console.warn("No results to send to the backend.");
-    }
-  };
+      }}
 
   return (
     <div className="wastevideo">

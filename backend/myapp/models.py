@@ -18,6 +18,7 @@ class User(models.Model):
 
 
 class Prediction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     text = models.CharField(max_length=200)
     prediction = models.CharField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
