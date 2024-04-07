@@ -47,7 +47,7 @@ const Login = () => {
           navigate('/dashboard');} //dash admin
           
           if (role === 'member') {
-            navigate('/image');}   //predictions 
+            navigate('/Prediction');}   //predictions 
         
 
             if (role === 'actor') {

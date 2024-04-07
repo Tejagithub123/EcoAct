@@ -28,7 +28,8 @@ const WasteType = (props) => {
 
   return (
     <>
-      <ul className="wastetype waste-elem">
+<div class=" py-5 bg-opacity-10" style={{ backgroundImage: "url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png')" }}>
+      <ul className="wastetype bg-indigo-600 waste-elem">
         {allLabels.map((props) => (
           <li key={props.index}>
             <span>
@@ -218,7 +219,8 @@ const WasteType = (props) => {
           </div>
         )
       }
-    </>
+    </div></>
+    
   );
 };
 

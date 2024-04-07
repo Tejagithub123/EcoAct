@@ -4,6 +4,7 @@ import Loader from "react-loader-spinner";
 import useInterval from "@use-it/interval";
 import axios from "axios";
 import WasteType from "./WasteType";
+import { FaLightbulb } from 'react-icons/fa';
 import Chart from "./Chart";
 import { FaUpload } from "react-icons/fa";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -56,6 +57,7 @@ function WasteVideo() {
     setResult([]);
     setStopped(!stopped);
     setSentToBackend(false);
+
   };
 
     const sendResultsToBackend = (results) => {
@@ -81,6 +83,7 @@ function WasteVideo() {
           setSentToBackend(true);
           fetchRecommendedActors(); 
           setStart(false);
+
         })
         .catch(error => {
           console.error("Error saving data:", error);
@@ -93,6 +96,7 @@ function WasteVideo() {
             console.log("Recommended actors:", response.data);
             setRecommendedActors(response.data);
             // Open popup/modal to show recommended actors
+           
           })
           .catch(error => {
             console.error("Error fetching recommended actors:", error);
@@ -147,11 +151,12 @@ function WasteVideo() {
             </label>}
             {imageData && <><h2>Image Uploaded</h2><br /><img className="w-80 h-80 rounded-md" src={imageData} alt="Uploaded Pic" /></>}
             {loaded && (
-              <button className="text-xl mt-5" onClick={toggle}>
+              <button className="mt-10 inline-flex items-center justify-center text-white text-3xl rounded-full bg-green-500 border-0 py-4 px-12 focus:outline-none hover:bg-green-700" onClick={toggle}>
                 {start ? "Stop" : "Start"}
               </button>
             )}
           </div>
+          
           {/* hell */}
           <div class="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
             {result.length > 0 && (
@@ -168,17 +173,33 @@ function WasteVideo() {
           </div>
         )}
         {/* Display recommended actors in a popup/modal */}
-        {recommendedActors.length > 0 && (
-          <div className="recommended-actors">
-            <h2>Recommended Actors:</h2>
-            <ul>
-              {recommendedActors.map(actor => (
-                <li key={actor.id}>{actor.username}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+    
+<div class="px-3 md:lg:xl:px-40 border-t border-b py-20 bg-opacity-10" style={{ backgroundImage: "url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png')" }}>
+<div class="w-full bg-indigo-600 shadow-xl shadow-indigo-200 py-10 px-20 flex justify-between items-center">
+        <p class="text-white">
+            <span class="text-4xl font-medium">Recommendations</span> <br />
+        
+        </p>
+    </div>
+    <div class={`grid grid-cols-1 md:lg:xl:grid-cols-${Math.min(recommendedActors.length, 3)} group bg-white shadow-xl shadow-neutral-100 border `}>
+        {/* Loop through recommended actors */}
+        {recommendedActors.map(actor => (
+            <div key={actor.id} class="p-10 flex flex-col items-center text-center group md:lg:xl:border-r md:lg:xl:border-b hover:bg-slate-50 cursor-pointer">
+                <span class="p-5 rounded-full bg-green-500 text-white shadow-lg shadow-red-200">
+                    <FaLightbulb size={30} /> {/* Use the FaLightbulb icon from React Icons */}
+                </span>
+                <p class="text-xl font-medium text-slate-700 mt-3">{actor.username}</p>
+                <p class="mt-2 text-sm text-slate-500">{actor.activitis}</p>
+                <p class="mt-2 text-sm text-slate-500">{actor.email}</p>
+                <button class="px-5 py-3 font-medium text-slate-700 shadow-xl hover:bg-yellow-500 duration-150 bg-yellow-300">Contact</button>
+            </div>
+        ))}
+    </div>
+
+  
+</div>
+</div>
+      
     </>
   );
 }

@@ -38,33 +38,27 @@ function Prediction () {
 </div>
 {/* Banner */}
 
+<ul class="flex divide-x-2">
+  <li
+    class={`tab-item text-black-600 flex items-center justify-center font-bold w-full text-sm py-2.5 px-4 cursor-pointer ${selectedTab === "Landing" ? "border-b-2 bg-white" : "border-b-2"}`}
+    onClick={() => handleTabSelect("Landing")}
+  >
+    Landing
+  </li>
+  <li
+    class={`tab-item text-gray-600 flex items-center justify-center font-bold w-full text-sm py-2.5 px-4 cursor-pointer ${selectedTab === "WasteVideo" ? "border-b-2 bg-white" : "border-b-2"}`}
+    onClick={() => handleTabSelect("WasteVideo")}
+  >
+    Image Analyse
+  </li>
+  <li
+    class={`tab-item text-gray-600 flex items-center justify-center font-bold w-full text-sm py-2.5 px-4 cursor-pointer ${selectedTab === "WasteVideo2" ? "border-b-2 bg-white" : "border-b-2"}`}
+    onClick={() => handleTabSelect("WasteVideo2")}
+  >
+    Video Analyse
+  </li>
+</ul>
 
-  <ul class="flex divide-x-2">
-    <li
-      class={`text-gray-600 flex flex-col items-center justify-center font-bold w-full text-sm py-2.5 px-4 cursor-pointer ${
-        selectedTab === "Landing" ? "border-green-500 bg-white" : ""
-      }`}
-      onClick={() => handleTabSelect("Landing")}
-    >
-      Landing
-    </li>
-    <li
-      class={`text-gray-600 flex flex-col items-center justify-center border-b-2 font-bold w-full text-sm py-2.5 px-4 cursor-pointer ${
-        selectedTab === "WasteVideo" ? "border-green-500 bg-white" : ""
-      }`}
-      onClick={() => handleTabSelect("WasteVideo")}
-    >
-      WasteVideo
-    </li>
-    <li
-      class={`text-gray-600 flex flex-col items-center justify-center border-b-2 font-bold w-full text-sm py-2.5 px-4 cursor-pointer ${
-        selectedTab === "WasteVideo2" ? "border-green-500 bg-white" : ""
-      }`}
-      onClick={() => handleTabSelect("WasteVideo2")}
-    >
-      WasteVideo2
-    </li>
-  </ul>
   <div class="w-full flex-grow">
     {/* Render component based on selected tab */}
     {selectedTab === "Landing" && <Landing />}

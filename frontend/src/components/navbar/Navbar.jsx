@@ -35,7 +35,7 @@ const Navbar = () => {
             <Link to="/map" className="text-white  text-2xl hover:text-gray-200">Map</Link>
             {/* <Link to="/video" className="text-white  text-2xl hover:text-gray-200">WebCam</Link>
             <Link to="/image" className="text-white  text-2xl hover:text-gray-200">ImageUpload</Link> */}
-            <Link to="/predictionlist" className="text-white  text-2xl hover:text-gray-200">Prediction List</Link>
+            {/* <Link to="/predictionlist" className="text-white  text-2xl hover:text-gray-200">Prediction List</Link> */}
             <Link to="/Prediction" className="text-white  text-2xl hover:text-gray-200">Make Prediction</Link>
             <Link to="/contact" className="text-white text-2xl hover:text-gray-200">Contact</Link>
           </div>
