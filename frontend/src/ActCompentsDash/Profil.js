@@ -8,6 +8,7 @@ import {
   RiSettings3Line,
   RiDeleteBinLine,
 } from "react-icons/ri";
+
 import { FaTrash, FaEdit, FaTimesCircle, FaCheck } from "react-icons/fa";
 
 const Profil = ({ setCurrentPage }) => {

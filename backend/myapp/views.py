@@ -144,16 +144,15 @@ def submit_contact_form(request):
                     'New Contact Form Submission',
                     f'Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}',
                     email,
-                    ['benhajalayateja@gmail.com'],
+                    [email],  # Use provided email as recipient
                     fail_silently=False
                 )
-                return JsonResponse({'message': 'Form submitted successfully.'})
+                return Response({'message': 'Form submitted successfully.'})
             except Exception as e:
-                return JsonResponse({'error': str(e)}, status=500)
+                return Response({'error': str(e)}, status=500)
         else:
-            return JsonResponse({'error': 'Email is required.'}, status=400)
-    return JsonResponse({'error': 'Invalid request method.'}, status=400)
-
+            return Response({'error': 'Email is required.'}, status=400)
+    return Response({'error': 'Invalid request method.'}, status=400)
 
 @api_view(['GET'])
 def filter_actors_by_location(request):

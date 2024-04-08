@@ -74,7 +74,7 @@ const Sidebar = ({ setCurrentPage }) => {
             onClick={() => handleItemClick("RegistrationForm")}
           >
             <FaInfoCircle className="w-[18px] h-[18px] mr-4" />
-            <span>Form</span>
+            <span>Settings</span>
           </a>
         </li>
         <li>
