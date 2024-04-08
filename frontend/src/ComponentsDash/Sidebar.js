@@ -57,7 +57,7 @@ const Sidebar = ({ setCurrentPage }) => {
             <span>Events</span>
           </a>
         </li>
-        <li>
+        {/* <li>
           <a
             href="javascript:void(0)"
             className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
@@ -66,7 +66,7 @@ const Sidebar = ({ setCurrentPage }) => {
             <FaUser className="w-[18px] h-[18px] mr-4" />
             <span>Profil</span>
           </a>
-        </li>
+        </li> */}
         <li>
           <a
             href="javascript:void(0)"
