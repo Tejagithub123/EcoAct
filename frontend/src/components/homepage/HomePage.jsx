@@ -78,7 +78,7 @@ const HomePage = () => {
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               ML-based Garbage Segregation
             </h1>
-            <p className="mb-8 leading-relaxed">
+            <p className="mb-8 leading-relaxed text-lg lg:text-xl">
             We utilize a machine learning-based approach for waste management, leveraging webcam feeds and image uploads. This process entails capturing real-time images or submitting individual images of waste material, subsequently subjecting them to preprocessing and standardization for training a supervised machine learning model. Upon training, the model discerns and sorts waste materials based on their visual characteristics like color, texture, and shape. As a result, our system offers users valuable feedback, including labeled descriptions of the waste material. This empowers users to engage with ecological initiatives and recommend sustainable practices.            </p>
             <div className="flex justify-center">
               <button className="inline-flex text-white text-3xl rounded-full bg-green-500 border-0 py-2 px-10 focus:outline-none hover:bg-green-600 ">

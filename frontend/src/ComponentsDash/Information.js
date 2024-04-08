@@ -225,7 +225,7 @@ const Information = () => {
                       <span className="text-sm block text-gray-400 mb-2">
                         {event.date}
                       </span>
-                      <h3 className="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
+                      <h3 className="text-xl font-bold text-[#333] group-hover:text-green-500 transition-all">
                         {event.name}
                       </h3>
                       <p className="text-gray-600">{event.description}</p>
@@ -320,7 +320,7 @@ const Information = () => {
                           </div>
                         </div>
                       )}
-                      <div className="flex flex-center">
+                      <div className="flex justify-end">
                         <FaEdit
                           className="text-blue-500 cursor-pointer mt-2 mr-2"
                           onClick={() => openUpdateModal(event)}

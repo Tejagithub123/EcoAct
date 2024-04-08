@@ -17,6 +17,8 @@ import ActMain from "./ActCompentsDash/ActMain";
 import PrivateRoutes from "./PrivateRoutes";
 
 import Prediction from "./components/wastevideo/Prediction";
+
+import SignupEco from "./components/signup/SignupEco";
 function App() {
   return (
     <div className="App">
@@ -32,7 +34,11 @@ function App() {
 
           <Route path="/map" element={<EcoMap />} />
 
-          <Route path="/Prediction" element={<Prediction />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/Prediction" element={<Prediction />} />
+          </Route>
+
+          <Route path="/SignupEco" element={<SignupEco />}></Route>
 
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<Signup />} />

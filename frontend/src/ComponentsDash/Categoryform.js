@@ -112,13 +112,13 @@ const Categoryform = () => {
               <input
                 type="text"
                 placeholder="Enter name"
-                className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <button
                 type="submit"
-                className="w-1/2 py-3 ml-2 bg-green-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
+                className="w-1/2 py-3 ml-2 bg-green-500 text-white rounded-md hover:bg-green-700 transition duration-300"
               >
                 Add Category
               </button>

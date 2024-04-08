@@ -8,6 +8,8 @@ import {
   RiSettings3Line,
   RiDeleteBinLine,
 } from "react-icons/ri";
+import { FaTrash, FaEdit, FaTimesCircle, FaCheck } from "react-icons/fa";
+
 const Profil = ({ setCurrentPage }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -75,12 +77,12 @@ const Profil = ({ setCurrentPage }) => {
               </h3>
 
               <div className="flex justify-end space-x-4">
-                <RiSettings3Line
-                  className="text-gray-600 cursor-pointer text-2xl"
+                <FaEdit
+                  className="text-blue-600 cursor-pointer text-2xl"
                   onClick={handleSettingsClick}
                   title="Update"
                 />
-                <RiDeleteBinLine
+                <FaTrash
                   className="text-red-600 cursor-pointer text-2xl"
                   onClick={handleDeleteClick}
                   title=""

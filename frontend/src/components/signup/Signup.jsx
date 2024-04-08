@@ -126,6 +126,15 @@ const Signup = () => {
                   Sign in
                 </Link>
               </p>
+              <p className="mt-8 text-xl font-light text-center text-black">
+                Want to become an environmental actor ?{" "}
+                <Link
+                  to="/SignupEco"
+                  className="text-xl font-medium text-green-300 hover:underline"
+                >
+                   Sign up ECO
+                </Link>
+              </p>
             </div>
           </div>
           {/* Right column container with background image */}

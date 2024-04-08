@@ -58,6 +58,7 @@ class EcoActor(models.Model):
     activitis = models.CharField(max_length=255)
     categories = models.ManyToManyField(Category)  # Many-to-many relationship with Category model
     trash = models.CharField(max_length=100, choices=TRASH_CHOICES, blank=True, null=True)
+    
 
     def save(self, *args, **kwargs):
         # Hash the password before saving

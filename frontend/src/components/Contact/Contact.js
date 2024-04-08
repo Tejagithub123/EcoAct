@@ -164,15 +164,15 @@ function Contact() {
           </div>
         </div>
       </section>
-      <div class="flex mt-8 mr-10 justify-start ">
+      <div class="flex mt-8 mr-10 justify-start ml-20">
         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
           <FaFlag size={24} />
         </div>
-        <div>
+        <div className="">
           <p class="font-heading ml-8  text-lg leading-6 font-bold text-gray-700">
             Sustainable Development Goals
           </p>
-          <p class="text-base text-gray-500">
+          <p class="text-base text-gray-500 ml-3">
             We align our actions with the UN's Sustainable Development Goals
             (SDGs) to address global challenges and promote sustainability.
           </p>
