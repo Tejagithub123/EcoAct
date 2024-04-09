@@ -35,10 +35,14 @@ const SignupEco =()=>{
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [showToast2, setShowToast2] = useState(false);
   useEffect(() => {
     fetchCategories();
   }, []);
-
+  setTimeout(() => {
+    setShowToast(false);
+  }, 3000);
   const fetchCategories = () => {
     fetch("http://localhost:8000/api/categories/")
       .then((response) => response.json())
@@ -77,9 +81,11 @@ const SignupEco =()=>{
       
       .then((response) => {
         console.log("Success:", response.data);
+        setShowToast(true);
       })
       .catch((error) => {
         console.error("Error:", error);
+        setShowToast2(true);
       });
   };
 
@@ -290,8 +296,34 @@ const SignupEco =()=>{
           
               </div>
             </form>{" "}
+            {showToast  && (
+              
+              <div class="bg-green-100 mt-10 text-green-800 px-4 py-4 rounded" role="alert">
+              <strong class="font-bold text-base mr-4">Success!</strong>
+              <span class="block text-sm sm:inline max-sm:mt-1">Sign up succesfuly.</span>
+            </div>
+            )}
+
+{showToast2  && (
+              
+              <div class="bg-red-300 mt-10 text-red-800 px-4 py-4 rounded" role="alert">
+              <strong class="font-bold text-base mr-4">Fail!</strong>
+              <span class="block text-sm sm:inline max-sm:mt-1">User Already exists with this email</span>
+            </div>
+            )}
+            <p className="mt-8 text-xl font-light text-center text-black">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="text-xl font-medium text-green-300 hover:underline"
+                >
+                  Sign in
+                </Link>
+              </p>
           </div>
+          
         </div> 
+        
         {/* Right column container with background image */}
         <div
             className="hidden md:block bg-cover bg-center rounded-lg lg:col-span-1 lg:rounded-l-lg lg:rounded-br-none"
@@ -299,9 +331,13 @@ const SignupEco =()=>{
               backgroundImage: `url(${imgsignin})`,
             }}
           ></div>
+          
       </div>
+      
       </div>
+      
       </div>
+      
       <Footer />
     </section>
   );
