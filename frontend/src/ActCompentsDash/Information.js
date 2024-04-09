@@ -34,7 +34,7 @@ const Information = () => {
               {events.map((event) => (
                 <div
                   key={event.id}
-                  className="cursor-pointer rounded overflow-hidden group"
+                  className="hover:translate-y-2 cursor-pointer rounded overflow-hidden group"
                 >
                   <img
                     src={event.image}

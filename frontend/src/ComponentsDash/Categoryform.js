@@ -112,7 +112,7 @@ const Categoryform = () => {
               <input
                 type="text"
                 placeholder="Enter name"
-                className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
+                className="px-2 py-2.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -131,9 +131,9 @@ const Categoryform = () => {
           {categories.map((category) => (
             <div
               key={category.id}
-              className="border-double border-4 border-sky-500 max-w-sm p-6 bg-gray-200  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-400 dark:border-gray-300 dark:hover:bg-gray-400"
+              className="bg-white rounded-lg  overflow-hidden border border-gray-200 shadow-lg transform transition-transform duration-300 hover:translate-y-2"
             >
-              <div className="flex justify-between items-center mb-2">
+              <div className="p-4">
                 {category.editing ? (
                   <input
                     type="text"
@@ -147,14 +147,14 @@ const Categoryform = () => {
                         )
                       )
                     }
-                    className="bg-transparent  w-full  border-0 border-transparent focus:border-blue-500 outline-none text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    className="text-center bg-transparent w-full border-0 border-transparent focus:border-blue-500 outline-none text-2xl font-bold tracking-tight text-gray-900"
                   />
                 ) : (
-                  <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  <h3 className="text-center text-lg leading-6 font-bold text-gray-900">
                     {category.name}
-                  </h5>
+                  </h3>
                 )}
-                <div className="flex space-x-2">
+                <div className="flex justify-between items-center mt-2">
                   {/* Delete Button */}
                   <button
                     className="text-red-600 hover:text-red-800"
@@ -183,7 +183,6 @@ const Categoryform = () => {
                   )}
                 </div>
               </div>
-              <p className="font-normal text-gray-700 dark:text-gray-400"></p>
             </div>
           ))}
         </div>

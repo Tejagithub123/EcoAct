@@ -114,7 +114,7 @@ const SignupEco =()=>{
                   <input
                     type="text"
                     placeholder="Enter username"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -127,7 +127,7 @@ const SignupEco =()=>{
                   <input
                     type="email"
                     placeholder="Enter email"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -141,7 +141,7 @@ const SignupEco =()=>{
                     type="password"
                     autoComplete="new-password"
                     placeholder="Enter password"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -154,7 +154,7 @@ const SignupEco =()=>{
                   <input
                     type="tel"
                     placeholder="Enter phone no."
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={telephone}
                     onChange={(e) => setTelephone(e.target.value)}
                   />
@@ -167,7 +167,7 @@ const SignupEco =()=>{
                   <input
                     type="text"
                     placeholder="Enter address"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={adresse}
                     onChange={(e) => setAdresse(e.target.value)}
                   />
@@ -197,7 +197,7 @@ const SignupEco =()=>{
                   <input
                     type="number"
                     placeholder="Enter Longitude"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={longitude}
                     onChange={(e) => setLongitude(e.target.value)}
                   />
@@ -210,7 +210,7 @@ const SignupEco =()=>{
                   <input
                     type="number"
                     placeholder="Enter Latitude"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={latitude}
                     onChange={(e) => setLatitude(e.target.value)}
                   />
@@ -223,7 +223,7 @@ const SignupEco =()=>{
                   <input
                     type="text"
                     placeholder="Enter activities"
-                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={activitis}
                     onChange={(e) => setActivitis(e.target.value)}
                   />
@@ -235,7 +235,7 @@ const SignupEco =()=>{
         Trash
       </label>
       <select
-        className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+        className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
         value={trash}
         onChange={(e) => setTrash(e.target.value)}
       >
@@ -256,7 +256,7 @@ const SignupEco =()=>{
       e.preventDefault(); 
       setShowDropdown(!showDropdown);
     }}
-    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
   >
     {showDropdown ? "Select a Category" : "Categories"}
   </button>
@@ -272,7 +272,7 @@ const SignupEco =()=>{
           )
         );
       }}
-      className="absolute top-full left-0 z-10 px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-blue-500 rounded outline-none"
+      className="absolute top-full left-0 z-10 px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
     >
       {categories.map((category) => (
         <option key={category.id} value={category.id}>
