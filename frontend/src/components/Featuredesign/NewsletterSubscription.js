@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import imgd from "../../img/hands-holding-recyclable-items.jpg";
 
 const NewsletterSubscription = () => {
   const [email, setEmail] = useState("");
@@ -16,34 +17,25 @@ const NewsletterSubscription = () => {
   };
 
   return (
-    <div className="bg-green-500  py-20 px-6 relative font-sans">
-      <div className="max-w-2xl mx-auto text-center text-white">
-        <h2 className="text-4xl font-extrabold">Subscribe to Our Newsletter</h2>
-        <div className="my-6">
-          <p className="text-base text-white">
-            Subscribe to our newsletter and stay up to date with the latest
-            news, updates, and exclusive offers. Get valuable insights. Join our
-            community today!
+    <div className="bg-green-500 px-8 relative font-sans">
+      <div className="max-w-4xl mx-auto flex items-center justify-center text-white">
+        <div className="flex-shrink-0 w-full md:w-1/2">
+          <img
+            src={imgd}
+            alt="Ecology Image"
+            className="h-auto md:h-full w-full object-cover rounded-lg shadow-lg"
+          />
+        </div>
+        <div className="ml-8 w-full md:w-1/2">
+          <h2 className="text-4xl font-extrabold mb-4">
+            Subscribe to Our Ecology Newsletter
+          </h2>
+          <p className="text-lg text-white mb-6">
+            Subscribe to our ecology newsletter and stay up to date with the
+            latest news, updates, and exclusive offers. Get valuable insights.
+            Join our community today!
           </p>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="max-w-3xl left-0 right-0 mx-auto w-full bg-white p-5 flex items-center rounded shadow-lg">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full bg-gray-50 py-3.5 px-4 text-[#333] text-base focus:outline-none"
-              value={email}
-              onChange={handleInputChange}
-              required
-            />
-            <button
-              type="submit"
-              className="bg-yellow-500 hover:bg-opacity-80 text-white text-base rounded-full  font-semibold py-3.5 px-6 focus:outline-none"
-            >
-              Subscribe
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   );

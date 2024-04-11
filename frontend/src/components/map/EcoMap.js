@@ -4,6 +4,7 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import EnvironmentStatistics from "../Featuredesign/EnvironmentStatistics";
 import EcologyChallenges from "../Featuredesign/EcologyChallenges";
 import WebsiteFAQSection from "../Featuredesign/WebsiteFAQSection";
 const EcoMap = () => {
@@ -315,6 +316,7 @@ const EcoMap = () => {
       <EcologyChallenges></EcologyChallenges>
       <WebsiteFAQSection></WebsiteFAQSection>
 
+      <EnvironmentStatistics></EnvironmentStatistics>
       <Footer />
     </div>
   );

@@ -26,6 +26,7 @@ import img16 from "./ODD/E_SDG_Icons-16.jpg";
 import img17 from "./ODD/E_SDG_Icons-17.jpg";
 import imgc1 from "../../img/front-view-man-with-wooden-blocks.jpg";
 import imgc2 from "../../img/sustainable-development-goals-still-lifes.jpg";
+import EcologyBadges from "../Featuredesign/EcologyBadges";
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -472,6 +473,7 @@ function Contact() {
         </div>
       </div>
       <br />
+      {/*section challenges */}
 
       {/* Contact Form Section */}
       <div id="f1" className="flex flex-col lg:flex-row px-4">
@@ -594,6 +596,7 @@ function Contact() {
         />
       </div>
 
+      <br></br>
       <Footer />
     </>
   );
