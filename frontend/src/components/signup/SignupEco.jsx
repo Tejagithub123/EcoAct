@@ -152,7 +152,7 @@ const SignupEco =()=>{
                     Phone No
                   </label>
                   <input
-                    type="tel"
+                    type="number"
                     placeholder="Enter phone no."
                     className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                     value={telephone}

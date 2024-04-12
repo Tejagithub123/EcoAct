@@ -124,7 +124,7 @@ const RegistrationForm = ({ setCurrentPage }) => {
                   <div>
                     <label className="font-semibold text-sm">Telephone</label>
                     <input
-                      type="tel"
+                      type="number"
                       placeholder="Telephone"
                       className="w-full rounded py-2.5 px-4 border-2 mt-2 text-sm outline-[#007bff]"
                       value={userData?.telephone || ""}
