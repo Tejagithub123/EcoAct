@@ -3,6 +3,20 @@ import axios from "axios";
 
 const RegistrationForm = ({ setCurrentPage }) => {
   // State variables to store form data
+  // State variables to store form data
+  const TRASH_CHOICES = [
+    { value: "radioactive", label: "Radioactive" },
+    { value: "organic", label: "Organic" },
+    { value: "batteries", label: "Batteries" },
+    { value: "light bulbs", label: "Light Bulbs" },
+    { value: "biomedical", label: "Biomedical" },
+    { value: "paper", label: "Paper" },
+    { value: "metal", label: "Metal" },
+    { value: "e-waste", label: "E-Waste" },
+    { value: "glass", label: "Glass" },
+    { value: "clothes", label: "Clothes" },
+    { value: "plastic", label: "Plastic" },
+  ];
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +29,7 @@ const RegistrationForm = ({ setCurrentPage }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [trash, setTrash] = useState("");
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -39,6 +54,7 @@ const RegistrationForm = ({ setCurrentPage }) => {
       longitude,
       latitude,
       activitis,
+      trash,
       categories: selectedCategories,
     };
     // Perform POST request to backend API with formData
@@ -223,6 +239,25 @@ const RegistrationForm = ({ setCurrentPage }) => {
                     </select>
                   )}
                 </div>
+                {/*trash*/}
+                <div className="relative flex items-center">
+                  <label className="text-[13px] text-black absolute px-2 top-[-12px] left-[18px] font-semibold">
+                    Trash
+                  </label>
+                  <select
+                    className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
+                    value={trash}
+                    onChange={(e) => setTrash(e.target.value)}
+                  >
+                    <option value="">Select trash type</option>
+                    {TRASH_CHOICES.map(({ value, label }) => (
+                      <option key={value} value={value}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 {/* Submit Button */}
                 <div className="mt-6 sm:col-span-2">
                   <button

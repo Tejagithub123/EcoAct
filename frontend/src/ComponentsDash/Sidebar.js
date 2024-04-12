@@ -8,6 +8,8 @@ import {
   FaUsers,
   FaPlus,
 } from "react-icons/fa";
+import { FaRecycle } from "react-icons/fa";
+import { FaCopyright } from "react-icons/fa";
 
 const Sidebar = ({ setCurrentPage }) => {
   const navigate = useNavigate();
@@ -87,7 +89,18 @@ const Sidebar = ({ setCurrentPage }) => {
             <span>Eco Actors</span>
           </a>
         </li>
-
+        <ul>
+          <li>
+            <a
+              href="javascript:void(0)"
+              className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
+              onClick={() => handleItemClick("Prediciton")}
+            >
+              <FaRecycle className="w-[18px] h-[18px] mr-4" />
+              <span>Prediciton</span>
+            </a>
+          </li>
+        </ul>
         <li>
           <a
             href="javascript:void(0)"
@@ -99,6 +112,7 @@ const Sidebar = ({ setCurrentPage }) => {
           </a>
         </li>
       </ul>
+
       <ul>
         <li>
           <a

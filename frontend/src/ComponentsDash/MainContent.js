@@ -5,6 +5,7 @@ import Information from "./Information";
 import Profil from "./Profil";
 import Categoryform from "./Categoryform";
 import RegistrationForm from "./RegistrationForm";
+import Prediction from "./wastevideo/Prediction";
 
 const MainContent = ({ currentPage, setCurrentPage }) => {
   return (
@@ -41,6 +42,12 @@ const MainContent = ({ currentPage, setCurrentPage }) => {
       {currentPage === "Category" && (
         <div>
           <Categoryform />
+        </div>
+      )}
+
+      {currentPage === "Prediciton" && (
+        <div>
+          <Prediction />
         </div>
       )}
 
