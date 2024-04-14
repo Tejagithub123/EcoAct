@@ -38,7 +38,7 @@ function Contact() {
 
   setTimeout(() => {
     setShowToast(false);
-  }, 2000);
+  }, 1500);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -54,6 +54,12 @@ function Contact() {
       );
       console.log(response.data);
       setShowToast(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
     } catch (error) {
       console.error(error);
     }
