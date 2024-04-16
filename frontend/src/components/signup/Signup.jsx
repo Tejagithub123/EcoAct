@@ -4,13 +4,17 @@ import axios from "axios";
 import Navbar from "../navbar/Navbar"; 
 import Footer from "../footer/Footer";
 import imgsignin from "../../../src/img/top-view-frame-with-study-items.jpg"
+
 const Signup = () => {
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const navigate = useNavigate();
    const [showToast, setShowToast] = useState(false);
    const [showToast2, setShowToast2] = useState(false);
+   const [nameError, setNameError] = useState("");
+   const [emailError, setEmailError] = useState("");
+   const [passwordError, setPasswordError] = useState("");
+   const navigate = useNavigate();
 
    setTimeout(() => {
      setShowToast(false);
@@ -18,25 +22,50 @@ const Signup = () => {
  
    const handleSubmit = async (event) => {
      event.preventDefault();
-     await axios
-       .post("http://localhost:8000/api/signup/", {
+
+     // Regular expression patterns for validation
+     const usernamePattern = /^[A-Z][a-zA-Z]{5,13}$/;
+     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+     // Validation checks
+     if (!usernamePattern.test(name)) {
+       setNameError("Username must start with a capital letter and be between 6 to 14 characters long");
+       return;
+     } else {
+       setNameError("");
+     }
+
+     if (!emailPattern.test(email)) {
+       setEmailError("Invalid email format");
+       return;
+     } else {
+       setEmailError("");
+     }
+
+     if (!passwordPattern.test(password)) {
+       setPasswordError("Password must be at least 6 characters long and contain both letters and numbers");
+       return;
+     } else {
+       setPasswordError("");
+     }
+
+     try {
+       const response = await axios.post("http://localhost:8000/api/signup/", {
          name: name,
          email: email,
          password: password,
-       })
-       .then((response) => {
-         console.log(response.data);
-         setShowToast(true); 
-         navigate('/login');
-       })
-       .catch((error) => {
-         console.log(error);
-         setShowToast2(true);
        });
+       console.log(response.data);
+       setShowToast(true); 
+       navigate('/login');
+     } catch (error) {
+       console.log(error);
+       setShowToast2(true);
+     }
    };
- 
-   return (
 
+   return (
     <section className="h-full  bg-white gray:bg-neutral-700">
       <Navbar />
       <div className="flex flex-center">
@@ -64,6 +93,7 @@ const Signup = () => {
                     className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     required
                   />
+                  {nameError && <p className="text-red-500">{nameError}</p>}
                 </div>
                 <div className="mb-6">
                   <label
@@ -80,6 +110,7 @@ const Signup = () => {
                     className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     required
                   />
+                  {emailError && <p className="text-red-500">{emailError}</p>}
                 </div>
                 <div className="mb-6">
                   <label
@@ -96,6 +127,7 @@ const Signup = () => {
                     className="block w-full px-4 py-2 mt-2 text-black border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     required
                   />
+                  {passwordError && <p className="text-red-500">{passwordError}</p>}
                 </div>
                 <div className="mt-6">
                   <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-400 text-xl">
@@ -103,21 +135,19 @@ const Signup = () => {
                   </button>
                 </div>
               </form>
-              {showToast  && (
-              
-              <div class="bg-green-100 mt-10 text-green-800 px-4 py-4 rounded" role="alert">
-              <strong class="font-bold text-base mr-4">Success!</strong>
-              <span class="block text-sm sm:inline max-sm:mt-1">Sign up succesfuly.</span>
-            </div>
-            )}
+              {showToast && (
+                <div className="bg-green-100 mt-10 text-green-800 px-4 py-4 rounded" role="alert">
+                  <strong className="font-bold text-base mr-4">Success!</strong>
+                  <span className="block text-sm sm:inline max-sm:mt-1">Sign up successful.</span>
+                </div>
+              )}
 
-{showToast2  && (
-              
-              <div class="bg-red-300 mt-10 text-red-800 px-4 py-4 rounded" role="alert">
-              <strong class="font-bold text-base mr-4">Fail!</strong>
-              <span class="block text-sm sm:inline max-sm:mt-1">User Already exists with this email</span>
-            </div>
-            )}
+              {showToast2 && (
+                <div className="bg-red-300 mt-10 text-red-800 px-4 py-4 rounded" role="alert">
+                  <strong className="font-bold text-base mr-4">Fail!</strong>
+                  <span className="block text-sm sm:inline max-sm:mt-1">User already exists with this email.</span>
+                </div>
+              )}
               <p className="mt-8 text-xl font-light text-center text-black">
                 Already have an account?{" "}
                 <Link
@@ -151,7 +181,6 @@ const Signup = () => {
       <Footer />
     </section>
   );
-  
 };
 
 export default Signup;
