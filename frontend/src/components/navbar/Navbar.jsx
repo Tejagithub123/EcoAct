@@ -20,6 +20,7 @@ const Navbar = () => {
     localStorage.removeItem('token');
     // Update isLoggedIn state
     setIsLoggedIn(false);
+    window.location.href = '/';
   };
   return (
     <nav className="bg-green-500 p-4">

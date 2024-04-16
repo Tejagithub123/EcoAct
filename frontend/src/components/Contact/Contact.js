@@ -38,7 +38,7 @@ function Contact() {
 
   setTimeout(() => {
     setShowToast(false);
-  }, 1500);
+  }, 1000);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -510,6 +510,7 @@ function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    required
                     placeholder="Your Name"
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   />
@@ -526,6 +527,7 @@ function Contact() {
                     type="email"
                     id="email"
                     name="email"
+                    required
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Your Email"
@@ -565,6 +567,7 @@ function Contact() {
                     onChange={handleChange}
                     placeholder="Your Message"
                     rows="5"
+                    required
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 resize-none"
                   ></textarea>
                 </div>

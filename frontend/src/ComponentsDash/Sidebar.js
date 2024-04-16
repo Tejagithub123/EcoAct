@@ -24,7 +24,7 @@ const Sidebar = ({ setCurrentPage }) => {
   };
 
   return (
-    <nav className="bg-[#09090a] shadow-lg h-screen fixed top-0 left-0 min-w-[250px] py-6 px-6 font-[sans-serif] flex flex-col overflow-auto">
+    <nav className="bg-[#09090a] shadow-lg h-screen fixed top-0 left-0 min-w-[250px] py-6 px-6 font-[sans-serif] flex flex-col overflow-auto z-20">
       <div className="flex flex-wrap items-center cursor-pointer">
         <div className="flex flex-wrap items-center cursor-pointer">
           <div className="relative">
