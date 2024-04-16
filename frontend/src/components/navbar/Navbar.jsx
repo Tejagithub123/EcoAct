@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Leaf from './leaf.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    // Check if token is present in local storage
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
+  const handleLogout = () => {
+    // Remove token from local storage
+    localStorage.removeItem('token');
+    // Update isLoggedIn state
+    setIsLoggedIn(false);
+  };
   return (
     <nav className="bg-green-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -40,7 +56,11 @@ const Navbar = () => {
             <Link to="/contact" className="text-white text-2xl hover:text-gray-200">Contact</Link>
           </div>
           <br></br>
-          <Link to="/login" className="ml-4 md:ml-3 py-2 px-8 bg-gray-100 text-gray-800 text-2xl font-semibold rounded hover:bg-gray-200">Login</Link>
+          {isLoggedIn ? (
+            <button onClick={handleLogout} className="ml-4 md:ml-3 py-2 px-8 bg-gray-100 text-gray-800 text-2xl font-semibold rounded hover:bg-gray-200">Logout</button>
+          ) : (
+            <Link to="/login" className="ml-4 md:ml-3 py-2 px-8 bg-gray-100 text-gray-800 text-2xl font-semibold rounded hover:bg-gray-200">Login</Link>
+          )}
         </div>
       </div>
     </nav>

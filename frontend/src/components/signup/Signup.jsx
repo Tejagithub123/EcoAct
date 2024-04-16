@@ -26,7 +26,8 @@ const Signup = () => {
        })
        .then((response) => {
          console.log(response.data);
-         setShowToast(true);
+         setShowToast(true); 
+         navigate('/login');
        })
        .catch((error) => {
          console.log(error);
