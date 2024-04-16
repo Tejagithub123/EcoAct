@@ -6,18 +6,21 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import { jwtDecode } from 'jwt-decode' 
 
+
 import imgsignin from "../../../src/img/flat-lay-plants-world-globe-frame.jpg"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem('token'));
-  
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const [showToast, setShowToast] = useState(false);
 
   setTimeout(() => {
     setShowToast(false);
-  }, 4000);
+  }, 1500);
 
 
   const handleEmailChange = (event) => {
@@ -30,6 +33,23 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+      // Email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        setEmailError("Invalid email format");
+        return;
+      } else {
+        setEmailError("");
+      }
+  
+      // Password validation
+      if (password.length < 6) {
+        setPasswordError("Password must be at least 6 characters long");
+        return;
+      } else {
+        setPasswordError("");
+      }
+
     await axios
       .post("http://localhost:8000/api/login/", {
         email: email,
@@ -91,6 +111,9 @@ const Login = () => {
                         className="block w-full px-4 py-2 mt-2 text-black  border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         required
                       />
+                      {emailError && (
+                          <p className="text-red-500">{emailError}</p>
+                        )}
                     </div>
                     <div className="mb-2">
                       <label
@@ -107,6 +130,9 @@ const Login = () => {
                         className="block w-full px-4 py-2 mt-2 text-black  border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         required
                       />
+                      {passwordError && (
+                          <p className="text-red-500">{passwordError}</p>
+                        )}
                     </div>
                     <div className="mt-6">
                       <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-400 text-xl">
