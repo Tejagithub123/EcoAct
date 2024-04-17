@@ -7,6 +7,8 @@ import {
   FaUser,
   FaUsers,
   FaPlus,
+  FaQuestionCircle,
+  FaTasks,
 } from "react-icons/fa";
 import { FaRecycle } from "react-icons/fa";
 import { FaCopyright } from "react-icons/fa";
@@ -38,6 +40,7 @@ const Sidebar = ({ setCurrentPage }) => {
         </div>
       </div>
       <br></br>
+
       <ul className="space-y-10 flex-1 mt-4 mb-10">
         <li>
           <a
@@ -107,8 +110,19 @@ const Sidebar = ({ setCurrentPage }) => {
             className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
             onClick={() => handleItemClick("Category")}
           >
-            <FaUsers className="w-[18px] h-[18px] mr-4" />
+            <FaTasks className="w-[18px] h-[18px] mr-4" />
             <span>categories</span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="javascript:void(0)"
+            className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
+            onClick={() => handleItemClick("Confirm")}
+          >
+            <FaQuestionCircle className="w-[18px] h-[18px] mr-4" />
+            <span>requests</span>
           </a>
         </li>
       </ul>

@@ -6,7 +6,7 @@ import Profil from "./Profil";
 import Categoryform from "./Categoryform";
 import RegistrationForm from "./RegistrationForm";
 import Prediction from "./wastevideo/Prediction";
-
+import Confirm from "./Confirm";
 const MainContent = ({ currentPage, setCurrentPage }) => {
   return (
     <div>
@@ -48,6 +48,11 @@ const MainContent = ({ currentPage, setCurrentPage }) => {
       {currentPage === "Prediciton" && (
         <div>
           <Prediction />
+        </div>
+      )}
+      {currentPage === "Confirm" && (
+        <div>
+          <Confirm setCurrentPage={setCurrentPage} />
         </div>
       )}
 

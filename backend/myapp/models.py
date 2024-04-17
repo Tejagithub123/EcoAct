@@ -75,6 +75,34 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+class EcoActorCandidat(models.Model):
+    TRASH_CHOICES = [
+        ('radioactive', 'Radioactive'),
+        ('organic', 'Organic'),
+        ('batteries', 'Batteries'),
+        ('light bulbs', 'Light Bulbs'),
+        ('biomedical', 'Biomedical'),
+        ('paper', 'Paper'),
+        ('metal', 'Metal'),
+        ('e-waste', 'E-Waste'),
+        ('glass', 'Glass'),
+        ('clothes', 'Clothes'),
+        ('plastic', 'Plastic'),
+    ]
+    username = models.CharField(max_length=100)
+    email = models.EmailField()
+    password = models.CharField(max_length=100)  # Store the hashed password
+    telephone = models.CharField(max_length=20)
+    role = models.CharField(max_length=100, default="actor")
+    adresse = models.CharField(max_length=255)
+    ville = models.CharField(max_length=100)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+    activitis = models.CharField(max_length=255)
+    categories = models.ManyToManyField(Category)  # Many-to-many relationship with Category model
+    trash = models.CharField(max_length=100, choices=TRASH_CHOICES, blank=True, null=True)
+    active = models.BooleanField(default=False)
+
 
 
 

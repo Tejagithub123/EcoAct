@@ -133,7 +133,7 @@ if (longitude < 7.5 || longitude > 11.5) {
   
     // Perform POST request to backend API with formData
     axios
-      .post("http://localhost:8000/api/ecoactors/", formData, {
+      .post("http://localhost:8000/api/ecoactors-candidats/", formData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -20,12 +20,19 @@ from .models import Category
 from .serializers import CategorySerializer
 from .models import EcoActor
 from .serializers import EcoActorSerializer
+
+from .models import EcoActorCandidat
+from .serializers import EcoActorCandidatSerializer
+
+
+
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Event
 from .serializers import EventSerializer
+
 
 class EventListCreate(generics.ListCreateAPIView):
     queryset = Event.objects.all()
@@ -49,6 +56,24 @@ class EcoActorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         serializer.save(partial=True)  # Allow partial updates
+
+
+#eco actor non actif
+class EcoActorCandidatListCreateAPIView(generics.ListCreateAPIView):
+    queryset = EcoActorCandidat.objects.all()
+    serializer_class = EcoActorCandidatSerializer
+
+class EcoActorCandidatRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = EcoActorCandidat.objects.all()
+    serializer_class = EcoActorCandidatSerializer
+
+    def perform_update(self, serializer):
+        serializer.save(partial=True)  # Allow partial updates
+
+
+
+
+
 
 
 class CategoryListCreateAPIView(generics.ListCreateAPIView):

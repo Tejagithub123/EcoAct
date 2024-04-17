@@ -7,6 +7,8 @@ from .models import Category
 from .models import EcoActor
 from .models import Event
 
+from .models import EcoActorCandidat
+
 class EcoActorSerializer(serializers.ModelSerializer):
     class Meta:
         model = EcoActor
@@ -43,3 +45,11 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'image', 'name', 'description', 'date']  
+
+class EcoActorCandidatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EcoActorCandidat
+        fields = '__all__'
+        extra_kwargs = {
+            'trash': {'required': False},  # Rendre facultatif
+        }

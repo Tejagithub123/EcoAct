@@ -15,6 +15,8 @@ from .views import EventListCreate, EventRetrieveUpdateDestroy
 
 from .views import recommend_eco_actors
 
+from .views import  EcoActorCandidatListCreateAPIView,EcoActorCandidatRetrieveUpdateDestroyAPIView
+
 urlpatterns = [ 
      path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
      path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-detail'),
@@ -31,6 +33,11 @@ urlpatterns = [
 
     path('ecoactors/', EcoActorListCreate.as_view(), name='ecoactor-list-create'),
     path('ecoactors/<int:pk>/', EcoActorRetrieveUpdateDestroy.as_view(), name='ecoactor-retrieve-update-destroy'),
+    #candidats
+    path('ecoactors-candidats/', EcoActorCandidatListCreateAPIView.as_view(), name='ecoactor-candidat-list-create'),
+    path('ecoactors-candidats/<int:pk>/', EcoActorCandidatRetrieveUpdateDestroyAPIView.as_view(), name='ecoactor-candidat-retrieve-update-destroy'),
+    
+
 
 
     path('submit/', submit_contact_form, name='submit_contact_form'),
