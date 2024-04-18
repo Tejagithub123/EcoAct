@@ -20,6 +20,7 @@ const Confirm = ({ setCurrentPage }) => {
       const data = await response.json();
       const reversedData = data.reverse();
       setEcoActors(reversedData);
+      console.log(reversedData);
       setNoRequests(data.length === 0); // Définir l'état noRequests
     } catch (error) {
       console.error("Error fetching eco actors candidats:", error);
@@ -89,7 +90,7 @@ const Confirm = ({ setCurrentPage }) => {
             <br></br>
             <br></br>
             <br></br>
-            <div className="ml-14">
+            <div className="">
               {noRequests ? (
                 <div class="font-[sans-serif] space-y-6">
                   <div
@@ -147,6 +148,12 @@ const Confirm = ({ setCurrentPage }) => {
                         City
                       </th>
                       <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">
+                        Longitude
+                      </th>
+                      <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">
+                        Latitude
+                      </th>
+                      <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">
                         Activities
                       </th>
                       <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">
@@ -177,6 +184,12 @@ const Confirm = ({ setCurrentPage }) => {
                         </td>
                         <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
                           {actor.ville}
+                        </td>
+                        <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
+                          {actor.longitude}
+                        </td>
+                        <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
+                          {actor.latitude}
                         </td>
                         <td className="px-6 py-4 text-sm min-w-[100px] text-gray-900">
                           {actor.activitis}

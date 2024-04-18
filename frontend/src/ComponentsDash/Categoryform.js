@@ -72,11 +72,6 @@ const Categoryform = () => {
   };
 
   const handleUpdateCategory = (categoryId, newName) => {
-    const namePattern = /^[a-zA-Z]+$/;
-    if (!namePattern.test(newName)) {
-      setNameError("Invalid category name format");
-      return;
-    }
     fetch(`http://localhost:8000/api/categories/${categoryId}/`, {
       method: "PUT",
       headers: {
@@ -151,15 +146,22 @@ const Categoryform = () => {
                   <input
                     type="text"
                     value={category.name}
-                    onChange={(e) =>
-                      setCategories((prevCategories) =>
-                        prevCategories.map((prevCategory) =>
-                          prevCategory.id === category.id
-                            ? { ...prevCategory, name: e.target.value }
-                            : prevCategory
-                        )
-                      )
-                    }
+                    onChange={(e) => {
+                      const newName = e.target.value;
+                      const namePattern = /^[a-zA-Z]+$/;
+                      if (!namePattern.test(newName)) {
+                        setNameError("Invalid category name format");
+                      } else {
+                        setNameError("");
+                        setCategories((prevCategories) =>
+                          prevCategories.map((prevCategory) =>
+                            prevCategory.id === category.id
+                              ? { ...prevCategory, name: newName }
+                              : prevCategory
+                          )
+                        );
+                      }
+                    }}
                     className="text-center bg-transparent w-full border-0 border-transparent focus:border-blue-500 outline-none text-2xl font-bold tracking-tight text-gray-900"
                   />
                 ) : (
