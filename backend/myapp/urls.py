@@ -17,6 +17,7 @@ from .views import recommend_eco_actors
 
 from .views import  EcoActorCandidatListCreateAPIView,EcoActorCandidatRetrieveUpdateDestroyAPIView
 
+from .views import reset_password
 urlpatterns = [ 
      path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
      path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-detail'),
@@ -38,7 +39,8 @@ urlpatterns = [
     path('ecoactors-candidats/<int:pk>/', EcoActorCandidatRetrieveUpdateDestroyAPIView.as_view(), name='ecoactor-candidat-retrieve-update-destroy'),
     
 
-
+#reset password 
+path('resetpassword/', reset_password),
 
     path('submit/', submit_contact_form, name='submit_contact_form'),
     

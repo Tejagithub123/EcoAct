@@ -158,6 +158,15 @@ const Login = () => {
                       Sign up
                     </Link>
                   </p>
+                  <p className="mt-8 text-xl font-light text-center text-black">
+                    Did you forgot your password?{" "}
+                    <Link
+                      to="/ResetPassword"
+                      className="text-xl font-medium text-green-300 hover:underline"
+                    >
+                      Reset password
+                    </Link>
+                  </p>
                 </div>
               </div>
               {/* Right column container with background image */}

@@ -175,8 +175,8 @@ function WasteVideo() {
         {/* Display recommended actors in a popup/modal */}
     
 <div class="px-3 md:lg:xl:px-40 border-t border-b py-20 bg-opacity-10" style={{ backgroundImage: "url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png')" }}>
-<div class="w-full bg-indigo-600 shadow-xl shadow-indigo-200 py-10 px-20 flex justify-between items-center">
-        <p class="text-white">
+<div class="w-full bg-indigo-600 shadow-xl shadow-indigo-200 py-10 px-20 flex justify-center items-center">
+        <p class="text-white ">
             <span class="text-4xl font-medium">Recommendations</span> <br />
         
         </p>

@@ -14,7 +14,7 @@ from django.contrib.auth.hashers import check_password
 from django.core.mail import send_mail
 from django.http import JsonResponse 
 from .models import Event
-
+from django.contrib.auth.hashers import make_password
 from django.urls import reverse_lazy
 from .models import Category
 from .serializers import CategorySerializer
@@ -211,6 +211,48 @@ def recommend_eco_actors(request):
         return Response(serializer.data)
     else:
         return Response({'message': 'No predictions found'}, status=404)
+
+
+@api_view(['POST'])
+def reset_password(request):
+    email = request.data.get('email')
+    
+    # Try to find the user in the User model
+    user = User.objects.filter(email=email).first()
+
+    if user is None:
+        # If user is not found in User model, try finding in EcoActor model
+        user = EcoActor.objects.filter(email=email).first()
+
+    if user is None:
+        # If user is not found in either User or EcoActor model, return error response
+        return Response({'error': 'No user with this email'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Generate a new password conforming to the pattern
+    import random
+    import string
+    new_password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    
+    # Hash the new password
+    hashed_password = make_password(new_password)
+    
+    # Set the new hashed password for the user
+    if isinstance(user, User):
+        user.password = hashed_password
+    elif isinstance(user, EcoActor):
+        user.password = hashed_password
+    user.save()
+    
+    # Send email with the new password
+    send_mail(
+        'Password Reset',
+        f'Your new password: {new_password}',
+        'from@example.com',
+        [email],
+        fail_silently=False,
+    )
+    
+    return Response({'message': 'Password reset email sent'}, status=status.HTTP_200_OK)
 
 
 class PredictionList(generics.ListAPIView):

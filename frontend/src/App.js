@@ -19,6 +19,8 @@ import PrivateRoutes from "./PrivateRoutes";
 import Prediction from "./components/wastevideo/Prediction";
 
 import SignupEco from "./components/signup/SignupEco";
+
+import ResetPassword from "./components/ResetPassword/ResetPassword";
 function App() {
   return (
     <div className="App">
@@ -51,6 +53,7 @@ function App() {
           <Route path="/predictionlist" element={<PredictionList />} />
 
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/ResetPassword" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </div>
