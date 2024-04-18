@@ -20,7 +20,7 @@ const Login = () => {
 
   setTimeout(() => {
     setShowToast(false);
-  }, 1500);
+  }, 2000);
 
 
   const handleEmailChange = (event) => {
