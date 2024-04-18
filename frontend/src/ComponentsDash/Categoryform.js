@@ -4,7 +4,7 @@ import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 const Categoryform = () => {
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([]);
-
+  const [nameError, setNameError] = useState("");
   // Function to fetch categories from the API
   const fetchCategories = () => {
     fetch("http://localhost:8000/api/categories/")
@@ -23,7 +23,13 @@ const Categoryform = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const namePattern = /^[a-zA-Z]+$/;
+    if (!namePattern.test(name)) {
+      setNameError("Name of category must contain only alphabetic characters");
+      return;
+    } else {
+      setNameError("");
+    }
     const formData = {
       name,
     };
@@ -66,6 +72,11 @@ const Categoryform = () => {
   };
 
   const handleUpdateCategory = (categoryId, newName) => {
+    const namePattern = /^[a-zA-Z]+$/;
+    if (!namePattern.test(newName)) {
+      setNameError("Invalid category name format");
+      return;
+    }
     fetch(`http://localhost:8000/api/categories/${categoryId}/`, {
       method: "PUT",
       headers: {
@@ -106,7 +117,7 @@ const Categoryform = () => {
           >
             {/* form*/}
             <div className="relative flex items-center">
-              <label className="text-[13px] text-black absolute px-2 top-[-10px] left-[18px] font-semibold">
+              <label className="text-[13px] text-black absolute px-2 top-[-18px] left-[18px] font-semibold">
                 Name
               </label>
               <input
@@ -116,6 +127,7 @@ const Categoryform = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+
               <button
                 type="submit"
                 className="w-1/2 py-3 ml-2 bg-green-500 text-white rounded-md hover:bg-green-700 transition duration-300"
@@ -124,6 +136,7 @@ const Categoryform = () => {
               </button>
             </div>
           </form>
+          {nameError && <p className="text-red-500">{nameError}</p>}
         </div>
         {/* panel*/}
         <div className="mr-10 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
