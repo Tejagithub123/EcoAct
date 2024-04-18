@@ -257,12 +257,17 @@ function Consult() {
                         {isEditing &&
                         editableActor &&
                         editableActor.id === actor.id ? (
-                          <input
-                            type="text"
+                          <select
                             name="ville"
                             value={editedData.ville}
                             onChange={handleInputChange}
-                          />
+                          >
+                            <option value="">Select a city</option>
+                            <option value="Ariana">Ariana</option>
+                            <option value="Beja">Beja</option>
+                            <option value="Ben Arous">Ben Arous</option>
+                            {/* Add other governorates as options */}
+                          </select>
                         ) : (
                           actor.ville
                         )}
@@ -289,7 +294,6 @@ function Consult() {
                             name="categories"
                             value={editedData.categories}
                             onChange={handleInputChange}
-                            multiple
                           >
                             {categories.map((category) => (
                               <option key={category.id} value={category.id}>
@@ -298,14 +302,17 @@ function Consult() {
                             ))}
                           </select>
                         ) : (
-                          actor.categories.map((categoryId, index) => (
-                            <span key={index}>
-                              {getCategoryNameById(categoryId)}
-                              {index !== actor.categories.length - 1 && ", "}
-                            </span>
-                          ))
+                          <span>
+                            {actor.categories.map((categoryId, index) => (
+                              <span key={index}>
+                                {getCategoryNameById(categoryId)}
+                                {index !== actor.categories.length - 1 && ", "}
+                              </span>
+                            ))}
+                          </span>
                         )}
                       </td>
+
                       <td className="px-6 py-4 min-w-[100px]">
                         {isEditing &&
                         editableActor &&

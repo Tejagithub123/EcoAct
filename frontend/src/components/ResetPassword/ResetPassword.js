@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import imgreset from "../../../src/img/top-view-frame-with-study-items.jpg";
+import imgreset from "../../../src/img/view-frame-with-study-items.jpg";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 const ResetPassword = () => {
