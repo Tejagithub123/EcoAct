@@ -1,6 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
+  FaHome,
   FaUserCircle,
   FaCalendarAlt,
   FaUser,
@@ -79,6 +80,15 @@ const Sidebar = ({ setCurrentPage }) => {
         </li>
       </ul>
       <ul>
+        <li>
+          <Link
+            to="/"
+            className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
+          >
+            <FaHome className="w-[18px] h-[18px] mr-4" /> <span>Home</span>
+          </Link>
+          <br></br>
+        </li>
         <li>
           <a
             href="javascript:void(0)"
