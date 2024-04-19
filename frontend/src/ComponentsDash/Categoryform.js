@@ -148,19 +148,13 @@ const Categoryform = () => {
                     value={category.name}
                     onChange={(e) => {
                       const newName = e.target.value;
-                      const namePattern = /^[a-zA-Z]+$/;
-                      if (!namePattern.test(newName)) {
-                        setNameError("Invalid category name format");
-                      } else {
-                        setNameError("");
-                        setCategories((prevCategories) =>
-                          prevCategories.map((prevCategory) =>
-                            prevCategory.id === category.id
-                              ? { ...prevCategory, name: newName }
-                              : prevCategory
-                          )
-                        );
-                      }
+                      setCategories((prevCategories) =>
+                        prevCategories.map((prevCategory) =>
+                          prevCategory.id === category.id
+                            ? { ...prevCategory, name: newName }
+                            : prevCategory
+                        )
+                      );
                     }}
                     className="text-center bg-transparent w-full border-0 border-transparent focus:border-blue-500 outline-none text-2xl font-bold tracking-tight text-gray-900"
                   />
@@ -182,8 +176,17 @@ const Categoryform = () => {
                     <button
                       className="text-green-600 hover:text-green-800"
                       onClick={() => {
-                        handleUpdateCategory(category.id, category.name);
-                        toggleEditMode(category.id);
+                        const newName = category.name; // Get the new name from the category object
+                        const namePattern = /^[a-zA-Z]+$/; // Define the name pattern
+                        if (!namePattern.test(newName)) {
+                          // Check if the name matches the pattern
+                          setNameError("Invalid category name format"); // Set error message if the name is invalid
+                        } else {
+                          // If the name is valid, proceed to update the category
+                          setNameError(""); // Clear any previous error message
+                          handleUpdateCategory(category.id, newName); // Call the function to update the category
+                          toggleEditMode(category.id); // Toggle the edit mode
+                        }
                       }}
                     >
                       <FaCheck />
