@@ -176,16 +176,15 @@ const Categoryform = () => {
                     <button
                       className="text-green-600 hover:text-green-800"
                       onClick={() => {
-                        const newName = category.name; // Get the new name from the category object
-                        const namePattern = /^[a-zA-Z]+$/; // Define the name pattern
+                        const newName = category.name;
+                        const namePattern = /^[a-zA-Z]+$/;
                         if (!namePattern.test(newName)) {
                           // Check if the name matches the pattern
-                          setNameError("Invalid category name format"); // Set error message if the name is invalid
+                          setNameError("Invalid category name format");
                         } else {
-                          // If the name is valid, proceed to update the category
-                          setNameError(""); // Clear any previous error message
-                          handleUpdateCategory(category.id, newName); // Call the function to update the category
-                          toggleEditMode(category.id); // Toggle the edit mode
+                          setNameError("");
+                          handleUpdateCategory(category.id, newName);
+                          toggleEditMode(category.id);
                         }
                       }}
                     >

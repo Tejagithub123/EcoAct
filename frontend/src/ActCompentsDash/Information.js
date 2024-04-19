@@ -45,7 +45,7 @@ const Information = () => {
                     <span className="text-sm block text-gray-400 mb-2">
                       {event.date}
                     </span>
-                    <h3 className="text-xl font-bold text-[#333] group-hover:text-blue-500 transition-all">
+                    <h3 className="text-xl font-bold text-[#333] group-hover:text-green-500 transition-all">
                       {event.name}
                     </h3>
                     <p className="text-gray-600">{event.description}</p>
