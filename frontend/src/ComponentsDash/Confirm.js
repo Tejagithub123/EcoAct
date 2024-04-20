@@ -1,6 +1,6 @@
 import { FaTrash, FaCheck } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
-
+import "./Confirm.CSS";
 const Confirm = ({ setCurrentPage }) => {
   const [ecoActors, setEcoActors] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -129,7 +129,7 @@ const Confirm = ({ setCurrentPage }) => {
                   </div>
                 </div>
               ) : (
-                <table className="min-w-full  bg-white font-sans">
+                <table className="ml-15 bg-white font-sans custom-table-width">
                   <thead className="bg-green-300 whitespace-nowrap">
                     <tr>
                       <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">

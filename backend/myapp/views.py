@@ -20,7 +20,7 @@ from .models import Category
 from .serializers import CategorySerializer
 from .models import EcoActor
 from .serializers import EcoActorSerializer
-
+from django.conf import settings 
 from .models import EcoActorCandidat
 from .serializers import EcoActorCandidatSerializer
 
@@ -49,6 +49,27 @@ class EventRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class EcoActorListCreate(generics.ListCreateAPIView):
     queryset = EcoActor.objects.all()
     serializer_class = EcoActorSerializer
+
+    def perform_create(self, serializer):
+        # Call the serializer's save method to create the EcoActor instance
+        eco_actor_instance = serializer.save()
+        print(eco_actor_instance.email)
+        
+        try:
+            # Send activation email to the eco actor
+            send_mail(
+                'Your account has been activated',
+                'Dear Eco Actor,\n\nYour account has been activated in the Act Eco platform. Please sign in to access your account.\n\nBest regards,\nThe Act Eco Team',
+                settings.EMAIL_HOST_USER,
+                [eco_actor_instance.email],  # Use the recipient email address
+                fail_silently=False,
+            )
+        except Exception as e:
+            # Error handling: Log any exceptions that occur during email sending
+            return Response({"error": "Failed to send activation email"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        # Return success response
+        return Response({"success": "Eco Actor created successfully and activation email sent"}, status=status.HTTP_201_CREATED)
 
 class EcoActorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = EcoActor.objects.all()
