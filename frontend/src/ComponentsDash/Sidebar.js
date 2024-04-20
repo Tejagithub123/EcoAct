@@ -134,7 +134,7 @@ const Sidebar = ({ setCurrentPage }) => {
             to="/"
             className="text-gray-300 hover:text-white text-sm flex items-center rounded-md"
           >
-            <FaHome className="w-[18px] h-[18px] mr-4" />{" "}
+            <FaHome className="w-[18px] h-[18px] mr-4" /> <span>Home</span>
           </Link>
           <br></br>
         </li>
