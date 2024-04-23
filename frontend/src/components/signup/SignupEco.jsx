@@ -345,41 +345,32 @@ if (longitude < 7.5 || longitude > 11.5) {
     </div>
 
 {/* Categories */}
+{/* Categories */}
 <div className="relative flex items-center">
   <label className="text-[13px] text-black absolute px-2 top-[-18px] left-[1px] font-semibold">
     Categories
   </label>
-  <button
-    onClick={(e) => {
-      e.preventDefault(); 
-      setShowDropdown(!showDropdown);
+  <select
+    value={selectedCategories}
+    onChange={(e) => {
+      setSelectedCategories(
+        Array.from(
+          e.target.selectedOptions,
+          (option) => option.value
+        )
+      );
     }}
     className="px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
   >
-    {showDropdown ? "Select a Category" : "Categories"}
-  </button>
-  {showDropdown && (
-    <select
-      multiple
-      value={selectedCategories}
-      onChange={(e) => {
-        setSelectedCategories(
-          Array.from(
-            e.target.selectedOptions,
-            (option) => option.value
-          )
-        );
-      }}
-      className="absolute top-full left-0 z-10 px-4 py-3.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
-    >
-      {categories.map((category) => (
-        <option key={category.id} value={category.id}>
-          {category.name}
-        </option>
-      ))}
-    </select>
-  )}
+    <option disabled={true}>Select a Category</option>
+    {categories.map((category) => (
+      <option key={category.id} value={category.id}>
+        {category.name}
+      </option>
+    ))}
+  </select>
 </div>
+
 
                 {/* Submit Button */}
                 <div className="mt-6 sm:col-span-2">
