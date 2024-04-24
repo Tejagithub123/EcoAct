@@ -130,7 +130,7 @@ const Confirm = ({ setCurrentPage }) => {
                 </div>
               ) : (
                 <table className="ml-15 bg-white font-sans custom-table-width">
-                  <thead className="bg-green-300 whitespace-nowrap">
+                  <thead className="bg-green-500 whitespace-nowrap">
                     <tr>
                       <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">
                         Username

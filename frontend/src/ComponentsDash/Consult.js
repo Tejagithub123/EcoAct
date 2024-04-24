@@ -163,7 +163,7 @@ function Consult() {
             {/* Table */}
             <div className="">
               <table className="min-w-full bg-white font-sans">
-                <thead className="bg-green-300 whitespace-nowrap">
+                <thead className="bg-green-500 whitespace-nowrap">
                   <tr>
                     <th className="px-6 py-3 text-center text-xm font-semibold text-gray-700">
                       Username
