@@ -18,6 +18,8 @@ from .views import recommend_eco_actors
 from .views import  EcoActorCandidatListCreateAPIView,EcoActorCandidatRetrieveUpdateDestroyAPIView
 
 from .views import reset_password
+
+from .views import send_email_recommad
 urlpatterns = [ 
      path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
      path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-detail'),
@@ -41,6 +43,7 @@ urlpatterns = [
 
 #reset password 
 path('resetpassword/', reset_password),
+path('send_email_recommad/',send_email_recommad),
 
     path('submit/', submit_contact_form, name='submit_contact_form'),
     

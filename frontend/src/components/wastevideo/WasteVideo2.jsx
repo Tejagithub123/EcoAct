@@ -155,7 +155,8 @@ function WasteVideo2() {
                 <p class="text-xl font-medium text-slate-700 mt-3">{actor.username}</p>
                 <p class="mt-2 text-sm text-slate-500">{actor.activitis}</p>
                 <p class="mt-2 text-sm text-slate-500">{actor.email}</p>
-
+                <button class="px-5 py-3 font-medium text-slate-700 shadow-xl hover:bg-yellow-500 duration-150 bg-yellow-300">Contact</button>
+        
             </div>
         ))}
     </div>

@@ -276,6 +276,32 @@ def reset_password(request):
     return Response({'message': 'Password reset email sent'}, status=status.HTTP_200_OK)
 
 
+@api_view(['POST'])
+def send_email_recommad(request):
+    if request.method == 'POST':
+        actor_email = request.data.get('actor_email', '')
+        sender_email = request.data.get('sender_email', '')
+        message = request.data.get('message', '')
+
+        if actor_email and sender_email and message:
+            email_body = f'Our memeber with email : {sender_email}\nrequests: {message}'
+            try:
+                send_mail(
+                    'Recommendation Request',  # Subject line
+                    email_body,  # Email message body
+                    sender_email,  # Sender email
+                    [actor_email],  # Recipient email
+                    fail_silently=False,
+                )
+                return Response({'success': 'Email sent successfully.'}, status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response({'error': 'Missing required parameters.'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({'error': 'Invalid request method.'}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class PredictionList(generics.ListAPIView):
     queryset = Prediction.objects.all()
     serializer_class = PredictionSerializer
