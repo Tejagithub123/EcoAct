@@ -23,6 +23,14 @@ function WasteVideo() {
   const [stopped, setStopped] = useState(false);
   const [sentToBackend, setSentToBackend] = useState(false); // New state variable
   const [recommendedActors, setRecommendedActors] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [actorEmail, setActorEmail] = useState('');
+  const [senderEmail, setSenderEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  
+  
+  
   useEffect(() => {
     classifier = ml5.imageClassifier("./model/model.json", () => {
       setLoaded(true);
@@ -118,6 +126,22 @@ function WasteVideo() {
       };
     }
   };
+  const handleSubmit = () => {
+    // Call the API to send email
+    axios.post("http://localhost:8000/api/send_email_recommad/", {
+      actor_email: actorEmail,
+      sender_email: senderEmail,
+      message: message,
+    })
+    .then(response => {
+      console.log("Email sent successfully:", response.data);
+      // Close the modal after sending email
+      setModalOpen(false);
+    })
+    .catch(error => {
+      console.error("Error sending email:", error);
+    });
+  };
 
   return (
     <>
@@ -191,12 +215,37 @@ function WasteVideo() {
                 <p class="text-xl font-medium text-slate-700 mt-3">{actor.username}</p>
                 <p class="mt-2 text-sm text-slate-500">{actor.activitis}</p>
                 <p class="mt-2 text-sm text-slate-500">{actor.email}</p>
-                <button class="px-5 py-3 font-medium text-slate-700 shadow-xl hover:bg-yellow-500 duration-150 bg-yellow-300">Contact</button>
+                <button className="px-5 py-3 font-medium text-slate-700 shadow-xl hover:bg-yellow-500 duration-150 bg-yellow-300" onClick={() => {
+              setActorEmail(actor.email);
+              setModalOpen(true);
+            }}>Contact</button>
         
             </div>
         ))}
     </div>
-
+    {modalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg">
+            <h2 className="text-xl font-bold mb-4">Send Email</h2>
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full mb-4 p-2 border border-gray-300 rounded"
+              value={senderEmail}
+              onChange={(e) => setSenderEmail(e.target.value)}
+            />
+            <textarea
+              placeholder="Your Message"
+              className="w-full mb-4 p-2 border border-gray-300 rounded"
+              rows="4"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onClick={handleSubmit}>Send</button>
+            <button className="bg-gray-500 text-white px-4 py-2 rounded ml-2 hover:bg-gray-600" onClick={() => setModalOpen(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
   
 </div>
 </div>
