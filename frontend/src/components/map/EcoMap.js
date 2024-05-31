@@ -302,6 +302,7 @@ const EcoMap = () => {
               Latitude: {selectedActor.latitude}, Longitude:{" "}
               {selectedActor.longitude}
             </p>
+            <p className="text-base">Email: {selectedActor.email}</p>
             <p className="text-base">Telephone: {selectedActor.telephone}</p>
             <p className="text-base">Activités: {selectedActor.activitis}</p>
             <button

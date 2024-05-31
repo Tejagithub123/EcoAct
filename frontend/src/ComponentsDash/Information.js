@@ -16,6 +16,7 @@ const Information = () => {
   const [updatedDescription, setUpdatedDescription] = useState("");
   const [updatedDate, setUpdatedDate] = useState("");
   const [updatedImage, setUpdatedImage] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -123,11 +124,26 @@ const Information = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredEvents = events.filter((event) =>
+    event.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <main className="ml-60 pt-16 max-h-screen overflow-auto">
         <div className="px-6 py-8">
-          <div className="flex justify-end">
+          <div className="flex justify-between items-center mb-4">
+            <input
+              type="text"
+              placeholder="Search by event name"
+              value={searchTerm}
+              onChange={handleSearch}
+              className="w-1/3 px-4 py-2 border rounded-lg"
+            />
             <button
               className="text-[#333] w-1/5 bg-green-500 hover:bg-green-700 px-4 py-2 rounded-lg"
               onClick={openModal}
@@ -222,7 +238,7 @@ const Information = () => {
                   </div>
                 </div>
               </div>
-              {events.map((event) => (
+              {filteredEvents.map((event) => (
                 <div
                   key={event.id}
                   className="hover:translate-y-2 cursor-pointer rounded overflow-hidden group"

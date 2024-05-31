@@ -5,6 +5,8 @@ const Categoryform = () => {
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([]);
   const [nameError, setNameError] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // Add search state
+
   // Function to fetch categories from the API
   const fetchCategories = () => {
     fetch("http://localhost:8000/api/categories/")
@@ -102,6 +104,14 @@ const Categoryform = () => {
     );
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <main className="ml-80 pt-16">
@@ -110,19 +120,18 @@ const Categoryform = () => {
             className="font-[sans-serif] m-4 max-w-4xl mt-30"
             onSubmit={handleSubmit}
           >
-            {/* form*/}
+            {/* form */}
             <div className="relative flex items-center">
               <label className="text-[13px] text-black absolute px-2 top-[-18px] left-[18px] font-semibold">
                 Name
               </label>
               <input
                 type="text"
-                placeholder="Enter name"
+                placeholder="Enter name of the category to add"
                 className="px-2 py-2.5 bg-white text-black w-full text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-
               <button
                 type="submit"
                 className="w-1/2 py-3 ml-2 bg-green-500 text-white rounded-md hover:bg-green-700 transition duration-300"
@@ -133,13 +142,23 @@ const Categoryform = () => {
           </form>
           {nameError && <p className="text-red-500">{nameError}</p>}
         </div>
-        {/* panel*/}
+        {/* Search input */}
+        <div className="bg-white rounded-3xl p-8 mb-5">
+          <input
+            type="text"
+            placeholder="Search categories"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="px-2 py-2.5 bg-white text-black w-1/2 text-sm border-2 border-gray-100 focus:border-green-500 rounded outline-none"
+          />
+        </div>
+        {/* panel */}
         <div className="mr-10 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-          {/* Render fetched categories dynamically */}
-          {categories.map((category) => (
+          {/* Render filtered categories dynamically */}
+          {filteredCategories.map((category) => (
             <div
               key={category.id}
-              className="bg-white rounded-lg  overflow-hidden border border-gray-200 shadow-lg transform transition-transform duration-300 hover:translate-y-2"
+              className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-lg transform transition-transform duration-300 hover:translate-y-2"
             >
               <div className="p-4">
                 {category.editing ? (
@@ -162,7 +181,7 @@ const Categoryform = () => {
                   <h3 className="text-center text-lg leading-6 font-bold text-gray-900">
                     {category.name}
                   </h3>
-                )}
+                )}{" "}
                 <div className="flex justify-between items-center mt-2">
                   {/* Delete Button */}
                   <button
