@@ -59,6 +59,7 @@ const Profil = ({ setCurrentPage }) => {
     try {
       await axios.delete(`http://localhost:8000/api/ecoactors/${id}/`);
       console.log("User deleted successfully!");
+      localStorage.removeItem("token");
       navigate("/");
     } catch (error) {
       console.error("Error deleting user:", error);

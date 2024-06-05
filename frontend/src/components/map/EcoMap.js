@@ -304,7 +304,7 @@ const EcoMap = () => {
             </p>
             <p className="text-base">Email: {selectedActor.email}</p>
             <p className="text-base">Telephone: {selectedActor.telephone}</p>
-            <p className="text-base">Activités: {selectedActor.activitis}</p>
+            <p className="text-base">Activities: {selectedActor.activitis}</p>
             <button
               className="mt-4 bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600"
               onClick={() => setSelectedActor(null)}

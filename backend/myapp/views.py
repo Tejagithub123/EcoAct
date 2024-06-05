@@ -189,8 +189,8 @@ def submit_contact_form(request):
                 send_mail(
                     'New Contact Form Submission',
                     f'Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}',
-                    email,
-                    [email],  # Use provided email as recipient
+                    settings.EMAIL_HOST_USER,  # Use the server email configured in settings as the sender
+                    [email],  # Use the email provided in the form as the recipient
                     fail_silently=False
                 )
                 return Response({'message': 'Form submitted successfully.'})
@@ -198,8 +198,8 @@ def submit_contact_form(request):
                 return Response({'error': str(e)}, status=500)
         else:
             return Response({'error': 'Email is required.'}, status=400)
-    return Response({'error': 'Invalid request method.'}, status=400)
-
+    return Response({'error': 'Invalid request method.'}, status=400)  
+    
 @api_view(['GET'])
 def filter_actors_by_location(request):
     ville = request.query_params.get('ville')
@@ -268,7 +268,7 @@ def reset_password(request):
     send_mail(
         'Password Reset',
         f'Your new password: {new_password}',
-        'from@example.com',
+        'aicademyelearning@gmail.com',
         [email],
         fail_silently=False,
     )
