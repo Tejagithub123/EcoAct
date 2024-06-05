@@ -1,4 +1,4 @@
-# "Sort Smarter,recycle better - lets keep our planet greener!"
+EcoAct
 
 ## Installation (Clone)
 
